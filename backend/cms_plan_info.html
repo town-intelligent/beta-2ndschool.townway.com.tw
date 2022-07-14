@@ -12,14 +12,37 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
     <link rel="stylesheet" href="/static/css/style.css" >
     <link rel="stylesheet" href="/static/css/progress_bar.css">
     <script src="/static/js/config.js"></script>
     <script src="/static/js/localStorage.js"></script>
+    <script src="/static/js/file_handler.js"></script>
     <script src="/static/js/accounts.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/permission.js"></script>
+    <script src="/static/js/cms_agent.js"></script>
+    <script src="/static/js/plan.js"></script>
+    <script src="/static/js/tasks.js"></script>
+    <script src="/static/js/cms_plan_info.js"></script>
+    <script src="/static/js/set_page_info.js"></script>
+    <script src="/static/js/qrcode.js"></script>
+    <script src="/static/js/init.js"></script>
+
+    <script>
+    // project_start_date
+    $( function() {
+      $("#project_start_date").datepicker();
+      $("#project_due_date").datepicker();
+    });
+    </script>
+
   </head>
 
-  <body>
+  <body onload="init()">
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container">
@@ -138,13 +161,13 @@
     <!-- step progress bar -->
     <div class="contanier">
       <ul class="progressbar mt-5">
-        <li class=" step1 text-center">
+        <li class=" step1 text-center active">
             <strong>計畫基本資料</strong>
         </li>
         <li class="step2 text-center">
           <strong>SDGs 指標設定</strong>
         </li>
-        <li class="step3 text-center active">
+        <li class="step3 text-center">
           <strong>社會影響力展現</strong>
         </li>
         <li class="step4 text-center">
@@ -155,168 +178,110 @@
     <!-- content -->
     <section>
       <div class="container">
-        <div class="row justify-content-center mt-5">
-          <div class="col-md-12">
-            <p class="h4">計畫總指標</p>
-          </div>
-        </div>
-        <div class="d-flex justify-content-center">
-          <img class="img-fluid mt-4" src="/static/imgs/SDGs_All_Logo.png" alt="" >
-        </div>
-        <div class="form-row mt-5">
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 1 消除貧窮
-              </label>
+        <form action="">
+          <div class="row mt-5 pt-3 align-items-center justify-content-center">
+            <div class="col-12">
+              <p class="bg-warning p-2">永續合作封面</p>
+            </div>
+            <div class="col-12">
+              <div id="coverImg" class="border d-flex align-items-center justify-content-center" style="height: 300px;">
+                <!--
+                <img src="/static/imgs/image_icon.svg" width="100" height="100" alt="">
+                <a href="#" class="stretched-link"></a>
+                -->
+                <button type="button" id="btnUploadImg" onclick="uploadProjectCover()">
+                  <div id="divUploadImg" class="bg-contain" style="background-image: url(/static/imgs/image_icon.svg); width: 100px; height: 100px; background-repeat: no-repeat" ></div>
+                </button>
+              </div>
             </div>
           </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 2 終結飢餓
-              </label>
+          <div class="row mt-4 align-items-center">
+            <div class="col-12">
+              <p class="bg-warning p-2">永續合作名稱</p>
+            </div>
+            <div class="col-12">
+              <input id="name" class="form-control" type="text" placeholder="請輸入名稱">
             </div>
           </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 3 健全的生活品質
-              </label>
+          <div class="row mt-4 align-items-center">
+            <div class="col-12">
+              <p class="bg-warning p-2">永續企業</p>
+            </div>
+            <div class="col-12">
+              <input id="project_a" class="form-control" type="text" placeholder="請輸入名稱">
+	      <!--
+              <div class="form-group mb-0">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>請選擇帳號</option>
+                </select>
+              </div>
+	      -->
             </div>
           </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 4 良質教育
-              </label>
+          <div class="row mt-4 align-items-center">
+            <div class="col-12">
+              <p class="bg-warning p-2">地方團隊</p>
+            </div>
+            <div class="col-12">
+              <input id="project_b" class="form-control" type="text" placeholder="請輸入名稱">  
+	      <!--
+              <div class="form-group mb-0">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>請選擇帳號</option>
+                </select>
+                <div class="mt-3">
+                  <button class="btn btn-block btn-outline-secondary">+</button>
+                </div>
+              </div>
+	      -->
             </div>
           </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 5 性別平權
-              </label>
+          <div class="row mt-4 align-items-center">
+            <div class="col-12">
+              <p class="bg-warning p-2">計算期間</p>
+            </div>
+            <div class="form-group col-6 mb-0">
+              <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+  		  <input id="project_start_date" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="開始日期"/>
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6 mb-0">
+              <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                <input id="project_due_date" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="結束日期"/>
+		<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 6 淨水與衛生
-              </label>
+          <div class="row mt-4 align-items-center">
+            <div class="col-12">
+              <p class="bg-warning p-2">計畫金額</p>
+            </div>
+            <div class="col-12">
+              <input id="budget" class="form-control" type="text" placeholder="請輸入金額">
             </div>
           </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 7 可負擔的永續能源
-              </label>
+          <div class="row mt-4 align-items-center">
+            <div class="col-12">
+              <p class="bg-warning p-2">計畫理念</p>
+            </div>
+            <div class="col-12">
+              <textarea class="form-control" id="philosophy" rows="6" style="resize: none"></textarea>
             </div>
           </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 8 合適的工作與經濟成長
-              </label>
+          <div class="row mt-4 mb-5 pb-3">
+            <div class="col-12">
+              <div id="submit_container" class="d-flex justify-content-end">
+		<button type="submit" id="btn_ab_project_next" class="btn btn-primary d-none d-md-block" style="width: 20%">下一步</button>
+                <button type="submit" id="btn_ab_project_next" class="btn btn-primary btn-block d-md-none">下一步</button>
+              </div>
             </div>
           </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 9 產業、創新和基礎建設
-              </label>
-            </div>
-          </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 10 減少不平等
-              </label>
-            </div>
-          </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 11 永續城鄉
-              </label>
-            </div>
-          </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 12 責任消費與生產
-              </label>
-            </div>
-          </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 13 氣候變遷行動
-              </label>
-            </div>
-          </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 14 海洋生態保育
-              </label>
-            </div>
-          </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 15 陸地生態保育
-              </label>
-            </div>
-          </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 16 和平、正義與司法健全
-              </label>
-            </div>
-          </div>
-          <div class="form-group col-6 col-md-4">
-            <div class="form-check d-flex align-items-center">
-              <input class="form-check-input checkbox-1x" type="checkbox" id="gridCheck">
-              <label class="form-check-label pl-3" for="gridCheck">
-                SDG 17 永續發展與全球夥伴關係
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="row mt-5 mb-5 pb-3">
-          <div class="col-12 mt-5 d-none d-md-block">
-            <div class="d-flex justify-content-between">
-              <button class="btn btn-primary" style="width: 20%">上一步</button>
-              <button class="btn btn-primary" style="width: 20%">檢視草稿</button>
-              <button class="btn btn-primary" style="width: 20%">儲存草稿</button>
-              <button class="btn btn-primary" style="width: 20%">完成</button>
-            </div>
-          </div>
-          <div class="col-12 mt-3 d-md-none">
-            <button class="btn btn-primary btn-block">上一步</button>
-            <button class="btn btn-primary btn-block mt-3">檢視草稿</button>
-            <button class="btn btn-primary btn-block mt-3">儲存草稿</button>
-            <button class="btn btn-primary btn-block mt-3">完成</button>
-          </div>
-        </div>
+        </form>
       </div>
     </section>
     <!-- footer -->

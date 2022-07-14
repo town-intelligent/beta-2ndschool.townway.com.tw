@@ -1,0 +1,77 @@
+function set_page_info_cms_plan_info(uuid){
+    if (uuid != null) {   
+        obj_project = plan_info(uuid);
+  
+        /* Set DOM */
+        document.getElementById("name").value = obj_project.name;
+        document.getElementById("project_a").value = obj_project.project_a;
+        document.getElementById("project_b").value = obj_project.project_b;
+        var list_period = obj_project.period.split("-");
+        document.getElementById("project_start_date").value = list_period[0];
+        document.getElementById("project_due_date").value = list_period[1];
+        document.getElementById("budget").value = obj_project.budget;
+        document.getElementById("philosophy").value = obj_project.philosophy;
+      }
+}
+
+function submitProjectCover(base64Img, uuid) {
+  var dataJSON = {};
+  // dataJSON.email = getLocalStorage("email");
+  dataJSON.uuid = uuid;
+  dataJSON.img = base64Img;
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/projects/push_project_cover",
+    type: "POST",
+    async: true,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      const obj = JSON.parse(returnData);
+      if (obj.result) {
+        console.log("OK");
+      } else {
+        console.log("False");
+      }
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+}
+
+function uploadProjectCover() {
+  // Params
+  var queryString = window.location.search;
+  var urlParams = new URLSearchParams(queryString);
+  var uuid = urlParams.get("uuid")
+
+  var file = new FileModal("image/png");
+
+  file.onload = function(d){
+    if (uuid == "" || uuid == null){
+      console.log("TODO: submit plan ...");
+      // submit plan
+      // update uuid
+    }
+
+    // Resize to 1 MB
+    
+    // d = imageToDataUri(d, 200, 200);
+
+    // Upload base64 image file
+    console.log(d);
+    console.log(d.length);
+    if (d.length > 1000000) {
+      alert("您的圖檔大小需要在 1MB 以下");
+      return;
+    }
+    submitProjectCover(d, uuid);
+    var path_cover = HOST_URL_TPLANET_DAEMON + 
+    "/static/project/" + uuid + 
+    "/media/cover/cover.png";
+    document.getElementById("divUploadImg").style.backgroundImage =  "";
+    document.getElementById("btnUploadImg").style.display = "none";
+    document.getElementById("coverImg").style.backgroundImage =  "url(" + path_cover + ")";
+  };
+  file.show();
+}
