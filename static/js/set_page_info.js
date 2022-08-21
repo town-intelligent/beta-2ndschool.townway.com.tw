@@ -16,6 +16,10 @@ function set_page_info() {
     set_page_info_cms_impact(uuid);
   }
 
+  if (page == "cms_missions_display.html") {
+    set_page_info_cms_missions_display(uuid, task);
+  }
+
   if (page == "cms_deep_participation.html") {
     set_page_info_cms_deep_participation();
   }
@@ -42,5 +46,9 @@ function set_page_info() {
 
   if (page == "cms_contact_person.html") {
     set_page_info_cms_contact_person(uuid);
+  }
+
+  if (page == "project_list.html") {
+    set_page_info_project_list();
   }
 }

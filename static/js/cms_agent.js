@@ -1,170 +1,33 @@
 const cms_project_submit_pages = ["cms_plan_info.html", "cms_sdgs_setting.html", "cms_impact.html", "cms_contact_person.html"];
 const cms_support_format = ["cms_missions_display.html", "cms_support_form.html", "cms_deep_participation.html"]
 
-function set_local_storage(page){
-  if (page == "cms_plan_info.html") {
-    // Get data
-    var name = document.getElementById("name").value;
-    var project_a = document.getElementById("project_a").value;
-    var project_b = document.getElementById("project_b").value;
-    var project_start_date = document.getElementById("project_start_date").value;
-    var project_due_date = document.getElementById("project_due_date").value;
-    var budget = document.getElementById("budget").value;
-    var philosophy = document.getElementById("philosophy").value;
-
-    // Set local storage
-    setLocalStorage("cms_plan_name", name); 
-    setLocalStorage("cms_plan_project_a", project_a); 
-    setLocalStorage("cms_plan_project_b", project_b);
-    setLocalStorage("cms_plan_project_start_date", project_start_date); 
-    setLocalStorage("cms_plan_project_due_date", project_due_date); 
-    setLocalStorage("cms_plan_budget", budget); 
-    setLocalStorage("cms_plan_philosophy", philosophy); 
-  }
-
+// Submit 之前的處理
+function submit_pre_processing(page, uuid, task) {
+  var uuid_project = null;
+  var uuid_task = null;
   if (page == "cms_sdgs_setting.html") {
-    // Get data
-    var list_sdg = new Array(17).fill(0);
-    for(var index = 1; index <= 17; index++) {
-      if (document.getElementById("sdg_" + index.toString()).checked.toString() == "true") {
-        list_sdg[index - 1] = 1;
-      }
+    if (uuid != null) {
+      uuid_project = uuid;
+    } else if (getLocalStorage("uuid_project") != "") {
+      uuid_project = plan_submit(getLocalStorage("uuid_project"));
+    } else {
+      uuid_project = plan_submit();
     }
-
-    // Set local storage
-    setLocalStorage("cms_plan_list_sdg", list_sdg);
   }
 
-  if (page == "cms_impact.html") {
-    // Load social impact items and save to local storage
-    var cms_plan_list_sdg = getLocalStorage("cms_plan_list_sdg");
-    var list_cms_plan_list_sdg = cms_plan_list_sdg.split(",");
-
-    var dataJSON = {};
-    for (var index = 0 ; index <17; index++) {
-      if (list_cms_plan_list_sdg[index] == "1") {
-	      // Append to JSON 
-	      dataJSON[index] = document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des").value;
-      }
-    }
-
-    // Get DOM
-    var obj_parent_task_name = document.getElementById("parent_task_name_0").value;
-    var obj_task_start_date = document.getElementById("parent_task_start_date_0").value;
-    var obj_task_due_date = document.getElementById("parent_task_due_date_0").value;
-    var obj_overview = document.getElementById("parent_task_overview_0").value;
-    
-    /* Set to localstorage */
-    setLocalStorage("weight_description", JSON.stringify(dataJSON));
-
-    // For parent task
-    var list_parent_tasks = [];
-    var JSONdata = {};
-
-    // Append data to parent task list
-    // TODO: Add parent tasks counter
-    var index = 0;
-    while (true) {
-      if (document.getElementById("parent_task_name_" + index) == null) {
-        break;
-      }
-
-      JSONdata.parent_task_name = document.getElementById("parent_task_name_" + index).value;
-      JSONdata.parent_task_start_date = document.getElementById("parent_task_start_date_" + index).value;
-      JSONdata.parent_task_due_date = document.getElementById("parent_task_due_date_" + index).value;
-      JSONdata.parent_task_overview = document.getElementById("parent_task_overview_" + index).value;
-
-      list_parent_tasks.push(JSONdata);
-      setLocalStorage("list_parent_tasks", JSON.stringify(list_parent_tasks));
-    
-      index ++;
-    }
-
-    /* Set to localstorage */
-  }
-
-  // Get DOM data for parent task
-  if (page == "cms_support_form.html" || page == "cms_deep_participation.html") {
-    var list_target_sdgs = [];
-    var list_tasks = [];
-    
-    // Get parent uuid
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    uuid = urlParams.get("uuid")
-    task = urlParams.get("task")
-
-    for (var index = 1; index < 18; index++) {
-      var index_sdg = ("0" + index).slice(-2);
-      if (document.getElementById("target_sdgs_" + index_sdg) == null) {
-        continue;
-      }
-
-      // Get SDGs tasks
-      var dataJSON = {}; 
-      dataJSON.sdg = index;
-      dataJSON.des = document.getElementById("target_sdgs_" + index_sdg).value;
-      list_tasks.push(JSON.stringify(dataJSON));
-    }
-
-    // Set parent task
-    var dataJSONTask = {};
-
-    dataJSONTask.task_parent_id = task;
-    list_tasks.push(JSON.stringify(dataJSONTask));
-
-    setLocalStorage("list_target_sdgs", JSON.stringify(list_tasks));
- 
-    // Task submit ...
-    var list_target_sdgs = getLocalStorage("list_target_sdgs");
-    var obj_list_target_sdgs = JSON.parse(list_target_sdgs);
-    var form = new FormData();
-
-    // Add type cms_deep_participation.html
-    var type = 0;
-    var form = new FormData();
-    if (page == "cms_deep_participation.html") {
-      type = 3;
-      form.append("name", document.getElementById("name").value);
-      form.append("task_start_date", document.getElementById("task_start_date_0").value);
-      form.append("task_due_date", document.getElementById("task_due_date_0").value);
-    } 
-
-    // Task submit
-    form.append("uuid", uuid);
-    form.append("tasks", obj_list_target_sdgs);
-    form.append("email", getLocalStorage("email"));
-    form.append("type", type);
-
-    task_submit(form);
-  }
-
-  if (page == "cms_contact_person.html") {
-    // Get data
-    var hoster = document.getElementById("hoster").value;
-    var email = document.getElementById("email").value;
-    var org = document.getElementById("org").value;
-    var tel = document.getElementById("tel").value;
-    var list_location = [0, 0, 0, 0, 0];
-    for(var index = 1; index <= 5; index++) {
-      if (document.getElementById("location_" + index.toString()).checked.toString() == "true") {
-        list_location[index - 1] = 1;
-      }
-    }
-
-    // Set local storage
-    setLocalStorage("cms_plan_hoster", hoster);
-    setLocalStorage("cms_plan_email", email);
-    setLocalStorage("cms_plan_org", org);
-    setLocalStorage("cms_plan_tel", tel);
-    setLocalStorage("cms_plan_list_location", list_location);
-  }
+  uuid_task = task;
+  return [uuid_project, uuid_task];
 }
+
 
 $(function () {
   $("#add_c_project").on("click", function(event) {
     event.preventDefault();
-    window.location.replace("/backend/cms_plan_info.html"); 
+
+    var form = new FormData();
+    if (obj_project = plan_submit(form)) {
+      window.location.replace("/backend/cms_plan_info.html?uuid=" + obj_project.uuid); 
+    }
   });
 });
 
@@ -196,15 +59,30 @@ $(function () {
     var path = window.location.pathname;
     var page = path.split("/").pop();
 
+    // Get parent uuid
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    uuid = urlParams.get("uuid")
+    task = urlParams.get("task")
+
     // Get index
     var index = get_page_index(page);
 
+    // Set params
+    var param = "";
+    if (uuid != null) {
+      param = param + "?uuid=" + uuid;
+    }
+    if (task != null) {
+      param = param + "&task=" + task;
+    }
+
     // Replace page
     if (index > 0)
-      window.location.replace(get_index_page(index - 1));
+      window.location.replace(get_index_page(index - 1) + param );
     else
-      window.location.replace(get_index_page(0));
-  });
+      window.location.replace(get_index_page(0) + param );
+    });
 });
 
 // Submit to next page
@@ -222,8 +100,12 @@ $(function () {
     uuid = urlParams.get("uuid")
     task = urlParams.get("task")
 
-    // Set local storage
-    set_local_storage(page);
+    // Submit pre-processing
+    if (uuid == null) {
+      var list_plan_task_uuid = submit_pre_processing(page, uuid, task);
+      uuid = list_plan_task_uuid[0];
+      task = list_plan_task_uuid[1];
+    }
 
     // Get index
     var index = get_page_index(page);
@@ -237,114 +119,83 @@ $(function () {
       param = param + "&task=" + task;
     }
 
-    // Replace page
-    if (index < cms_project_submit_pages.length - 1) {
-      var next_page = get_index_page(index + 1);
-      window.location.replace("/backend/" + next_page + param);
-    } else {
-      window.location.replace("/backend/" + get_index_page(cms_project_submit_pages.length - 1) + param);
-    }
+    // Append data to form
+    var form = new FormData();
+    form = append_plan_submit_data(page, form);
 
     // Submit
-    if (page == "cms_contact_person.html") {
-      var uuid_project = null;
-      if (getLocalStorage("uuid_project") != "") {
-        uuid_project = getLocalStorage("uuid_project");
+    plan_submit(form, uuid);
 
-        plan_submit(uuid_project);
+    // FIXME: refactory
+    child_task_submit(page);
+
+    // Replace page
+    var btn_submit = $(this).find("button[type=submit]:focus");
+    var id_btn_submit = btn_submit.attr('id');
+    
+    if (id_btn_submit == "btn_ab_project_next") {
+      if (index < cms_project_submit_pages.length - 1) {
+        var next_page = get_index_page(index + 1);
+        window.location.replace("/backend/" + next_page + param);
+      } else {
+        window.location.replace("/backend/" + get_index_page(cms_project_submit_pages.length - 1) + param);
       }
 
-      // Redirect
-      window.location.replace("/backend/cms_project_detail.html?uuid=" + uuid_project);
+      if (page == "cms_contact_person.html") {
+        window.location.replace("/backend/cms_project_detail.html?uuid=" + uuid);
+      }
+    } else if (id_btn_submit == "btn_cms_plan_save") {
+      alert("儲存成功");
+    } else if (id_btn_submit == "btn_cms_plan_preview") {
+      window.location.replace("/backend/cms_project_detail.html?uuid=" + uuid);
     }
   });
 });
 
-$(function () {
-  $("#btn_cms_plan_save").on("click", function(e) {
-    e.preventDefault(); // To prevent following the link (optional)
+// TODO
+function cms_plan_add_parent_tasks(uuid_task){
+  // Path
+  var path = window.location.pathname;
+  var page = path.split("/").pop();
+  var url = new URL(window.location.href);
+  // Params
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  var uuid = urlParams.get("uuid")
 
-    // Get path
-    var path = window.location.pathname;
-    var page = path.split("/").pop();
+  // Submit
+  var uuid_plan = null;
 
-    // Set localstorage
-    set_local_storage(page)
+  if (uuid != null) {
+    uuid_plan = uuid;
+  } else if (getLocalStorage("uuid_project") != "") {
+    uuid_plan = getLocalStorage("uuid_project");
+  } else {
+    var form = new FormData();
+    uuid_plan = plan_submit(form, uuid_plan);
+  }    
+  setLocalStorage("uuid_project", uuid_plan);
 
-    // Submit
-    var uuid_project = null;
-    if (getLocalStorage("uuid_project") != "") {
-      uuid_project = getLocalStorage("uuid_project");
-    }
+  // Update project
+  var form_plan = new FormData();
+  form_plan = append_plan_submit_data(page, form_plan);
+  plan_submit(form_plan, uuid);
 
-    var uuid = plan_submit(uuid_project);
-    setLocalStorage("uuid_project", uuid);
-
-    alert("儲存成功");
-  });
-});
-
-$(function () {
-  $("#btn_cms_plan_preview").on("click", function(e) {
-    e.preventDefault(); // To prevent following the link (optional)
-
-    // Get path
-    var path = window.location.pathname;
-    var page = path.split("/").pop();
-
-    // Set localstorage
-    set_local_storage(page)
-
-    // Submit
-    var uuid_project = null;
-    if (getLocalStorage("uuid_project") != "") {
-      uuid_project = getLocalStorage("uuid_project");
-    }
-
-    var uuid = plan_submit(uuid_project);
-    setLocalStorage("uuid_project", uuid);
-
-    // New preview window
-    window.open("/backend/cms_project_detail.html?uuid=" + uuid);
-  });
-});
-
-$(function () {
-  $("#btn_cms_plan_add_parent_tasks").on("click", function(e) {
-    e.preventDefault(); // To prevent following the link (optional)
-
-    // Get path
-    var path = window.location.pathname;
-    var page = path.split("/").pop();
-
-    // Create parent UUID
-    var task = null;
-
-    if (this.name != "") {
-      task = this.name;
-    } 
-
-    // Set localstorage
-    set_local_storage(page)
-
-    // Submit
-    var uuid_project = null;
-    if (getLocalStorage("uuid_project") != "") {
-      uuid_project = getLocalStorage("uuid_project");
-    }
-
-    var uuid_plan = plan_submit(uuid_project);
-    setLocalStorage("uuid_project", uuid_plan);
-
-    // Parent task submit
-    if (this.name == "") {
-      task = parent_task_submit(uuid_plan, task); 
-    }
-
-    // Redirect to add parent window
-    window.location.replace("/backend/cms_missions_display.html?uuid=" + uuid_plan + "&task=" + task);
-  });
-});
+  // Parent task submit
+  var form = new FormData();
+  form.append("email", getLocalStorage("email"));
+  form.append("uuid", uuid_plan);
+  form.append("task", uuid_task);
+  form.append("name", document.getElementById("parent_task_name_" + uuid_task).value);
+  form.append("task_start_date", document.getElementById("parent_task_start_date_" + uuid_task).value);
+  form.append("task_due_date", document.getElementById("parent_task_due_date_" + uuid_task).value);
+  form.append("overview", document.getElementById("parent_task_overview_" + uuid_task).value);
+  // TODO: add cover
+  var obj_task = task_submit(form); 
+  
+  // Redirect to add parent window
+  window.location.replace("/backend/cms_missions_display.html?uuid=" + uuid_plan + "&task=" + obj_task.task);
+}
 
 // btn_cms_plan_add_form_task
 $(function () {
@@ -361,20 +212,18 @@ $(function () {
     uuid = urlParams.get("uuid")
     task = urlParams.get("task")
 
-    // Set localstorage
-    set_local_storage(page)
-
     // Submit
     var uuid_project = null;
     if (getLocalStorage("uuid_project") != "") {
       uuid_project = getLocalStorage("uuid_project");
     }
 
-    var uuid = plan_submit(uuid_project);
-    setLocalStorage("uuid_project", uuid);
+    var form = new FormData();
+    var obj_project = plan_submit(form, uuid_project);
+    setLocalStorage("uuid_project", obj_project.uuid);
 
     // Redirect to add parent window
-    window.location.replace("/backend/cms_support_form.html?uuid=" + uuid + "&task=" + task);
+    window.location.replace("/backend/cms_support_form.html?uuid=" + obj_project.uuid + "&task=" + task);
   });
 });
 
@@ -392,20 +241,18 @@ $(function () {
     const urlParams = new URLSearchParams(queryString);
     task = urlParams.get("task")
 
-    // Set localstorage
-    set_local_storage(page)
-
     // Submit
     var uuid_project = null;
     if (getLocalStorage("uuid_project") != "") {
       uuid_project = getLocalStorage("uuid_project");
     }
 
-    var uuid = plan_submit(uuid_project);
-    setLocalStorage("uuid_project", uuid);
+    var form = new FormData();
+    var obj_project = plan_submit(form, uuid_project);
+    setLocalStorage("uuid_project", obj_project.uuid);
 
     // Redirect to add parent window
-    window.location.replace("/backend/cms_deep_participation.html?uuid=" + uuid + "&task=" + task);
+    window.location.replace("/backend/cms_deep_participation.html?uuid=" + obj_project.uuid + "&task=" + task);
   });
 });
 
@@ -483,6 +330,7 @@ $(function () {
       obj_input.type = "text";
       obj_input.className = "form-control";
       obj_input.placeholder = "請留下您的支持評論。"
+      obj_input.disabled = true;
 
       // Append
       obj_div_child.append(obj_input);
@@ -555,13 +403,15 @@ function set_page_info_cms_agent(uuid){
     var obj_div_card_md4 = document.createElement("div");
     obj_div_card_md4.className = "card mb-4 rounded-0";
 
-    obj_div_card_md4.addEventListener('click', function() {
-      location.href = location.protocol + "//" + 
-        window.location.host + 
-        "/backend/cms_project_detail.html?uuid=" + 
-        obj_project.uuid;
-    }, true);
 
+    // <a href="#" class="stretched-link"></a>
+    var obj_a_href = document.createElement("a");
+    obj_a_href.className ="stretched-link";
+    obj_a_href.href = location.protocol + "//" + 
+    window.location.host + 
+    "/backend/cms_project_detail.html?uuid=" + 
+    obj_project.uuid;
+    obj_div_card_md4.append(obj_a_href);
 
     // <div class="d-flex justify-content-center">
     var obj_div_d_flex = document.createElement("div");
@@ -571,11 +421,13 @@ function set_page_info_cms_agent(uuid){
     var obj_project_img = document.createElement("div");
     obj_project_img.className = "img-fluid bg-cover";
     // obj_project_img.style = "background-image:url(/static/imgs/project_img_02.png); width:100% ;height:200px";
+    
     var path_cover = HOST_URL_TPLANET_DAEMON + 
     "/static/project/" + obj_project.uuid + 
     "/media/cover/cover.png";
-    obj_project_img.style = "background-image:url(" + path_cover + "); width:100% ;height:200px";
     
+    obj_project_img.style = "background-image:url(" + path_cover + "); width:100% ;height:200px";    
+
     // Append
     obj_div_d_flex.append(obj_project_img);
     obj_div_card_md4.append(obj_div_d_flex);
@@ -638,7 +490,15 @@ function set_page_info_cms_agent(uuid){
     var obj_sdg_div = document.createElement("div");
     obj_sdg_div.className = "col-2 pr-0";
     var obj_a = document.createElement("a");
+
+    /*
+    obj_a.href = location.protocol + "//" + 
+    window.location.host + 
+    "/backend/cms_project_detail.html?uuid=" + 
+    obj_project.uuid;
+    */
     obj_a.href = "#";
+    
     var obj_sdg_img = document.createElement("img");
     obj_sdg_img.className = "w-100";
     obj_sdg_img.src = "/static/imgs/SDGs_04.jpg";
@@ -649,14 +509,6 @@ function set_page_info_cms_agent(uuid){
     obj_sdg_div.append(obj_a);
     obj_sdg_container.append(obj_sdg_div);
     obj_div_card_body_project.append(obj_sdg_container);
-
-    // <a href="#" class="stretched-link"></a>
-    var obj_stretched = document.createElement("a");
-    obj_stretched.href = "#";
-    obj_stretched.className = "stretched-link";
-
-    // Append
-    obj_div_card_md4.append(obj_stretched);
 
     // <div class="col-12 d-md-none">
     var obj_div_digital_fp = document.createElement("div");

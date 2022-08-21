@@ -15,6 +15,7 @@ function set_page_info_cms_plan_info(uuid){
 }
 
 function submitProjectCover(base64Img, uuid) {
+  var resultJSON = {};
   var dataJSON = {};
   // dataJSON.email = getLocalStorage("email");
   dataJSON.uuid = uuid;
@@ -27,16 +28,13 @@ function submitProjectCover(base64Img, uuid) {
     data:  dataJSON,
     success: function(returnData) {
       const obj = JSON.parse(returnData);
-      if (obj.result) {
-        console.log("OK");
-      } else {
-        console.log("False");
-      }
+      resultJSON = obj;
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
     }
   });
+  return resultJSON;
 }
 
 function uploadProjectCover() {
@@ -47,31 +45,24 @@ function uploadProjectCover() {
 
   var file = new FileModal("image/png");
 
-  file.onload = function(d){
-    if (uuid == "" || uuid == null){
-      console.log("TODO: submit plan ...");
-      // submit plan
-      // update uuid
-    }
-
-    // Resize to 1 MB
+  file.onload = function(base64Image){
     
-    // d = imageToDataUri(d, 200, 200);
+    // TODO: Resize to 1 MB
 
     // Upload base64 image file
-    console.log(d);
-    console.log(d.length);
-    if (d.length > 1000000) {
+    console.log(base64Image);
+    console.log(base64Image.length);
+    if (base64Image.length > 1000000) {
       alert("您的圖檔大小需要在 1MB 以下");
       return;
     }
-    submitProjectCover(d, uuid);
+    var obj_project_cover = submitProjectCover(base64Image, uuid);
     var path_cover = HOST_URL_TPLANET_DAEMON + 
     "/static/project/" + uuid + 
     "/media/cover/cover.png";
     document.getElementById("divUploadImg").style.backgroundImage =  "";
     document.getElementById("btnUploadImg").style.display = "none";
-    document.getElementById("coverImg").style.backgroundImage =  "url(" + path_cover + ")";
+    document.getElementById("coverImg").style.backgroundImage =  "url(" + base64Image + ")";
   };
   file.show();
 }
