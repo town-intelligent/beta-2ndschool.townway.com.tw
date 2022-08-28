@@ -38,7 +38,12 @@ function set_page_info_cms_project_detail (uuid) {
   }
 
   // Location
-  var list_location = obj_project.location.split(",");
+  var list_location = [];
+  
+  try {
+    list_location = obj_project.location.split(",");
+  } catch (e) {}
+  
   var index_location = 0;
   for (var index = 0; index < list_location.length; index++) {
     if (parseInt(list_location[index]) == 1) {

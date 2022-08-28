@@ -48,7 +48,11 @@ function set_page_info() {
     set_page_info_cms_contact_person(uuid);
   }
 
-  if (page == "project_list.html") {
+  if (page == "project_list.html" || page == "project_list_local.html") {
     set_page_info_project_list();
+  }
+
+  if (page == "kpi.html") {
+    set_page_info_kpi(uuid);
   }
 }

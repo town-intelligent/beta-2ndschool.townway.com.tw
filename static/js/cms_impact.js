@@ -144,7 +144,11 @@ function add_social_impact_chkbox() {
 
 function set_page_info_cms_impact(uuid) {
   var obj_plan = plan_info(uuid);
-  var list_sdgs_input = obj_plan.weight.split(",");
+  var list_sdgs_input = [];
+  try {
+    list_sdgs_input = obj_plan.weight.split(",");
+  } catch (e) {}
+
   var obj_sdgs_comment = "";
   
   try {

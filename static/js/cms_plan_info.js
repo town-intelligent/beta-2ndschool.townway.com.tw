@@ -6,9 +6,16 @@ function set_page_info_cms_plan_info(uuid){
         document.getElementById("name").value = obj_project.name;
         document.getElementById("project_a").value = obj_project.project_a;
         document.getElementById("project_b").value = obj_project.project_b;
-        var list_period = obj_project.period.split("-");
-        document.getElementById("project_start_date").value = list_period[0];
-        document.getElementById("project_due_date").value = list_period[1];
+        var list_period = [];
+        
+        try {
+          list_period = obj_project.period.split("-");
+        } catch (e) {}
+        if (list_period.length == 2) {
+          document.getElementById("project_start_date").value = list_period[0];
+          document.getElementById("project_due_date").value = list_period[1];
+        }
+
         document.getElementById("budget").value = obj_project.budget;
         document.getElementById("philosophy").value = obj_project.philosophy;
       }

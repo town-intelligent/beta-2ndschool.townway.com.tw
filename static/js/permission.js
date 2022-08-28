@@ -1,6 +1,6 @@
 function login_required(path) {
   if (path.includes("backend")) {
-      checkAuth();
+    checkAuth();
   }
 }
 

@@ -8,7 +8,11 @@ function set_page_info_cms_contact_person(uuid){
     document.getElementById("org").value = obj_project.org;
     document.getElementById("tel").value = obj_project.tel;
 
-    var list_location = obj_project.location.split(",");
+    var list_location = [];
+    
+    try {
+      obj_project.location.split(",");
+    } catch (e) {}
 
     for(var index = 0; index<list_location.length; index++) {
       if (parseInt(list_location[index]) != 0) {

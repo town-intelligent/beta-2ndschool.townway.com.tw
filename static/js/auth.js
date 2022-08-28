@@ -1,5 +1,6 @@
 // Verify JWT
 function verifyToken(token) {
+    var result = false;
     var dataJSON = {};
     dataJSON.token =  token;
     $.ajax({
@@ -12,9 +13,10 @@ function verifyToken(token) {
         const obj = JSON.parse(returnData);
         if (obj.result) {
           console.log("JWT still avliable");
-	  return true;
+          result = true;
+	        // return true;
         } else {
-	  console.log("JWT expired");
+	        console.log("JWT expired");
           window.location.replace("/tplanet_signin.html");
         }
       },
@@ -22,21 +24,25 @@ function verifyToken(token) {
         console.log(thrownError);
       }
     }); 
+    return true;
 }
 
 function checkAuth() {
+  var result = false;
   if (getLocalStorage("jwt") == "") {
     console.log("Null value of JWT");
     var path = window.location.pathname;
     var page = path.split("/").pop();
 
     if (page != "/tplanet_signin.html" || page != "/tplanet_signup.html") {
-      console.log("Goto signin page");
+      // console.log("Goto signin page");
       window.location.replace("/tplanet_signin.html?next=" + path);
     }
   } else {
     // Verify token
     console.log("Verifing JWT ...");
-    verifyToken(getLocalStorage("jwt"));
+    result = verifyToken(getLocalStorage("jwt"));
   }
+
+  return result;
 }

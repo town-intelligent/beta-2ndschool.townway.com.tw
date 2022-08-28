@@ -78,11 +78,16 @@ $(function () {
     }
 
     // Replace page
-    if (index > 0)
-      window.location.replace(get_index_page(index - 1) + param );
-    else
-      window.location.replace(get_index_page(0) + param );
-    });
+    if (index > 0) {
+      if (page == "cms_missions_display.html") {
+        window.location.replace("cms_impact.html" + param);
+      } else {
+        window.location.replace(get_index_page(index - 1) + param);
+      }
+    } else {
+      window.location.replace(get_index_page(0) + param);
+    }
+  });
 });
 
 // Submit to next page
@@ -153,7 +158,7 @@ $(function () {
 });
 
 // TODO
-function cms_plan_add_parent_tasks(uuid_task){
+function cms_plan_add_parent_tasks(uuid_task) {
   // Path
   var path = window.location.pathname;
   var page = path.split("/").pop();

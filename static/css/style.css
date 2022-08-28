@@ -100,3 +100,15 @@
 .text-primary-darker{
   color:#5285DF;
 }
+
+.bg-navbar {
+    background-color: #f0ea3b !important;
+}
+
+.bg-footer {
+    background-color: #f0ea3b !important;
+}
+
+.navbar {
+     min-height: 150px;
+}

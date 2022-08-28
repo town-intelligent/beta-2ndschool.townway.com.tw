@@ -41,23 +41,24 @@ const str_parent_task_block = ` <div class="row h-100">
 </div> 
 <hr class="my-4">`
 
-const str_project_block_in_project_page_page = `<div class="col-md-4">
+const str_project_block_in_project_page = `
 <div class="card mb-4 rounded-0">
   <div class="d-flex justify-content-center">
-    <div class="img-fluid bg-cover" style="background-image:url(/static/imgs/project_img.jpg); width:100% ;height:200px"></div>
+    <div class="img-fluid bg-cover" style="background-image:url(PROJECT_COVER); width:100% ;height:200px"></div>
   </div>
   <div class="card-body d-flex flex-column">
     <div class="d-flex justify-content-between">
-      <p class="h5 mb-0">永續發展計畫</p>
-      <p class="text-danger mb-0">能源</p>
+      <p class="h5 mb-0">PROJECT_NAME</p>
+      <p class="text-danger mb-0">專案</p>
     </div>
-    <p class="card-text mt-4">提案者:<span class="pl-2">永鑫能源<span></p>
-    <p class="card-text">期間: <span class="pl-2">____ . __ . __ ~ ____ . __ . __<span></p>
-    <p class="card-text">預算: <span class="pl-2">新台幣 __________ 元<span></p>
-    <a href="/content.html" class="stretched-link"></a>
+    <p class="card-text mt-4">提案者:<span class="pl-2">PROJECT_A<span></p>
+    <p class="card-text">期間: <span class="pl-2">PROJECT_START ~ PROJECT_DUE<span></p>
+    <p class="card-text">預算: <span class="pl-2">新台幣 BUDGET 元<span></p>
+    <a href="#" class="stretched-link"></a>
     <div class="d-flex align-items-center mt-2" style="position: relative;">
       <p class="mb-0">SDGs: </p>
       <div class="pl-2">
+      <!--
         <a href="#" class="stretched-link" style="position: relative; text-decoration: none;">
           <img style="width:13%" src="/static/imgs/SDGs_01.jpg" alt="">
         </a>
@@ -76,8 +77,14 @@ const str_project_block_in_project_page_page = `<div class="col-md-4">
         <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
           <img style="width:13%"  src="/static/imgs/SDGs_13.jpg" alt="">
         </a>
+        -->
+        SDGS_LIST
       </div>
     </div>
   </div>
 </div>
-</div>`
+`
+
+const str_SDG_in_list_project = `<a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
+    <img style="width:13%"  src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
+  </a>`

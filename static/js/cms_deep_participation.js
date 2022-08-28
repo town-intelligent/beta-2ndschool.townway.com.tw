@@ -4,8 +4,11 @@ function set_page_info_cms_deep_participation(){
       if (document.getElementById("task_start_date_" + index) == null)
             break;
 
-      $("#task_start_date_" + index).datepicker();
-      $("#task_due_date_" + index).datepicker();
+      /* $("#task_start_date_" + index).datepicker();
+      $("#task_due_date_" + index).datepicker(); */
+
+      $("#task_start_date_" + index).timepicker();
+      $("#task_due_date_" + index).timepicker();
 
       index ++;
     }
