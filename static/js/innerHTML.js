@@ -44,7 +44,7 @@ const str_parent_task_block = ` <div class="row h-100">
 const str_project_block_in_project_page = `
 <div class="card mb-4 rounded-0">
   <div class="d-flex justify-content-center">
-    <div class="img-fluid bg-cover" style="background-image:url(PROJECT_COVER); width:100% ;height:200px"></div>
+    <div class="img-fluid bg-cover" style="background-image:url(PROJECT_COVER); width:100% ;height:200px; background-repeat: no-repeat"></div>
   </div>
   <div class="card-body d-flex flex-column">
     <div class="d-flex justify-content-between">
@@ -88,3 +88,45 @@ const str_project_block_in_project_page = `
 const str_SDG_in_list_project = `<a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
     <img style="width:13%"  src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
   </a>`
+
+const str_admin_dropdown = `<a class="nav-link d-md-none" href="/backend/message_list.html">
+<img src="/static/imgs/notifications_icon.svg" width="35" height="35" class="d-inline-block align-middle" alt="">
+</a>
+<a class="nav-link d-md-none" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+<img src="/static/imgs/manage_accounts_icon.svg" width="35" height="35" class="d-inline-block align-middle" alt="">
+</a>
+<div class="dropdown-menu dropdown-menu-center">
+<a class="dropdown-item d-flex align-items-center" href="/backend/ab_cms_personal_file.html">
+  <img src="/static/imgs/personal_info.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
+  <span class="pl-2">基本資料</span>
+</a>
+<a class="dropdown-item d-flex align-items-center" href="/backend/ab_my_project.html">
+  <img src="/static/imgs/registration_icon.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
+  <span class="pl-2">我的提案</span>
+</a>
+<a class="dropdown-item d-flex align-items-center" href="/backend/cms_ab.html">
+  <img src="/static/imgs/cooperate.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
+  <span class="pl-2">永續專案</span>
+</a>
+<!-- <a class="dropdown-item d-flex align-items-center" href="/backend/ab_cms_personal_file.html">
+  <img src="/static/imgs/personal_info.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
+  <span class="pl-2">基本資料</span>
+</a> -->
+<a class="dropdown-item d-flex align-items-center" href="/backend/message_list.html">
+  <img src="/static/imgs/message.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
+  <span class="pl-2">訊息管理</span>
+</a>
+<a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="logout()">
+  <img src="/static/imgs/logout.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
+  <span class="pl-2">登出</span>
+</a>`;
+
+const str_send_mail = `<p>寄件者： 
+<span>townintelligent@gmail.com</span>
+</p>
+<p>收件者： 
+<span>RECEIVER</span>
+</p>
+<p>主旨： 
+<span>TITLE 邀請</span>
+</p>`;

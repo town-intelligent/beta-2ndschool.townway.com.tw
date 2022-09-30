@@ -152,7 +152,11 @@ $(function () {
     } else if (id_btn_submit == "btn_cms_plan_save") {
       alert("儲存成功");
     } else if (id_btn_submit == "btn_cms_plan_preview") {
-      window.location.replace("/backend/cms_project_detail.html?uuid=" + uuid);
+      // window.location.replace("/backend/cms_project_detail.html?uuid=" + uuid);
+      window.open(
+        "/backend/cms_project_detail.html?uuid=" + uuid,
+        "_blank" // <- This is what makes it open in a new window.
+      );
     }
   });
 });
@@ -366,6 +370,27 @@ $(function () {
       obj_a.append(obj_img);
       obj_icon_container.append(obj_a);
     }
+
+    /* if (page == "contact_us.html") {
+      // id = icon_container
+      var obj_icon_container = document.getElementById("icon_container");
+      
+      // <a class="d-block">
+      var obj_a = document.createElement("a");
+      obj_a.className = "d-block";
+
+      // <img class="mr-3" src="/static/imgs/SDGs_04.jpg" alt="" style="width:60px">
+      var obj_img = document.createElement("img");
+      obj_img.id = "target_sdgs_" + getLocalStorage("target_sdgs");
+      obj_img.className = "mr-3";
+      obj_img.src = "/static/imgs/SDGs_" + getLocalStorage("target_sdgs") + ".jpg";
+      obj_img.alt = "";
+      obj_img.style = "width:50px";
+
+      // Append
+      obj_a.append(obj_img);
+      obj_icon_container.append(obj_a);
+    } */
 	  
     // Finish
     $("#SDGsModal").modal("hide");
@@ -375,6 +400,11 @@ $(function () {
 function set_page_info_cms_agent(uuid){
   /* Create DOM */
   var list_project_obj = list_plans();
+
+  if (list_project_obj == undefined) {
+    return;
+  }
+
   var list_project_uuids = list_project_obj.projects;
   //  <div id="project_list">
   var obj_project_list = document.getElementById("project_list");
@@ -408,7 +438,6 @@ function set_page_info_cms_agent(uuid){
     var obj_div_card_md4 = document.createElement("div");
     obj_div_card_md4.className = "card mb-4 rounded-0";
 
-
     // <a href="#" class="stretched-link"></a>
     var obj_a_href = document.createElement("a");
     obj_a_href.className ="stretched-link";
@@ -427,11 +456,12 @@ function set_page_info_cms_agent(uuid){
     obj_project_img.className = "img-fluid bg-cover";
     // obj_project_img.style = "background-image:url(/static/imgs/project_img_02.png); width:100% ;height:200px";
     
-    var path_cover = HOST_URL_TPLANET_DAEMON + 
-    "/static/project/" + obj_project.uuid + 
-    "/media/cover/cover.png";
-    
-    obj_project_img.style = "background-image:url(" + path_cover + "); width:100% ;height:200px";    
+    if (obj_project.img != null) { 
+      var path_cover = HOST_URL_TPLANET_DAEMON + 
+      "/static/project/" + obj_project.uuid + 
+      "/media/cover/cover.png";
+      obj_project_img.style = "background-image:url(" + path_cover + "); width:100% ;height:200px; background-repeat: no-repeat";    
+    }
 
     // Append
     obj_div_d_flex.append(obj_project_img);
@@ -492,10 +522,10 @@ function set_page_info_cms_agent(uuid){
     // <div class="row mt-3"> 
     var obj_sdg_container = document.createElement("div");
     obj_sdg_container.className = "row mt-3";
-    var obj_sdg_div = document.createElement("div");
+    /* var obj_sdg_div = document.createElement("div");
     obj_sdg_div.className = "col-2 pr-0";
+ */
     var obj_a = document.createElement("a");
-
     /*
     obj_a.href = location.protocol + "//" + 
     window.location.host + 
@@ -504,15 +534,49 @@ function set_page_info_cms_agent(uuid){
     */
     obj_a.href = "#";
     
-    var obj_sdg_img = document.createElement("img");
-    obj_sdg_img.className = "w-100";
-    obj_sdg_img.src = "/static/imgs/SDGs_04.jpg";
-    obj_sdg_img.alt = "";
+    var list_sdgs = [];
+    try {
+      list_sdgs = obj_project.weight.split(",");
+    } catch (e) {}
+
+    for (var index_sdgs=0; index_sdgs<list_sdgs.length; index_sdgs++){
+      
+      if (parseInt(list_sdgs[index_sdgs]) != 0) {
+        var obj_sdg_div = document.createElement("div");
+        obj_sdg_div.className = "col-2 pr-0";
+        
+        var obj_sdg_img = document.createElement("img");
+        obj_sdg_img.className = "w-100";
+
+        var index_sdg = ("0" + (index_sdgs + 1)).slice(-2);
+        obj_sdg_img.src = "/static/imgs/SDGs_" + index_sdg + ".jpg";
+        obj_sdg_img.alt = "";
+      
+        obj_sdg_div.append(obj_sdg_img);
+        obj_sdg_container.append(obj_sdg_div);
+      }
+    }
+
+/*  WORKABLE
+    var obj_sdg_div2 = document.createElement("div");
+    obj_sdg_div2.className = "col-2 pr-0";
+    var obj_a2 = document.createElement("a");
+
+    var obj_sdg_img2 = document.createElement("img");
+    obj_sdg_img2.className = "w-100";
+    obj_sdg_img2.src = "/static/imgs/SDGs_08.jpg";
+    obj_sdg_img2.alt = "";
+
+    obj_sdg_div2.append(obj_sdg_img2);
 
     // Append
-    obj_a.append(obj_sdg_img);
-    obj_sdg_div.append(obj_a);
-    obj_sdg_container.append(obj_sdg_div);
+    // obj_a
+    
+
+    // obj_sdg_div.append(obj_a);
+    
+    obj_sdg_container.append(obj_sdg_div2); */
+
     obj_div_card_body_project.append(obj_sdg_container);
 
     // <div class="col-12 d-md-none">

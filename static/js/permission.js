@@ -6,11 +6,11 @@ function login_required(path) {
 
 function permission_check(page, group) {
   // Agent
-  if (group == "200") {
+  /* if (group == "200") {
     if (page.includes("admin")) {
       window.location.replace("/index.html");
     }
-  }
+  } */
 
   // Normal user
   if (group == "300") {

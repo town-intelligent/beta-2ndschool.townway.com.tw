@@ -81,13 +81,17 @@ function submitTaskCover(base64Img, uuid_task) {
   });
 }
 
+function onclickuploadTaskCover(uuid) {
+  uploadTaskCover(uuid);
+}
+
 function uploadTaskCover(uuid_task) {
   // Get project uuid
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   uuid = urlParams.get("uuid")
 
-  var file = new FileModal("image/png");
+  var file = new FileModal("image/*");
 
   file.onload = function(base64Img){
     
@@ -106,6 +110,14 @@ function uploadTaskCover(uuid_task) {
     document.getElementById("divUploadImg_" + uuid_task).style.backgroundImage =  "";
     document.getElementById("btnUploadImg_" + uuid_task).style.display = "none";
     document.getElementById("coverImg_" + uuid_task).style.backgroundImage =  "url(" + base64Img + ")";
+    document.getElementById("coverImg_" + uuid_task).style.backgroundRepeat = "no-repeat";
+    document.getElementById("coverImg_" + uuid_task).style.backgroundSize = "100% 100%";
+    
+    var oDiv = document.getElementById("coverImg_" + uuid_task);
+    oDiv.onclick = function() {
+      onclickuploadTaskCover(uuid_task);
+    }
+  
   };
   file.show();
 }

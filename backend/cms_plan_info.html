@@ -46,7 +46,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
       <div class="container">
-        <a class="navbar-brand" href="/index.html">
+        <a id="index_logo" class="navbar-brand" href="/index.html">
           <img src="/static/imgs/tplanet_logo_s.jpg" width="175" class="d-inline-block align-top" alt="">
         </a>
         <a class="nav-link d-md-none" href="/backend/ab_plan_info.html">
@@ -189,9 +189,11 @@
                 <img src="/static/imgs/image_icon.svg" width="100" height="100" alt="">
                 <a href="#" class="stretched-link"></a>
                 -->
+                
                 <button type="button" id="btnUploadImg" onclick="uploadProjectCover()">
                   <div id="divUploadImg" class="bg-contain" style="background-image: url(/static/imgs/image_icon.svg); width: 100px; height: 100px; background-repeat: no-repeat" ></div>
                 </button>
+
               </div>
             </div>
           </div>
@@ -238,21 +240,23 @@
           </div>
           <div class="row mt-4 align-items-center">
             <div class="col-12">
-              <p class="bg-warning p-2">計算期間</p>
+              <p class="bg-warning p-2">計畫期間</p>
             </div>
             <div class="form-group col-6 mb-0">
               <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                <input id="project_start_date" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="開始日期"/>
+                
                 <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-  		  <input id="project_start_date" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" placeholder="開始日期"/>
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+  		            
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
               </div>
             </div>
             <div class="form-group col-6 mb-0">
               <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                 <input id="project_due_date" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" placeholder="結束日期"/>
-		<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+		              <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
               </div>
             </div>

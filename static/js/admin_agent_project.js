@@ -2,6 +2,10 @@ function set_page_info_admin_agent_project(uuid){
     var list_project_obj = list_plans();
     var list_project_uuids = list_project_obj.projects;
 
+    if (list_project_uuids == undefined) {
+      return;
+    }
+
     // List projects
     var obj_tbody = document.getElementById("tbody");    
     for (var index = 0; index < list_project_uuids.length; index ++) {

@@ -17,22 +17,16 @@
     <script src="/static/js/config.js"></script>
     <script src="/static/js/localStorage.js"></script>
     <script src="/static/js/accounts.js"></script>
-    <script src="/static/js/auth.js"></script>
-    <script src="/static/js/permission.js"></script>
-    <script src="/static/js/tasks.js"></script>
-    <script src="/static/js/plan.js"></script>
-    <script src="/static/js/cms_agent.js"></script>
     <script src="/static/js/set_page_info.js"></script>
     <script src="/static/js/init.js"></script>
-
   </head>
 
-  <body onload="init()">
+  <body class="d-flex flex-column min-vh-100" onload="init()">
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <div class="container">
         <a id="index_logo" class="navbar-brand" href="/index.html">
-          <img src="/static/imgs/tplanet_logo_s.jpg" width="175" class="d-inline-block align-top" alt="">
+          <img src="/static/imgs/tplanet_logo_s.jpg" width="45" class="d-inline-block align-top" alt="">
         </a>
         <a class="nav-link d-md-none" href="/backend/ab_plan_info.html">
           <img src="/static/imgs/registration_icon.svg" width="35" height="35" class="d-inline-block align-middle" alt="">
@@ -143,40 +137,61 @@
         </div>
       </div>
     </nav>
+    <!-- step progress bar -->
+    <div class="contanier">
+      <ul class="progressbar mt-5">
+        <li class=" step1 text-center">
+            <strong>計畫基本資料</strong>
+        </li>
+        <li class="step2 text-center">
+          <strong>SDGs 指標設定</strong>
+        </li>
+        <li class="step3 text-center active">
+          <strong>社會影響力展現</strong>
+        </li>
+        <li class="step4 text-center">
+          <strong>專案聯繫窗口</strong>
+        </li>
+      </ul>
+    </div>
     <!-- content -->
     <section>
-      <div class="container"> <!-- <div class="container" > -->
-        <div class="row mt-5 mb-4"> <!-- <div class="row mt-5 mb-4"> -->
-          <div class="col-md-4"> <!-- <div class="col-md-4"> -->
-            <p class="h4">專案列表</p>
-          </div> <!-- <div class="col-md-4"> -->
-          <div class="col-8 d-none d-md-block"> <!-- <div class="col-8 d-none d-md-block"> -->
-            <p class="h4">數位足跡</p>
-          </div> <!-- <div class="col-8 d-none d-md-block"> -->
-        </div> <!-- <div class="row mt-5 mb-4"> -->
-
-        <div id="project_list-backup"> <!-- obj_project_list -->
-        <!-- project -->
-        <!-- project -->
-        </div> <!-- obj_project_list -->
-        
-
-        <div class="row mt-3 mb-5"> <!-- <div class="row mt-3 mb-5"> -->
+      <div class="container">
+        <div class="row mt-3 mt-md-5 pt-md-3 align-items-center justify-content-center">
           <div class="col-12">
-            <button id="add_c_project" class="btn btn-block btn-outline-secondary">新增永續專案+</button>
+            <p>請選擇您預計呈現的方式</p>
           </div>
-        </div> <!-- <div class="row mt-3 mb-5"> -->
-      
-      
-          <div id="project_list"> <!-- obj_project_list -->
-            <!-- project -->
-            <!-- project -->
-          </div> <!-- obj_project_list -->
-      
-        </div> <!-- <div class="container" > -->
+          <div class="col-md-8">
+            <div class="row mt-4 mb-md-5">
+              <div class="col-md-6">
+                <a href="#" class="btn btn-outline-dark btn-lg btn-block">支持表單形式</a>
+              </div>
+              <div class="col-md-6">
+                <a href="#" class="btn btn-outline-dark btn-lg btn-block mt-3 mt-md-0">深度參與形式</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5 mb-5 pb-3">
+          <div class="col-12 mt-5 d-none d-md-block">
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-primary" style="width: 20%">上一步</button>
+              <button class="btn btn-primary" style="width: 20%">檢視草稿</button>
+              <button class="btn btn-primary" style="width: 20%">儲存草稿</button>
+              <button class="btn btn-primary" style="width: 20%">完成</button>
+            </div>
+          </div>
+          <div class="col-12 mt-3 d-md-none">
+            <button class="btn btn-primary btn-block">上一步</button>
+            <button class="btn btn-primary btn-block mt-3">檢視草稿</button>
+            <button class="btn btn-primary btn-block mt-3">儲存草稿</button>
+            <button class="btn btn-primary btn-block mt-3">完成</button>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- footer -->
-    <footer class="bg-footer">
+    <footer class="bg-gray mt-auto">
       <div class="container">
         <div class="row py-4 border-bottom border-secondary">
           <div class="col-md-8 d-none d-md-block">

@@ -4,6 +4,8 @@ function plan_submit(form, uuid = null) {
     form.append("uuid", uuid);
   }
 
+  form.append("list_project_type", 0);
+
   var resultJSON = {};
   $.ajax({
     "url": HOST_URL_TPLANET_DAEMON + "/projects/upload",
@@ -68,10 +70,14 @@ function list_plan_tasks(uuid, parent) {
   return returnDataJSON;
 }
 
-function list_plans() {
+function list_plans(sdg = null) {
   // Check required field and save to JSON struct
   var dataJSON = {};
   dataJSON.email = getLocalStorage("email");
+
+  if (sdg != null) {
+    dataJSON.sdg = sdg;
+  }
 
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/projects/projects",
@@ -138,4 +144,28 @@ function append_plan_submit_data(page, form) {
     }
 
   return form;
+}
+
+function plan_send(form) {
+
+  var resultJSON = {};
+  $.ajax({
+    "url": HOST_URL_TPLANET_DAEMON + "/projects/send_project",
+    "method": "POST",
+    "async": true,
+    "timeout": 0,
+    "processData": false,
+    "mimeType": "multipart/form-data",
+    "contentType": false,
+    "data": form,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       resultJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return resultJSON;
 }

@@ -11,7 +11,7 @@ function set_page_info_cms_contact_person(uuid){
     var list_location = [];
     
     try {
-      obj_project.location.split(",");
+      list_location = obj_project.location.split(",");
     } catch (e) {}
 
     for(var index = 0; index<list_location.length; index++) {

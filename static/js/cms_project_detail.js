@@ -7,34 +7,38 @@ function set_page_info_cms_project_detail (uuid) {
 
   // Weight
   var obj_sdg_container = document.getElementById("sdg_container");
-  var list_weight = obj_project.weight.split(",");
+  var list_weight = [];
   
-    for (var index = 0; index < list_weight.length; index++) {
-    // Append to DOM
-    if (parseInt(list_weight[index]) == 1) {
+  try {
+    list_weight = obj_project.weight.split(",");
+  } catch (e) {}
+  
+  for (var index = 0; index < list_weight.length; index++) {
+  // Append to DOM
+  if (parseInt(list_weight[index]) == 1) {
 
-      // <div class="col-2 col-md-1 pr-0">
-      var obj_div = document.createElement("div");
-      obj_div.className = "col-2 col-md-1 pr-0";
+    // <div class="col-2 col-md-1 pr-0">
+    var obj_div = document.createElement("div");
+    obj_div.className = "col-2 col-md-1 pr-0";
 
-      // <a href="#">
-      var obj_a = document.createElement("a");
-      obj_a.href = "#"
-    
-      // <img class="w-100" src="/static/imgs/SDGs_04.jpg" alt="">
-      var obj_img = document.createElement("img");
-      obj_img.className = "w-100";
-      obj_img.src = "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".jpg";
-      obj_img.alt = "";
-    
-      // Append
-      obj_a.append(obj_img);
-      obj_div.append(obj_a);
-      obj_sdg_container.append(obj_div);
-    }
+    // <a href="#">
+    var obj_a = document.createElement("a");
+    obj_a.href = "#"
+  
+    // <img class="w-100" src="/static/imgs/SDGs_04.jpg" alt="">
+    var obj_img = document.createElement("img");
+    obj_img.className = "w-100";
+    obj_img.src = "/static/imgs/SDGs_" + ("0" + (index + 1)).slice(-2) + ".jpg";
+    obj_img.alt = "";
+  
+    // Append
+    obj_a.append(obj_img);
+    obj_div.append(obj_a);
+    obj_sdg_container.append(obj_div);
+  }
 
-    // Period
-    document.getElementById("period_project").innerHTML = obj_project.period; 
+  // Period
+  document.getElementById("period_project").innerHTML = obj_project.period; 
   }
 
   // Location
@@ -44,26 +48,24 @@ function set_page_info_cms_project_detail (uuid) {
     list_location = obj_project.location.split(",");
   } catch (e) {}
   
-  var index_location = 0;
+  // Location
+  var obj_location = document.getElementById("location");
   for (var index = 0; index < list_location.length; index++) {
     if (parseInt(list_location[index]) == 1) {
-      index_location = index;
+      if (index == 0) {
+        obj_location.innerHTML = obj_location.innerHTML + "<br> @ 台北 <br>";
+      } else if (index == 1){
+        obj_location.innerHTML = obj_location.innerHTML + "<br> @ 竹山 <br>";
+      } else if (index == 2){
+        obj_location.innerHTML = obj_location.innerHTML + "<br> @ 高雄 <br>";
+      } else if (index == 3){
+        obj_location.innerHTML = obj_location.innerHTML + "<br> @ 花蓮 <br>";
+      } else {
+        obj_location.innerHTML = obj_location.innerHTML + "<br> @ 馬祖 <br>";
+      }
     }
   }
-  var obj_location = document.getElementById("location");
   
-  if (index_location == 0) {
-    obj_location.innerHTML = "T-PLANET @ 台北";
-  } else if (index_location == 1){
-    obj_location.innerHTML = "T-PLANET @ 竹山";
-  } else if (index_location == 2){
-    obj_location.innerHTML = "T-PLANET @ 高雄";
-  } else if (index_location == 3){
-    obj_location.innerHTML = "T-PLANET @ 花蓮";
-  } else {
-    obj_location.innerHTML = "T-PLANET @ 馬祖";
-  }
-
   // Unit-A and B
   var obj_project_a = document.getElementById("project_a"); 
   obj_project_a.innerHTML = obj_project.project_a;
@@ -89,28 +91,31 @@ function set_page_info_cms_project_detail (uuid) {
   // </div>
 
   var obj_sdg_container = document.getElementById("project_sdg_container");
-  var list_weight = JSON.parse(obj_project.weight_description);
-  Object.keys(list_weight).forEach(function(key) {
-    var index = parseInt(key) + 1;
-    index = ("0" + index).slice(-2);
 
-    var obj_div = document.createElement("div");
-    obj_div.className = "row align-items-center mt-4";
+  var list_weight = null;
+  try {
+    list_weight = JSON.parse(obj_project.weight_description);
+    Object.keys(list_weight).forEach(function(key) {
+      var index = parseInt(key) + 1;
+      index = ("0" + index).slice(-2);
 
-    var obj_img = document.createElement("img");
-    obj_img.className = "col-3 col-md-1";
-    obj_img.src = "/static/imgs/SDGs_" + index + ".jpg";
-    obj_img.alt = "";
+      var obj_div = document.createElement("div");
+      obj_div.className = "row align-items-center mt-4";
 
-    var obj_p = document.createElement("p");
-    obj_p.className = "col-9 col-md-11 col-form-label pr-md-0";
-    obj_p.innerHTML = list_weight[key];
+      var obj_img = document.createElement("img");
+      obj_img.className = "col-3 col-md-1";
+      obj_img.src = "/static/imgs/SDGs_" + index + ".jpg";
+      obj_img.alt = "";
 
-    obj_div.append(obj_img);
-    obj_div.append(obj_p);
-    obj_sdg_container.append(obj_div);
+      var obj_p = document.createElement("p");
+      obj_p.className = "col-9 col-md-11 col-form-label pr-md-0";
+      obj_p.innerHTML = list_weight[key];
 
-  })
+      obj_div.append(obj_img);
+      obj_div.append(obj_p);
+      obj_sdg_container.append(obj_div);
+    })
+  } catch(e) {}
 
   // Set tasks
   var obj_tasks = list_plan_tasks(uuid ,1);
@@ -118,7 +123,6 @@ function set_page_info_cms_project_detail (uuid) {
   var obj_tasks_container = document.getElementById("tasks_container");
 
   for (var index = 0; index < list_tasks.length; index++) {
-    console.log(get_task_info(list_tasks[index]));
     var obj_task = get_task_info(list_tasks[index]);
 
     // Create DOM
@@ -169,7 +173,6 @@ function set_page_info_cms_project_detail (uuid) {
     });
 
     qrcode.style = "width:100px; height:100px; margin-top:15px;";
-    console.log("qrcode: " + location.protocol + "//" + window.location.host + "/tasks/" + obj_task.uuid);
     qrcode.makeCode(location.protocol + "//" + window.location.host + "/tasks/" + obj_task.uuid);    
 
     var obj_div_des = document.createElement("div")
@@ -202,11 +205,58 @@ function set_page_info_cms_project_detail (uuid) {
   }
 
   // Set cover
-  var path_cover = HOST_URL_TPLANET_DAEMON + 
-  "/static/project/" + uuid + 
-  "/media/cover/cover.png";
-  var obj_cover = document.getElementById("project_cover");
-  obj_cover.src = path_cover;
 
+  if (obj_project.img != null) { 
+    var path_cover = HOST_URL_TPLANET_DAEMON + 
+    "/static/project/" + uuid + 
+    "/media/cover/cover.png";
+    var obj_cover = document.getElementById("project_cover");
+    obj_cover.src = path_cover;
+  }
   /* Set DOM */
 }
+
+$(function () {
+  $("#btn_send_mail").on("click", function(e) {
+    e.stopPropagation();
+
+    // Params
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var uuid = urlParams.get("uuid")
+    var obj_project = plan_info(uuid);
+
+    var mail_content = "";
+    mail_content = str_send_mail.replace("RECEIVER", getLocalStorage("email"));
+    mail_content = mail_content.replace("TITLE", obj_project.name);
+
+    document.getElementById("send_mail").innerHTML = mail_content;
+    $("#send_mail_modal").modal("show")
+  });
+});
+
+$(function () {
+  $("#submit_send_mail").on("click", function(e) {
+    e.stopPropagation();
+
+    // URL
+    var url = new URL(window.location.href);
+
+    // Params
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var uuid = urlParams.get("uuid")
+    var obj_project = plan_info(uuid);
+
+    var content = `<p>您有一個新的專案，請到 <a href="${url}?uuid=${uuid}">網址</a> 詳閱細節。</p>`
+
+    var form = new FormData();
+    form.append("receiver", getLocalStorage("email"));
+    form.append("title", obj_project.name + " 邀請");
+    form.append("content", content);
+
+    var result = plan_send(form);
+
+    $("#send_mail_modal").modal("hide")
+  });
+});

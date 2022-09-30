@@ -55,4 +55,8 @@ function set_page_info() {
   if (page == "kpi.html") {
     set_page_info_kpi(uuid);
   }
+
+  if (page == "kpi_filter.html") {
+    set_page_info_kpi_filter();
+  }
 }
