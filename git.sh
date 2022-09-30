@@ -1,1 +1,1 @@
-git add . ; git commit -m "feat: logout" ; git push
+git add . ; git commit -m "fix: remove ab_project_info in dropdown menu" ; git push
