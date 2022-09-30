@@ -34,6 +34,9 @@ function logout() {
        const obj = JSON.parse(returnData);
        // Reset LocalStorage
        setLocalStorage("jwt", "");
+       setLocalStorage("group", "");
+       setLocalStorage("username", "");
+       setLocalStorage("email", "");
        window.location.replace("/index.html");
     },
     error: function(xhr, ajaxOptions, thrownError){

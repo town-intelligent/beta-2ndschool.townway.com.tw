@@ -1,1 +1,1 @@
-git add . ; git commit --amend -m "feat: project list" ; git push -f
+git add . ; git commit -m "feat: logout" ; git push

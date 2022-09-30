@@ -1,1 +1,1 @@
-google-chrome-stable --incognito https://tplanet.townway.com.tw
+google-chrome-stable --incognito https://beta-tplanet.townway.com.tw
