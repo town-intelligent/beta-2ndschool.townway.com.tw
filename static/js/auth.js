@@ -19,7 +19,7 @@ function verifyToken(token) {
 	        console.log("JWT expired");
 
           // Clear all localstorage
-          window.localStorage.clear();
+          localStorage.clear();
 
           // Redirect signin page
           window.location.replace("/tplanet_signin.html");

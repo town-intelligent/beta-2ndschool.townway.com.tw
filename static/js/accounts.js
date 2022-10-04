@@ -39,7 +39,7 @@ function logout() {
        setLocalStorage("email", ""); */
 
        // Clear local storage
-       window.localStorage.clear();
+       localStorage.clear();
 
        window.location.replace("/index.html");
     },
