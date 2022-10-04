@@ -32,12 +32,6 @@ function logout() {
     data:  dataJSON,
     success: function(returnData) {
        const obj = JSON.parse(returnData);
-       // Reset LocalStorage
-       /* setLocalStorage("jwt", "");
-       setLocalStorage("group", "");
-       setLocalStorage("username", "");
-       setLocalStorage("email", ""); */
-
        // Clear local storage
        localStorage.clear();
 
