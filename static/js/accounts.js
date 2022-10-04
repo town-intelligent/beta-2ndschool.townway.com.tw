@@ -33,10 +33,14 @@ function logout() {
     success: function(returnData) {
        const obj = JSON.parse(returnData);
        // Reset LocalStorage
-       setLocalStorage("jwt", "");
+       /* setLocalStorage("jwt", "");
        setLocalStorage("group", "");
        setLocalStorage("username", "");
-       setLocalStorage("email", "");
+       setLocalStorage("email", ""); */
+
+       // Clear local storage
+       window.localStorage.clear();
+
        window.location.replace("/index.html");
     },
     error: function(xhr, ajaxOptions, thrownError){

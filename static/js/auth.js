@@ -17,6 +17,11 @@ function verifyToken(token) {
 	        // return true;
         } else {
 	        console.log("JWT expired");
+
+          // Clear all localstorage
+          window.localStorage.clear();
+
+          // Redirect signin page
           window.location.replace("/tplanet_signin.html");
         }
       },
