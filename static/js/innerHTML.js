@@ -41,10 +41,17 @@ const str_parent_task_block = ` <div class="row h-100">
 </div> 
 <hr class="my-4">`
 
+// <div class="card mb-4 rounded-0">
+//  style="border-radius: inherit;"
+// width: 100%;
+// 200px
+// height:180px
+// w: 50 to 200
+// rounded-3
 const str_project_block_in_project_page = `
-<div class="card mb-4 rounded-0">
+<div class="card mb-4 border-3 border-dark h-100 p-3" style="border-radius: 20px;">
   <div class="d-flex justify-content-center">
-    <div class="img-fluid bg-cover" style="background-image:url(PROJECT_COVER); width:100% ;height:200px; background-repeat: no-repeat"></div>
+    <div class="img-fluid bg-cover" style="background-image:url(PROJECT_COVER); width: 400px; height:100px; background-repeat: no-repeat"></div>
   </div>
   <div class="card-body d-flex flex-column">
     <div class="d-flex justify-content-between">
@@ -86,7 +93,7 @@ const str_project_block_in_project_page = `
 `
 
 const str_SDG_in_list_project = `<a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
-    <img style="width:13%"  src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
+    <img class="pb-1" style="width:13%"  src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
   </a>`
 
 const str_admin_dropdown = `<a class="nav-link d-md-none" href="/backend/message_list.html">
