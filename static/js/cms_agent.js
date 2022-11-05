@@ -623,7 +623,10 @@ function set_page_info_cms_agent(uuid){
     // Append
     obj_div_btn_mf.append(obj_a_d_md_block_mf);
     obj_div_btn_mf.append(obj_a_d_md_none_mf);
-    obj_digital_fp_chart1_card_body.append(obj_digital_fp_chart1_img);
+    
+    // TODO
+    // obj_digital_fp_chart1_card_body.append(obj_digital_fp_chart1_img);
+    
     obj_digital_fp_chart1_card_body.append(obj_div_btn_mf);
     obj_digital_fp_chart1_card.append(obj_digital_fp_chart1_card_body);
     obj_digital_fp_chart1.append(obj_digital_fp_chart1_card);
