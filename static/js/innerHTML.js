@@ -41,13 +41,6 @@ const str_parent_task_block = ` <div class="row h-100">
 </div> 
 <hr class="my-4">`
 
-// <div class="card mb-4 rounded-0">
-//  style="border-radius: inherit;"
-// width: 100%;
-// 200px
-// height:180px
-// w: 50 to 200
-// rounded-3
 const str_project_block_in_project_page = `
 <div class="card mb-4 border-3 border-dark h-100 p-3" style="border-radius: 20px;">
   <div class="d-flex justify-content-center">

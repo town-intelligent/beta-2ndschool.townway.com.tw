@@ -605,6 +605,8 @@ function set_page_info_cms_agent(uuid){
     obj_digital_fp_chart1_img.src = "/static/imgs/agent_foot_print.png";
     obj_digital_fp_chart1_img.className = "card-img-top";
     obj_digital_fp_chart1_img.alt = "";
+    
+    
     // <div>
     var obj_div_btn_mf = document.createElement("div");
     // <a href="#" class="btn btn-primary d-none d-md-block">修改表單</a>
