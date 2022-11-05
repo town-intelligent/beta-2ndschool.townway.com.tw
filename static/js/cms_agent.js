@@ -1,3 +1,5 @@
+import { draws } from '../static/js/app.js'
+
 const cms_project_submit_pages = ["cms_plan_info.html", "cms_sdgs_setting.html", "cms_impact.html", "cms_contact_person.html"];
 const cms_support_format = ["cms_missions_display.html", "cms_support_form.html", "cms_deep_participation.html"]
 
@@ -610,6 +612,7 @@ function set_page_info_cms_agent(uuid){
     var obj_digital_fp_chart1_img = document.createElement("div");
     obj_digital_fp_chart1_img.id = "observablehq-chart-b9eea16e";
     console.log("A")
+    
     draws("56148310")
     
     // <div>
