@@ -25,7 +25,6 @@
     <script src="/static/js/set_page_info.js"></script>
     <script src="/static/js/init.js"></script>
 
-
     <!-- TODO -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@3/dist/inspector.css">
@@ -33,6 +32,26 @@
     <script type="module" src="static/js/render.js"></script>
     <script type="module" src="static/js/app.js"></script>
 
+
+    <script type="module">
+      import { draws } from './static/js/app.js'
+
+      console("B")
+      /* // Get user tasks
+      var str_list_task_UUIDs = getLocalStorage("list_tasks");
+      var list_task_UUIDs = [];
+      if (str_list_task_UUIDs === "") {
+        // Get user task UUIDs
+        list_task_UUIDs = list_tasks(getLocalStorage("username"));
+      } else {
+        list_task_UUIDs = str_list_task_UUIDs.split(",");
+      }
+
+      if (list_task_UUIDs.length != 0) {
+        var weight = getProjectWeight(list_task_UUIDs)
+        draws(weight);
+      } */
+    </script>
 
 
   </head>
