@@ -610,6 +610,7 @@ function set_page_info_cms_agent(uuid){
     var obj_digital_fp_chart1_img = document.createElement("div");
     obj_digital_fp_chart1_img.id = "observablehq-chart-b9eea16e";
     console.log("A")
+    draws("56148310")
     
     // <div>
     var obj_div_btn_mf = document.createElement("div");
