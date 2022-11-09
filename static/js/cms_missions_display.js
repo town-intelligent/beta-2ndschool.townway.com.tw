@@ -1,4 +1,6 @@
-function set_page_info_cms_missions_display(uuid, task) {
+import { list_children_tasks, get_task_info } from './tasks.js'
+
+export function set_page_info_cms_missions_display(uuid, task) {
   var list_tasks = list_children_tasks(task);
   console.log(list_tasks);
 

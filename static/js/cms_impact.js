@@ -1,4 +1,7 @@
-function add_parent_task_block (obj_task = null) {
+import { list_plan_tasks, plan_info } from './plan.js'
+import { task_submit, get_task_info } from './tasks.js'
+
+export function add_parent_task_block (obj_task = null) {
   // Params
   var queryString = window.location.search;
   var urlParams = new URLSearchParams(queryString);
@@ -151,7 +154,7 @@ function add_social_impact_chkbox() {
   }
 }
 
-function set_page_info_cms_impact(uuid) {
+export function set_page_info_cms_impact(uuid) {
   var obj_plan = plan_info(uuid);
   var list_sdgs_input = [];
   try {

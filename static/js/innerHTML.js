@@ -1,4 +1,5 @@
-const str_parent_task_block = ` <div class="row h-100">
+const str_parent_task_block = ` 
+<div class="row h-100">
 <div class="col-md-6">
   <div id="coverImg_UUID_TASK" class="border d-flex align-items-center justify-content-center h-100">
   <button type="button" id="btnUploadImg_UUID_TASK" onclick="uploadTaskCover(UUID_TASK)">
@@ -41,8 +42,7 @@ const str_parent_task_block = ` <div class="row h-100">
 </div> 
 <hr class="my-4">`
 
-const str_project_block_in_project_page = `
-<div class="card mb-4 border-3 border-dark h-100 p-3" style="border-radius: 20px;">
+const str_project_block_in_project_page = `<div class="card mb-4 border-3 border-dark h-100 p-3" style="border-radius: 20px;">
   <div class="d-flex justify-content-center">
     <div class="img-fluid bg-cover" style="background-image:url(PROJECT_COVER); width: 400px; height:100px; background-repeat: no-repeat"></div>
   </div>

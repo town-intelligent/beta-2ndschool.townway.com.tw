@@ -1,4 +1,6 @@
-function set_page_info_admin_agent_project(uuid){
+import { list_plans, plan_info } from './plan.js'
+
+export function set_page_info_admin_agent_project(uuid){
     var list_project_obj = list_plans();
     var list_project_uuids = list_project_obj.projects;
 

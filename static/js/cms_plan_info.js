@@ -1,8 +1,9 @@
-function set_page_info_cms_plan_info(uuid){
-    if (uuid != null) {   
-        obj_project = plan_info(uuid);
+import { list_plans, plan_info } from './plan.js'
 
-  
+export function set_page_info_cms_plan_info(uuid){
+    if (uuid != null) {   
+        var obj_project = plan_info(uuid);
+
         // Cover
         if (obj_project.img != null) { 
           var path_cover = HOST_URL_TPLANET_DAEMON + 
@@ -66,7 +67,7 @@ function onclickuploadProjectCover() {
   uploadProjectCover();
 }
 
-function uploadProjectCover() {
+export function uploadProjectCover() {
   // Params
   var queryString = window.location.search;
   var urlParams = new URLSearchParams(queryString);

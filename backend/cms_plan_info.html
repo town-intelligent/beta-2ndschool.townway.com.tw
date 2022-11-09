@@ -24,14 +24,17 @@
     <script src="/static/js/accounts.js"></script>
     <script src="/static/js/auth.js"></script>
     <script src="/static/js/permission.js"></script>
-    <script src="/static/js/cms_agent.js"></script>
-    <script src="/static/js/plan.js"></script>
-    <script src="/static/js/tasks.js"></script>
-    <script src="/static/js/cms_plan_info.js"></script>
-    <script src="/static/js/set_page_info.js"></script>
+    <script type="module" src="/static/js/cms_agent.js"></script>
+    <script type="module" src="/static/js/plan.js"></script>
+    <script type="module" src="/static/js/tasks.js"></script>
+    <script type="module" src="/static/js/cms_plan_info.js"></script>
+    <script type="module">
+      import { uploadProjectCover } from '/static/js/cms_plan_info.js'
+      window.uploadProjectCover = uploadProjectCover;
+    </script>
+    <script type="module" src="/static/js/set_page_info.js"></script>
     <script src="/static/js/qrcode.js"></script>
-    <script src="/static/js/init.js"></script>
-
+    <script type="module" src="/static/js/init.js"></script>
     <script>
     // project_start_date
     $( function() {
@@ -42,7 +45,7 @@
 
   </head>
 
-  <body onload="init()">
+  <body> <!-- onload="init()"> -->
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
       <div class="container">

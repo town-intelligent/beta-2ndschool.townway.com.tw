@@ -1,6 +1,8 @@
-function set_page_info_cms_contact_person(uuid){
+import { plan_info } from './plan.js'
+
+export function set_page_info_cms_contact_person(uuid){
   if (uuid != null) {
-    obj_project = plan_info(uuid);
+    var obj_project = plan_info(uuid);
 
     // Set DOM
     document.getElementById("hoster").value = obj_project.hoster;

@@ -1,4 +1,7 @@
-function set_page_info_cms_project_detail (uuid) {
+import { list_plan_tasks, plan_info } from './plan.js'
+import { get_task_info } from './tasks.js'
+
+export function set_page_info_cms_project_detail (uuid) {
   var obj_project = plan_info(uuid);
 
   /* Set DOM */
@@ -119,7 +122,8 @@ function set_page_info_cms_project_detail (uuid) {
 
   // Set tasks
   var obj_tasks = list_plan_tasks(uuid ,1);
-  list_tasks = obj_tasks.tasks;
+
+  var list_tasks = obj_tasks.tasks;
   var obj_tasks_container = document.getElementById("tasks_container");
 
   for (var index = 0; index < list_tasks.length; index++) {

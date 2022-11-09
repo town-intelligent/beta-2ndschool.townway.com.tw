@@ -1,5 +1,14 @@
+import { set_page_info_cms_agent } from './cms_agent.js'
+import { set_page_info_cms_project_detail } from './cms_project_detail.js'
+import { set_page_info_admin_agent_project } from './admin_agent_project.js'
+import { set_page_info_cms_plan_info } from './cms_plan_info.js'
+import { set_page_info_cms_sdgs_setting } from './cms_sdgs_setting.js'
+import { set_page_info_cms_impact } from './cms_impact.js'
+import { set_page_info_cms_missions_display } from './cms_missions_display.js'
+import { set_page_info_cms_deep_participation } from './cms_deep_participation.js'
+import { set_page_info_cms_contact_person } from './cms_contact_person.js'
 
-function set_page_info() {
+export function set_page_info() {
   /* Get path and parameters */
   // Path
   var path = window.location.pathname;

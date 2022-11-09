@@ -1,4 +1,6 @@
-import { draws } from '../static/js/app.js'
+import { draws } from './app.js'
+import { list_plans, plan_info, append_plan_submit_data, plan_submit } from './plan.js'
+import { task_submit, child_task_submit } from './tasks.js'
 
 const cms_project_submit_pages = ["cms_plan_info.html", "cms_sdgs_setting.html", "cms_impact.html", "cms_contact_person.html"];
 const cms_support_format = ["cms_missions_display.html", "cms_support_form.html", "cms_deep_participation.html"]
@@ -26,6 +28,7 @@ $(function () {
   $("#add_c_project").on("click", function(event) {
     event.preventDefault();
 
+    var obj_project = null; 
     var form = new FormData();
     if (obj_project = plan_submit(form)) {
       window.location.replace("/backend/cms_plan_info.html?uuid=" + obj_project.uuid); 
@@ -64,8 +67,8 @@ $(function () {
     // Get parent uuid
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    uuid = urlParams.get("uuid")
-    task = urlParams.get("task")
+    var uuid = urlParams.get("uuid")
+    var task = urlParams.get("task")
 
     // Get index
     var index = get_page_index(page);
@@ -104,8 +107,8 @@ $(function () {
     // Get parent uuid
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    uuid = urlParams.get("uuid")
-    task = urlParams.get("task")
+    var uuid = urlParams.get("uuid")
+    var task = urlParams.get("task")
 
     // Submit pre-processing
     if (uuid == null) {
@@ -143,7 +146,7 @@ $(function () {
     if (id_btn_submit == "btn_ab_project_next") {
       if (index < cms_project_submit_pages.length - 1) {
         var next_page = get_index_page(index + 1);
-        window.location.replace("/backend/" + next_page + param);
+        window.location.replace("/backend/" + next_page + param);      
       } else {
         window.location.replace("/backend/" + get_index_page(cms_project_submit_pages.length - 1) + param);
       }
@@ -164,7 +167,7 @@ $(function () {
 });
 
 // TODO
-function cms_plan_add_parent_tasks(uuid_task) {
+export function cms_plan_add_parent_tasks(uuid_task) {
   // Path
   var path = window.location.pathname;
   var page = path.split("/").pop();
@@ -220,8 +223,8 @@ $(function () {
     // Params
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    uuid = urlParams.get("uuid")
-    task = urlParams.get("task")
+    var uuid = urlParams.get("uuid")
+    var task = urlParams.get("task")
 
     // Submit
     var uuid_project = null;
@@ -250,7 +253,7 @@ $(function () {
     // Get Parent uuid
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    task = urlParams.get("task")
+    var task = urlParams.get("task")
 
     // Submit
     var uuid_project = null;
@@ -399,7 +402,7 @@ $(function () {
   });
 });
 
-function set_page_info_cms_agent(uuid){
+export function set_page_info_cms_agent(uuid){
   /* Create DOM */
   var list_project_obj = list_plans();
 
@@ -596,11 +599,13 @@ function set_page_info_cms_agent(uuid){
     obj_digital_fp_chart1.className = "col-md-4";
     // <div class="card h-100 border-0">
     var obj_digital_fp_chart1_card = document.createElement("div");
-    obj_digital_fp_chart1_card.className = "card h-100 border-0";
+
+    obj_digital_fp_chart1_card.className = "card h-100  border-0";
 
     // <div class="card-body h-100 d-flex flex-column justify-content-between text-center">
     var obj_digital_fp_chart1_card_body = document.createElement("div");
-    obj_digital_fp_chart1_card_body.className = "card-body h-100 d-flex flex-column justify-content-between text-center";
+    obj_digital_fp_chart1_card_body.className = "card-body h-100 d-flex flex-column justify-content-between text-center" ;
+    // obj_digital_fp_chart1_card_body.style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;"; // FIXME
     // <img src="/static/imgs/agent_foot_print.png" class="card-img-top" alt="">
     
     // TODO
@@ -610,10 +615,9 @@ function set_page_info_cms_agent(uuid){
     obj_digital_fp_chart1_img.alt = ""; */
 
     var obj_digital_fp_chart1_img = document.createElement("div");
-    obj_digital_fp_chart1_img.id = "observablehq-chart-b9eea16e";
-    console.log("A")
-    
-    draws("56148310")
+
+    // obj_digital_fp_chart1_img.id = "observablehq-chart-4bac1ac8";
+    obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_project.uuid;
     
     // <div>
     var obj_div_btn_mf = document.createElement("div");
@@ -621,7 +625,7 @@ function set_page_info_cms_agent(uuid){
     var obj_a_d_md_block_mf = document.createElement("a");
     obj_a_d_md_block_mf.href = location.protocol + "//" + window.location.host + "/backend/cms_plan_info.html?uuid=" + obj_project.uuid;
     obj_a_d_md_block_mf.className = "btn btn-primary d-none d-md-block";
-    obj_a_d_md_block_mf.innerHTML = "1修改表單";
+    obj_a_d_md_block_mf.innerHTML = "修改表單";
     // <a href="#" class="btn btn-primary btn-block d-md-none">修改表單</a>
     var obj_a_d_md_none_mf = document.createElement("a");
     obj_a_d_md_none_mf.href = location.protocol + "//" + window.location.host + "/backend/cms_plan_info.html?uuid=" + obj_project.uuid; 
@@ -680,6 +684,10 @@ function set_page_info_cms_agent(uuid){
 
     /* Append */
     obj_project_list.append(obj_div_root);
+  
+    // FIXME (73247058 = task)
+    // draws("73247058")
+    draws(obj_project.uuid)
   }
   /* Create DOM */
 }

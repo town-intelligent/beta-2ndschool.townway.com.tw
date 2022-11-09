@@ -1,4 +1,4 @@
-function plan_submit(form, uuid = null) {
+export function plan_submit(form, uuid = null) {
   form.append("email", getLocalStorage("email"));
   if (uuid != null) {
     form.append("uuid", uuid);
@@ -28,7 +28,7 @@ function plan_submit(form, uuid = null) {
   return resultJSON;
 }
 
-function plan_info(uuid) {
+export function plan_info(uuid) {
   var dataJSON = {};
 
   $.ajax({
@@ -48,7 +48,7 @@ function plan_info(uuid) {
   return dataJSON;
 }
 
-function list_plan_tasks(uuid, parent) {
+export function list_plan_tasks(uuid, parent = 0) {
   var dataJSON = {};
   var returnDataJSON = {};
   dataJSON.uuid = uuid;
@@ -70,7 +70,7 @@ function list_plan_tasks(uuid, parent) {
   return returnDataJSON;
 }
 
-function list_plans(sdg = null) {
+export function list_plans(sdg = null) {
   // Check required field and save to JSON struct
   var dataJSON = {};
   dataJSON.email = getLocalStorage("email");
@@ -96,7 +96,7 @@ function list_plans(sdg = null) {
   return dataJSON;
 }
 
-function append_plan_submit_data(page, form) {
+export function append_plan_submit_data(page, form) {
   if (page == "cms_plan_info.html") {
     form.append("name", document.getElementById("name").value);
     form.append("project_a", document.getElementById("project_a").value);
@@ -168,4 +168,29 @@ function plan_send(form) {
   });
 
   return resultJSON;
+}
+
+HOST_URL_TPLANET_DAEMON = "https://beta-tplanet-backend.townway.com.tw"
+
+export function getProjectWeight(list_task_UUIDs) {
+  var projectWeight = {};
+  var dataJSON = {};
+  dataJSON.uuid = list_task_UUIDs[0];
+
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/projects/weight",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data: dataJSON,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       projectWeight = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return projectWeight;
 }

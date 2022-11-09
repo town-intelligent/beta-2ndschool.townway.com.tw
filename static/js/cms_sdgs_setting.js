@@ -1,6 +1,8 @@
-function set_page_info_cms_sdgs_setting(uuid){
+import { plan_info } from './plan.js'
+
+export function set_page_info_cms_sdgs_setting(uuid){
   if (uuid != null) {
-    obj_project = plan_info(uuid);
+    var obj_project = plan_info(uuid);
     var list_sdgs = [];
     
     try {

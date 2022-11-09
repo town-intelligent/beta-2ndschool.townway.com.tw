@@ -1,3 +1,5 @@
+import { set_page_info } from './set_page_info.js'
+
 function navbar(group) {
   if (group != ""){
     // home logo
@@ -19,7 +21,7 @@ function navbar(group) {
   }
 }
 
-function init() {
+/* export function init() { */
 
   // Get path
   var path = window.location.pathname;
@@ -33,4 +35,4 @@ function init() {
 
   // navbar
   navbar(group);
-}
+/* } */

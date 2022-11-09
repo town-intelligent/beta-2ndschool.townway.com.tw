@@ -1,4 +1,4 @@
-function get_task_info(uuid) {
+export function get_task_info(uuid) {
   var dataJSON = {};
 
   $.ajax({
@@ -19,7 +19,7 @@ function get_task_info(uuid) {
   return dataJSON;
 }
 
-function task_submit(form) {
+export function task_submit(form) {
   var resultJSON = {};
   $.ajax({
     "url": HOST_URL_TPLANET_DAEMON + "/tasks/new",
@@ -42,7 +42,7 @@ function task_submit(form) {
   return resultJSON;
 }
 
-function list_children_tasks(task) {
+export function list_children_tasks(task) {
   var dataJSON = {};
   dataJSON.uuid = task;
 
@@ -85,11 +85,11 @@ function onclickuploadTaskCover(uuid) {
   uploadTaskCover(uuid);
 }
 
-function uploadTaskCover(uuid_task) {
+export function uploadTaskCover(uuid_task) {
   // Get project uuid
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  uuid = urlParams.get("uuid")
+  var uuid = urlParams.get("uuid")
 
   var file = new FileModal("image/*");
 
@@ -122,7 +122,7 @@ function uploadTaskCover(uuid_task) {
   file.show();
 }
 
-function child_task_submit(page){
+export function child_task_submit(page){
 
   // Get DOM data for parent task
   if (page == "cms_support_form.html" || page == "cms_deep_participation.html") {
@@ -132,8 +132,8 @@ function child_task_submit(page){
     // Get parent uuid
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    uuid = urlParams.get("uuid")
-    task = urlParams.get("task")
+    var uuid = urlParams.get("uuid")
+    var task = urlParams.get("task")
 
     for (var index = 1; index < 18; index++) {
       var index_sdg = ("0" + index).slice(-2);
