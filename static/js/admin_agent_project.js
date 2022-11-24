@@ -9,7 +9,7 @@ export function set_page_info_admin_agent_project(uuid){
     }
 
     // List projects
-    var obj_tbody = document.getElementById("tbody_admin_agent_project");    
+    var obj_tbody = document.getElementById("tbody_admin_agent_project");
     for (var index = 0; index < list_project_uuids.length; index ++) {
       // Get project info
       var obj_project = plan_info(list_project_uuids[index]);
@@ -65,13 +65,14 @@ export function set_page_info_admin_agent_project(uuid){
       obj_td_verify.className = "align-middle text-center";
       var obj_a = document.createElement("button");
       obj_a.className = "btn btn-primary btn-sm";
-      
+
       // Verify button
       if (parseInt(obj_project.status) == 0) {
         obj_a.innerHTML = "待驗證";
         obj_a.onclick = function(){
           window.location.href = "/backend/admin_project_verify.html?uuid=" + obj_project.uuid;
         };
+        obj_a.disabled = true;
       } else {
         obj_a.innerHTML = "已驗證";
         obj_a.disabled = true;

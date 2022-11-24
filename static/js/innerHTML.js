@@ -1,4 +1,4 @@
-const str_parent_task_block = ` 
+const str_parent_task_block = `
 <div class="row h-100">
 <div class="col-md-6">
   <div id="coverImg_UUID_TASK" class="border d-flex align-items-center justify-content-center h-100">

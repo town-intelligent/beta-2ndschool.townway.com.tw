@@ -28,7 +28,7 @@ $(function () {
   $("#add_c_project").on("click", function(event) {
     event.preventDefault();
 
-    var obj_project = null; 
+    var obj_project = null;
     var form = new FormData();
     if (obj_project = plan_submit(form)) {
       window.location.replace("/backend/cms_plan_info.html?uuid=" + obj_project.uuid); 
@@ -146,7 +146,7 @@ $(function () {
     if (id_btn_submit == "btn_ab_project_next") {
       if (index < cms_project_submit_pages.length - 1) {
         var next_page = get_index_page(index + 1);
-        window.location.replace("/backend/" + next_page + param);      
+        window.location.replace("/backend/" + next_page + param);
       } else {
         window.location.replace("/backend/" + get_index_page(cms_project_submit_pages.length - 1) + param);
       }
@@ -576,9 +576,7 @@ export function set_page_info_cms_agent(uuid){
 
     // Append
     // obj_a
-    
     // obj_sdg_div.append(obj_a);
-    
     obj_sdg_container.append(obj_sdg_div2); */
 
     obj_div_card_body_project.append(obj_sdg_container);
@@ -607,8 +605,7 @@ export function set_page_info_cms_agent(uuid){
     obj_digital_fp_chart1_card_body.className = "card-body h-100 d-flex flex-column justify-content-between text-center" ;
     // obj_digital_fp_chart1_card_body.style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;"; // FIXME
     // <img src="/static/imgs/agent_foot_print.png" class="card-img-top" alt="">
-    
-    // TODO
+
     /* var obj_digital_fp_chart1_img = document.createElement("img");
     obj_digital_fp_chart1_img.src = "/static/imgs/agent_foot_print.png";
     obj_digital_fp_chart1_img.className = "card-img-top";
@@ -618,7 +615,7 @@ export function set_page_info_cms_agent(uuid){
 
     // obj_digital_fp_chart1_img.id = "observablehq-chart-4bac1ac8";
     obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_project.uuid;
-    
+
     // <div>
     var obj_div_btn_mf = document.createElement("div");
     // <a href="#" class="btn btn-primary d-none d-md-block">修改表單</a>
@@ -635,10 +632,10 @@ export function set_page_info_cms_agent(uuid){
     // Append
     obj_div_btn_mf.append(obj_a_d_md_block_mf);
     obj_div_btn_mf.append(obj_a_d_md_none_mf);
-    
+
     // TODO
     obj_digital_fp_chart1_card_body.append(obj_digital_fp_chart1_img);
-    
+
     obj_digital_fp_chart1_card_body.append(obj_div_btn_mf);
     obj_digital_fp_chart1_card.append(obj_digital_fp_chart1_card_body);
     obj_digital_fp_chart1.append(obj_digital_fp_chart1_card);
@@ -684,9 +681,8 @@ export function set_page_info_cms_agent(uuid){
 
     /* Append */
     obj_project_list.append(obj_div_root);
-  
-    // FIXME (73247058 = task)
-    // draws("73247058")
+
+    // Draw
     draws(obj_project.uuid)
   }
   /* Create DOM */
