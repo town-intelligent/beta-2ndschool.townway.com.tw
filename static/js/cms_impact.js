@@ -1,5 +1,5 @@
 import { list_plan_tasks, plan_info } from './plan.js'
-import { task_submit, get_task_info } from './tasks.js'
+import { task_submit, get_task_info, onclickuploadTaskCover } from './tasks.js'
 
 export function add_parent_task_block (obj_task = null) {
   // Params

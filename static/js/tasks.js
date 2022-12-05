@@ -81,7 +81,7 @@ function submitTaskCover(base64Img, uuid_task) {
   });
 }
 
-function onclickuploadTaskCover(uuid) {
+export function onclickuploadTaskCover(uuid) {
   uploadTaskCover(uuid);
 }
 
