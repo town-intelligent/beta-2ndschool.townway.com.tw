@@ -194,3 +194,27 @@ export function getProjectWeight(list_task_UUIDs) {
 
   return projectWeight;
 }
+
+export function delete_plan(uuid) {
+  var dataJSON = {};
+  dataJSON.uuid = uuid;
+  
+  var resultJSON = {};
+
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/projects/del_project",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data: dataJSON,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       resultJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return resultJSON;
+}

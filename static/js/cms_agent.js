@@ -1,5 +1,5 @@
 import { draws } from './app.js'
-import { list_plans, plan_info, append_plan_submit_data, plan_submit } from './plan.js'
+import { list_plans, plan_info, append_plan_submit_data, plan_submit, delete_plan } from './plan.js'
 import { task_submit, child_task_submit } from './tasks.js'
 
 const cms_project_submit_pages = ["cms_plan_info.html", "cms_sdgs_setting.html", "cms_impact.html", "cms_contact_person.html"];
@@ -375,27 +375,6 @@ $(function () {
       obj_a.append(obj_img);
       obj_icon_container.append(obj_a);
     }
-
-    /* if (page == "contact_us.html") {
-      // id = icon_container
-      var obj_icon_container = document.getElementById("icon_container");
-      
-      // <a class="d-block">
-      var obj_a = document.createElement("a");
-      obj_a.className = "d-block";
-
-      // <img class="mr-3" src="/static/imgs/SDGs_04.jpg" alt="" style="width:60px">
-      var obj_img = document.createElement("img");
-      obj_img.id = "target_sdgs_" + getLocalStorage("target_sdgs");
-      obj_img.className = "mr-3";
-      obj_img.src = "/static/imgs/SDGs_" + getLocalStorage("target_sdgs") + ".jpg";
-      obj_img.alt = "";
-      obj_img.style = "width:50px";
-
-      // Append
-      obj_a.append(obj_img);
-      obj_icon_container.append(obj_a);
-    } */
 	  
     // Finish
     $("#SDGsModal").modal("hide");
@@ -497,7 +476,6 @@ export function set_page_info_cms_agent(uuid){
     // Append
     obj_p_project_a.append(obj_span_project_a);
     obj_div_card_body_project.append(obj_p_project_a);
-    //obj_div_card_md4.append(obj_div_card_body_project);
 
     // <p class="card-text">地方團隊:<span class="pl-2">元泰竹藝社、台灣長虹、東埔蚋溪環境保護協會<span></p>
     var obj_p_project_b = document.createElement("p");
@@ -510,7 +488,6 @@ export function set_page_info_cms_agent(uuid){
     // Append
     obj_p_project_b.append(obj_span_project_b);
     obj_div_card_body_project.append(obj_p_project_b);
-    //obj_div_card_md4.append(obj_div_card_body_project);
 
     // <p class="card-text">期間:<span class="pl-2">2021.08.01~2022.07.31<span></p>
     var obj_p_period = document.createElement("p");
@@ -527,16 +504,8 @@ export function set_page_info_cms_agent(uuid){
     // <div class="row mt-3"> 
     var obj_sdg_container = document.createElement("div");
     obj_sdg_container.className = "row mt-3";
-    /* var obj_sdg_div = document.createElement("div");
-    obj_sdg_div.className = "col-2 pr-0";
- */
+ 
     var obj_a = document.createElement("a");
-    /*
-    obj_a.href = location.protocol + "//" + 
-    window.location.host + 
-    "/backend/cms_project_detail.html?uuid=" + 
-    obj_project.uuid;
-    */
     obj_a.href = "#";
     
     var list_sdgs = [];
@@ -561,25 +530,48 @@ export function set_page_info_cms_agent(uuid){
         obj_sdg_container.append(obj_sdg_div);
       }
     }
-
-/*  WORKABLE
-    var obj_sdg_div2 = document.createElement("div");
-    obj_sdg_div2.className = "col-2 pr-0";
-    var obj_a2 = document.createElement("a");
-
-    var obj_sdg_img2 = document.createElement("img");
-    obj_sdg_img2.className = "w-100";
-    obj_sdg_img2.src = "/static/imgs/SDGs_08.jpg";
-    obj_sdg_img2.alt = "";
-
-    obj_sdg_div2.append(obj_sdg_img2);
-
-    // Append
-    // obj_a
-    // obj_sdg_div.append(obj_a);
-    obj_sdg_container.append(obj_sdg_div2); */
-
     obj_div_card_body_project.append(obj_sdg_container);
+
+
+    /* // Dropdown menu
+    var obj_dropdown = document.createElement("div");
+    obj_p_period.className = "dropdown";
+
+    var obj_dropdown_button = document.createElement("button");
+    obj_dropdown_button.className = "btn btn-secondary dropdown-toggle";
+    obj_dropdown_button.type = "button";
+    obj_dropdown_button.id = "dropdownMenuButton";
+    /* obj_dropdown_button.data-toggle = "dropdown"; 
+    obj_dropdown_button.aria-haspopup = "true"; 
+    obj_dropdown_button.aria-expanded = "false"; */
+    //obj_dropdown.append(obj_dropdown_button); */
+
+    var contacts = [
+      "新增任務",
+      "刪除專案",
+      "驗證專案",
+    ];
+
+    var menuHtml = '<span class="dropdown"><a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">專案管理選單 <span class="caret"></span></a><ul class="dropdown-menu">';
+    for (var i = 0; i < contacts.length; i++) {
+
+      var fun = "#";
+      if (i == 0) {
+        fun = "location.href = '" + location.protocol + "//" + window.location.host + 
+      "/backend/cms_impact.html?uuid=" + obj_project.uuid + "';"; 
+      } else if (i == 1) {
+        fun = "showProjectDeleteModel(" + obj_project.uuid + ");";
+      } else if (i == 2) {
+        // TODO
+        // verifyProject();
+      }
+      menuHtml += '<li><a class="dropdown-item" onclick="' + fun + '">' + contacts[i] + '</a></li>';
+    }
+    menuHtml += '</ul></span>';
+    var obj_sel_project_modify = document.createElement("div");
+
+    obj_sel_project_modify.innerHTML = menuHtml;
+    obj_div_col_md_4.append(obj_sel_project_modify);
 
     // <div class="col-12 d-md-none">
     var obj_div_digital_fp = document.createElement("div");
@@ -594,7 +586,8 @@ export function set_page_info_cms_agent(uuid){
 
     // <div class="col-md-4">
     var obj_digital_fp_chart1 = document.createElement("div");
-    obj_digital_fp_chart1.className = "col-md-4";
+    obj_digital_fp_chart1.className = "col-md-8";
+    
     // <div class="card h-100 border-0">
     var obj_digital_fp_chart1_card = document.createElement("div");
 
@@ -603,13 +596,6 @@ export function set_page_info_cms_agent(uuid){
     // <div class="card-body h-100 d-flex flex-column justify-content-between text-center">
     var obj_digital_fp_chart1_card_body = document.createElement("div");
     obj_digital_fp_chart1_card_body.className = "card-body h-100 d-flex flex-column justify-content-between text-center" ;
-    // obj_digital_fp_chart1_card_body.style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px;"; // FIXME
-    // <img src="/static/imgs/agent_foot_print.png" class="card-img-top" alt="">
-
-    /* var obj_digital_fp_chart1_img = document.createElement("img");
-    obj_digital_fp_chart1_img.src = "/static/imgs/agent_foot_print.png";
-    obj_digital_fp_chart1_img.className = "card-img-top";
-    obj_digital_fp_chart1_img.alt = ""; */
 
     var obj_digital_fp_chart1_img = document.createElement("div");
 
@@ -618,22 +604,7 @@ export function set_page_info_cms_agent(uuid){
 
     // <div>
     var obj_div_btn_mf = document.createElement("div");
-    // <a href="#" class="btn btn-primary d-none d-md-block">修改表單</a>
-    var obj_a_d_md_block_mf = document.createElement("a");
-    obj_a_d_md_block_mf.href = location.protocol + "//" + window.location.host + "/backend/cms_plan_info.html?uuid=" + obj_project.uuid;
-    obj_a_d_md_block_mf.className = "btn btn-primary d-none d-md-block";
-    obj_a_d_md_block_mf.innerHTML = "修改表單";
-    // <a href="#" class="btn btn-primary btn-block d-md-none">修改表單</a>
-    var obj_a_d_md_none_mf = document.createElement("a");
-    obj_a_d_md_none_mf.href = location.protocol + "//" + window.location.host + "/backend/cms_plan_info.html?uuid=" + obj_project.uuid; 
-    obj_a_d_md_none_mf.className = "btn btn-primary btn-block d-md-none";
-    obj_a_d_md_none_mf.innerHTML = "修改表單";
 
-    // Append
-    obj_div_btn_mf.append(obj_a_d_md_block_mf);
-    obj_div_btn_mf.append(obj_a_d_md_none_mf);
-
-    // TODO
     obj_digital_fp_chart1_card_body.append(obj_digital_fp_chart1_img);
 
     obj_digital_fp_chart1_card_body.append(obj_div_btn_mf);
@@ -651,29 +622,10 @@ export function set_page_info_cms_agent(uuid){
     var obj_div_add_task_card_body = document.createElement("div");
     obj_div_add_task_card_body.className = "card-body h-100 d-flex flex-column justify-content-between text-center";
     // <img src="/static/imgs/agent_chart.png" class="card-img-top" alt="">
-    var obj_div_add_task_img = document.createElement("img");
-    obj_div_add_task_img.src = "/static/imgs/agent_chart.png";
-    obj_div_add_task_img.className = "card-img-top";
-    obj_div_add_task_img.alt = "";
+    
     // <div> 
     var obj_div_btn_nt = document.createElement("div");
-    // <a href="#" class="btn btn-primary d-none d-md-block">新增任務</a>
-    var obj_a_btn_d_d_block_nt = document.createElement("a");
-    obj_a_btn_d_d_block_nt.href = location.protocol + "//" + window.location.host + 
-      "/backend/cms_impact.html?uuid=" + obj_project.uuid; 
-    obj_a_btn_d_d_block_nt.className = "btn btn-primary d-none d-md-block";
-    obj_a_btn_d_d_block_nt.innerHTML = "新增任務";
-    // <a href="#" class="btn btn-primary btn-block d-md-none">新增任務</a>
-    var obj_a_btn_d_d_none_nt = document.createElement("a");
-    obj_a_btn_d_d_none_nt.href = location.protocol + "//" + window.location.host + 
-      "/backend/cms_impact.html?uuid=" + obj_project.uuid; 
-    obj_a_btn_d_d_none_nt.className = "btn btn-primary btn-block d-md-none";
-    obj_a_btn_d_d_none_nt.innerHTML = "新增任務";
 
-    // Apend
-    obj_div_btn_nt.append(obj_a_btn_d_d_block_nt);
-    obj_div_btn_nt.append(obj_a_btn_d_d_none_nt);
-    obj_div_add_task_card_body.append(obj_div_add_task_img);
     obj_div_add_task_card_body.append(obj_div_btn_nt);
     obj_div_add_task_card.append(obj_div_add_task_card_body);
     obj_div_add_task.append(obj_div_add_task_card);
@@ -686,4 +638,16 @@ export function set_page_info_cms_agent(uuid){
     draws(obj_project.uuid)
   }
   /* Create DOM */
+}
+
+export function showProjectDeleteModel (uuid_project){
+  $("#projectDeleteModel").modal("show");
+  
+  $("#projectDeleteModel").on("click",".btn-primary", function(){
+    $("#projectDeleteModel").modal("hide");
+    delete_plan(uuid_project);
+
+    // Reload page
+    location.reload();
+  });
 }

@@ -11,7 +11,7 @@
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">    
     <link rel="stylesheet" href="/static/css/style.css" >
     <link rel="stylesheet" href="/static/css/progress_bar.css">
     <script src="/static/js/config.js"></script>
@@ -24,16 +24,17 @@
     <script type="module" src="/static/js/cms_agent.js"></script>
     <script type="module" src="/static/js/set_page_info.js"></script>
     <script type="module" src="/static/js/init.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@observablehq/inspector@3/dist/inspector.css">
     <script type="module" src="/static/js/render.js"></script>
-
     <script type="module">
       import { draws } from '../static/js/app.js'
     </script>
-
     <script type="module" src="/static/js/app.js"></script>
+
+    <script type="module">
+      import { showProjectDeleteModel } from '/static/js/cms_agent.js'
+      window.showProjectDeleteModel = showProjectDeleteModel;
+    </script>
   </head>
 
   <body>
@@ -157,22 +158,16 @@
             <p class="h4">數位足跡</p>
           </div> <!-- <div class="col-8 d-none d-md-block"> -->
         </div> <!-- <div class="row mt-5 mb-4"> -->
-
-        <div id="project_list-backup"> <!-- obj_project_list -->
-        <!-- project -->
-        <!-- project -->
-        </div> <!-- obj_project_list -->
         
-
         <div class="row mt-3 mb-5"> <!-- <div class="row mt-3 mb-5"> -->
           <div class="col-12">
             <button id="add_c_project" class="btn btn-block btn-outline-secondary">新增永續專案+</button>
           </div>
         </div> <!-- <div class="row mt-3 mb-5"> -->
       
-          <div id="project_list"> <!-- obj_project_list -->
-            <!-- project -->
-          </div> <!-- obj_project_list -->
+        <div id="project_list"> <!-- obj_project_list -->
+          <!-- project -->
+        </div> <!-- obj_project_list -->
       
         </div> <!-- <div class="container" > -->
     </section>
@@ -273,4 +268,24 @@
       </div>
     </footer>
   </body>
+
+  <div id="projectDeleteModel" class="modal hide fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">注意</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>即將刪除任務.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">確定</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </html>
