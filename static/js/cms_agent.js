@@ -560,7 +560,7 @@ export function set_page_info_cms_agent(uuid){
         fun = "location.href = '" + location.protocol + "//" + window.location.host + 
       "/backend/cms_impact.html?uuid=" + obj_project.uuid + "';"; 
       } else if (i == 1) {
-        fun = "showProjectDeleteModel(" + obj_project.uuid + ");";
+        fun = "showProjectDeleteModel('" + obj_project.uuid + "');";
       } else if (i == 2) {
         // TODO
         // verifyProject();
