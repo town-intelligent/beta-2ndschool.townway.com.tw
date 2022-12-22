@@ -1,6 +1,5 @@
 import { set_page_info_cms_agent } from './cms_agent.js'
 import { set_page_info_cms_project_detail } from './cms_project_detail.js'
-import { set_page_info_admin_agent_project } from './admin_agent_project.js'
 import { set_page_info_cms_plan_info } from './cms_plan_info.js'
 import { set_page_info_cms_sdgs_setting } from './cms_sdgs_setting.js'
 import { set_page_info_cms_impact } from './cms_impact.js'
@@ -35,10 +34,6 @@ export function set_page_info() {
 
   if (page == "cms_project_detail.html") {
     set_page_info_cms_project_detail(uuid);
-  }
-
-  if (page == "admin_agent_project.html") {
-    set_page_info_admin_agent_project(uuid);
   }
 
   if (page == "cms_agent.html") {
