@@ -184,3 +184,25 @@ export function child_task_submit(page){
     var obj_result = task_submit(form);
   }
 }
+
+export function get_task_comment(uuid) {
+  var dataJSON = {};
+  dataJSON.uuid = uuid;
+
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/projects/get_task_comment",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       dataJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return dataJSON;
+}

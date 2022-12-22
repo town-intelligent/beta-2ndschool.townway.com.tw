@@ -562,8 +562,8 @@ export function set_page_info_cms_agent(uuid){
       } else if (i == 1) {
         fun = "showProjectDeleteModel('" + obj_project.uuid + "');";
       } else if (i == 2) {
-        // TODO
-        // verifyProject();
+        fun = "location.href = '" + location.protocol + "//" + window.location.host + 
+      "/backend/admin_project_verify.html?uuid=" + obj_project.uuid + "&parent=1" + "';";
       }
       menuHtml += '<li><a class="dropdown-item" onclick="' + fun + '">' + contacts[i] + '</a></li>';
     }

@@ -6,6 +6,8 @@ import { set_page_info_cms_impact } from './cms_impact.js'
 import { set_page_info_cms_missions_display } from './cms_missions_display.js'
 import { set_page_info_cms_deep_participation } from './cms_deep_participation.js'
 import { set_page_info_cms_contact_person } from './cms_contact_person.js'
+import { set_page_info_admin_project_verify } from './admin_project_verify.js'
+import { set_page_info_admin_project_check } from './admin_project_check.js'
 
 export function set_page_info() {
   /* Get path and parameters */
@@ -20,6 +22,14 @@ export function set_page_info() {
   var task = urlParams.get("task")
 
   // TODO
+  if (page == "admin_project_check.html") {
+    set_page_info_admin_project_check(uuid)
+  }
+
+  if (page == "admin_project_verify.html") {
+    set_page_info_admin_project_verify(uuid)
+  }
+  
   if (page == "cms_impact.html") {
     set_page_info_cms_impact(uuid);
   }
