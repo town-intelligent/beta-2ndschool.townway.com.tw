@@ -1,0 +1,32 @@
+
+.bg-blue{
+    background-color: #3E6896;
+}
+.text-blue{
+    color: #3E6896;
+}
+.card-txt{
+    font-size: 128px;
+    font-weight: 400;
+}
+
+.bg-green{
+    background-color: #5CB85C;
+}
+
+.kpi-card:active{
+    opacity: 0.8;
+  }
+
+@media screen and (max-width: 768px) {
+    .card-top{
+        height: 400px;
+    }
+    .card-txt{
+        font-size: 235px;
+    }
+    .mb-fix-margin{
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
