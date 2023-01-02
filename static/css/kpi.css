@@ -1,4 +1,13 @@
+/* ab_cms_project_detail */
+.participation-pic{
+    width: 70%;
+}
+.participation-QRC{
+    width: 30%;
+}
 
+
+/* Utilities */
 .bg-blue{
     background-color: #3E6896;
 }
@@ -28,5 +37,17 @@
     .mb-fix-margin{
         margin-left: 0;
         margin-right: 0;
+    }
+    .m-gap{
+        gap: 30px;
+    }
+    .participation-pic{
+        width: 100%;
+    }
+    .participation-QRC{
+        width: 100%;
+    }
+    .m-flex-wrap{
+        flex-wrap: wrap;
     }
 }
