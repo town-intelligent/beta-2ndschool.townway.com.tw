@@ -5,7 +5,6 @@ export function set_page_info_cms_deep_participation(){
             break;
       $("#task_start_date_" + index).timepicker();
       $("#task_due_date_" + index).timepicker();
-
       index ++;
     }
 }

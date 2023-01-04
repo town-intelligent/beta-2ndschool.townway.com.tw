@@ -31,10 +31,9 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
       <div class="container">
-        <a id="index_logo" class="navbar-brand" href="/index.html"><img alt="" class="d-inline-block align-top" src="/static/imgs/tplanet_logo_s.jpg" width="175"></a>  <a class="nav-link d-md-none" href="/backend/message_list.html"><img alt="" class="d-inline-block align-middle" height="35" src="/static/imgs/notifications_icon.svg" width="35"></a> <a aria-expanded="false" class="nav-link d-md-none" data-toggle="dropdown" href="#" role="button"><img alt="" class="d-inline-block align-middle" height="35" src="/static/imgs/manage_accounts_icon.svg" width="35"></a>
-	<div class="dropdown-menu dropdown-menu-center">
-	<a class="dropdown-item d-flex align-items-center" href="/backend/ab_cms_personal_file.html"><img alt="" class="d-inline-block align-middle" height="30" src="/static/imgs/personal_info.svg" width="30"> <span class="pl-2">基本資料</span></a> <a class="dropdown-item d-flex align-items-center" href="/backend/ab_my_project.html"><img alt="" class="d-inline-block align-middle" height="30" src="/static/imgs/registration_icon.svg" width="30"> <span class="pl-2">我的提案</span></a> <a class="dropdown-item d-flex align-items-center" href="/backend/cms_ab.html"><img alt="" class="d-inline-block align-middle" height="30" src="/static/imgs/cooperate.svg" width="30"> <span class="pl-2">永續專案</span></a> <!-- <a class="dropdown-item d-flex align-items-center" href="/backend/ab_cms_personal_file.html">
-            <img src="/static/imgs/personal_info.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
+			<div class="dropdown-menu dropdown-menu-center">
+			<a class="dropdown-item d-flex align-items-center" href="/backend/ab_cms_personal_file.html"><img alt="" class="d-inline-block align-middle" height="30" src="/static/imgs/personal_info.svg" width="30"> <span class="pl-2">基本資料</span></a> <a class="dropdown-item d-flex align-items-center" href="/backend/ab_my_project.html"><img alt="" class="d-inline-block align-middle" height="30" src="/static/imgs/registration_icon.svg" width="30"> <span class="pl-2">我的提案</span></a> <a class="dropdown-item d-flex align-items-center" href="/backend/cms_ab.html"><img alt="" class="d-inline-block align-middle" height="30" src="/static/imgs/cooperate.svg" width="30"> <span class="pl-2">永續專案</span></a> <!-- <a class="dropdown-item d-flex align-items-center" href="/backend/ab_cms_personal_file.html">
+					<img src="/static/imgs/personal_info.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
             <span class="pl-2">基本資料</span>
           </a> -->
 				 <a class="dropdown-item d-flex align-items-center" href="/backend/message_list.html"><img alt="" class="d-inline-block align-middle" height="30" src="/static/imgs/message.svg" width="30"> <span class="pl-2">訊息管理</span></a> <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="logout()"><img alt="" class="d-inline-block align-middle" height="30" src="/static/imgs/logout.svg" width="30"> <span class="pl-2">登出</span></a>
@@ -42,7 +41,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="/index.html">關於 Second Home</a>
+						<a class="nav-link" href="/index.html">關於平台</a>
 					</li>
 					<!-- <li class="nav-item">
 						<a class="nav-link" href="/project_list.html">永續企業</a>
@@ -54,19 +53,10 @@
 						<a class="nav-link" href="/kpi.html">永續專案</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/solution.html">解決方案</a>
-					</li>
-					<li class="nav-item">
 						<a class="nav-link" href="/news_list.html">最新消息</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/contact_us.html">聯繫我們</a>
 					</li>
 				</ul>
 				<ul class="navbar-nav mr-2">
-					<li class="nav-item d-none d-md-block">
-						<a class="nav-link" href="/backend/message_list.html"><img alt="" class="d-inline-block align-middle" height="35" src="/static/imgs/notifications_icon.svg" width="35"></a>
-					</li>
 					<li class="nav-item dropdown d-none d-md-block">
 						<a aria-expanded="false" class="nav-link" data-toggle="dropdown" href="#" role="button"><img alt="" class="d-inline-block align-middle" height="35" src="/static/imgs/manage_accounts_icon.svg" width="35"></a>
 						<div class="dropdown-menu dropdown-menu-right">
@@ -145,16 +135,9 @@
 								<textarea class="form-control w-100" disabled id="comment" placeholder="" style="resize: none"></textarea>
 							</div>
 						</div>
-						
 					<!-- </form> -->
 				</div>
-			
-        
-
-
       </div> <!-- <div class="row"> -->
-      
-      
         <div class="row mt-5 mb-5 pb-3">
           <div class="col-12 mt-5 d-none d-md-block">
             <div class="d-flex justify-content-between">
@@ -165,9 +148,6 @@
             <button class="btn btn-primary btn-block" id="btn_ab_project_prev">上一步</button> <button class="btn btn-primary btn-block mt-3" type="submit">檢視草稿</button> <button class="btn btn-primary btn-block mt-3" id="btn_cms_plan_save" type="submit">儲存草稿</button> <button class="btn btn-primary" id="btn_ab_project_next" style="width: 20%" type="submit">下一步</button>
           </div>
         </div>
-
-
-      
       </form>
 		</div>
 	</section><!-- footer -->
@@ -176,31 +156,23 @@
 			<div class="row py-4 border-bottom border-secondary">
 				<div class="col-md-8 d-none d-md-block">
 					<div class="h-100 d-flex align-items-center justify-content-center justify-content-md-start mt-2 mt-md-0">
-						<p class="mr-4 mb-0"><a class="text-dark" href="/index.html">關於T-planet</a></p>
+						<p class="mr-4 mb-0"><a class="text-dark" href="/index.html">關於平台</a></p>
 						<p class="mr-4 mb-0"><a class="text-dark" href="/kpi.html">永續專案</a></p>
-						<p class="mr-4 mb-0"><a class="text-dark" href="/solution.html">解決方案</a></p>
-						<p class="mr-4 mb-0"><a class="text-dark" href="/contact_us.html">聯繫我們</a></p>
 						<p class="mr-4 mb-0"><a class="text-dark" href="/news_list.html">最新消息</a></p>
 					</div>
 				</div>
 				<div class="col-md-4 mb-4 mb-md-0">
 					<div class="d-flex h-100 align-items-center justify-content-center justify-content-md-end">
 						<div>
-							<a class="navbar-brand mx-auto" href="https://www.facebook.com/townway104" target="_blank"><img alt="" class="mr-3" src="/static/imgs/fbLogo.svg" style="height: 30px;"></a> <a class="navbar-brand mx-auto" href="https://www.linkedin.com/company/townintelligent" target="_blank"><img alt="" class="mr-3" src="/static/imgs/linkedinLogo.svg" style="height: 30px;"></a> <a class="navbar-brand mx-auto" href="https://www.instagram.com/townway104" target="_blank"><img alt="" class="mr-3" src="/static/imgs/igLogo.svg" style="height: 30px;"></a> <a class="navbar-brand mx-auto" href="https://www.youtube.com/user/forus999" target="_blank"><img alt="" src="/static/imgs/youtubeLogo.svg" style="height: 30px;"></a>
+							<a class="navbar-brand mx-auto" href="https://www.facebook.com/profile.php?id=100063976478092" target="_blank"><img alt="" class="mr-3" src="/static/imgs/fbLogo.svg" style="height: 30px;"></a> <a class="navbar-brand mx-auto" href="https://www.linkedin.com/company/townintelligent" target="_blank"><img alt="" class="mr-3" src="/static/imgs/linkedinLogo.svg" style="height: 30px;"></a> <a class="navbar-brand mx-auto" href="https://www.instagram.com/townway104" target="_blank"><img alt="" class="mr-3" src="/static/imgs/igLogo.svg" style="height: 30px;"></a> <a class="navbar-brand mx-auto" href="https://www.youtube.com/user/forus999" target="_blank"><img alt="" src="/static/imgs/youtubeLogo.svg" style="height: 30px;"></a>
 						</div>
 					</div>
 				</div><!-- mobile -->
 				<div class="col-6 d-md-none">
-					<p class="text-center"><a class="text-dark" href="/index.html">關於T-planet</a></p>
+					<p class="text-center"><a class="text-dark" href="/index.html">關於平台</a></p>
 				</div>
 				<div class="col-6 d-md-none">
 					<p class="text-center"><a class="text-dark" href="/kpi.html">永續專案</a></p>
-				</div>
-				<div class="col-6 d-md-none">
-					<p class="text-center"><a class="text-dark" href="/solution.html">解決方案</a></p>
-				</div>
-				<div class="col-6 d-md-none">
-					<p class="text-center"><a class="text-dark" href="/contact_us.html">聯繫我們</a></p>
 				</div>
 				<div class="col-6 d-md-none">
 					<p class="text-center"><a class="text-dark" href="/news_list.html">最新消息</a></p>
@@ -218,7 +190,7 @@
 				</div>
 				<div class="col-md-3 pr-md-0">
 					<div class="d-md-flex h-100 align-items-center justify-content-center justify-content-md-start">
-						<p class="mb-0 text-center text-md-left">Copyright &copy; 2022 T-planet</p>
+						<p class="mb-0 text-center text-md-left">Copyright © 2022 花蓮真本事</p>
 					</div>
 				</div>
 				<div class="col-md-6 d-none d-md-block">

@@ -1,6 +1,5 @@
 function get_project_data(uuid) {
   var project_data = {};
-
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/projects/info/" + uuid,
     type: "GET",
@@ -14,18 +13,14 @@ function get_project_data(uuid) {
       console.log(thrownError);
     }
   });
-
   return project_data;  
 }
-
 function init() {
    // Get path
    var url = new URL(window.location.href);
    var uuid = url.searchParams.get("uuid");
-
   // Load project data from backend
   obj_project_data = get_project_data(uuid);
-
   // Set value
   document.getElementById("uuid").textContent += obj_project_data.uuid;
   document.getElementById("budget").textContent += obj_project_data.budget;

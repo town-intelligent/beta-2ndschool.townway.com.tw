@@ -3,9 +3,7 @@ export function plan_submit(form, uuid = null) {
   if (uuid != null) {
     form.append("uuid", uuid);
   }
-
   form.append("list_project_type", 0);
-
   var resultJSON = {};
   $.ajax({
     "url": HOST_URL_TPLANET_DAEMON + "/projects/upload",
@@ -24,13 +22,10 @@ export function plan_submit(form, uuid = null) {
       console.log(thrownError);
     }
   });
-
   return resultJSON;
 }
-
 export function plan_info(uuid) {
   var dataJSON = {};
-
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/projects/info/" + uuid,
     type: "GET",
@@ -47,13 +42,11 @@ export function plan_info(uuid) {
   });
   return dataJSON;
 }
-
 export function list_plan_tasks(uuid, parent = 0) {
   var dataJSON = {};
   var returnDataJSON = {};
   dataJSON.uuid = uuid;
   dataJSON.parent = parent;
-
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/projects/tasks",
     type: "POST",
@@ -69,16 +62,13 @@ export function list_plan_tasks(uuid, parent = 0) {
   });
   return returnDataJSON;
 }
-
 export function list_plans(sdg = null) {
   // Check required field and save to JSON struct
   var dataJSON = {};
   dataJSON.email = getLocalStorage("email");
-
   if (sdg != null) {
     dataJSON.sdg = sdg;
   }
-
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/projects/projects",
     type: "POST",
@@ -95,7 +85,6 @@ export function list_plans(sdg = null) {
   });
   return dataJSON;
 }
-
 export function append_plan_submit_data(page, form) {
   if (page == "cms_plan_info.html") {
     form.append("name", document.getElementById("name").value);
@@ -105,7 +94,6 @@ export function append_plan_submit_data(page, form) {
     form.append("project_due_date", document.getElementById("project_due_date").value);
     form.append("budget", document.getElementById("budget").value);
     form.append("philosophy", document.getElementById("philosophy").value);
-  
   } else if (page == "cms_sdgs_setting.html") {
     // Get data
     var list_sdg = new Array(17).fill(0);
@@ -114,7 +102,6 @@ export function append_plan_submit_data(page, form) {
         list_sdg[index - 1] = 1;
       }
     }
-
     // Set local storage
     form.append("list_sdg", list_sdg);
   } else if (page == "cms_impact.html") {
@@ -125,7 +112,6 @@ export function append_plan_submit_data(page, form) {
         continue;
       }
 	    dataJSON[index] = document.getElementById("sdg_" + ("0" + (index + 1)).slice(-2) + "_des").value;
-      
     }
     // {"0":"透過深度參與豐富指標","11":"定期聚板相關市集","14":"社區友善農業的產銷創生解方"}
     form.append("weight_description", JSON.stringify(dataJSON));
@@ -142,12 +128,9 @@ export function append_plan_submit_data(page, form) {
       }
       form.append("list_location", list_location);
     }
-
   return form;
 }
-
 function plan_send(form) {
-
   var resultJSON = {};
   $.ajax({
     "url": HOST_URL_TPLANET_DAEMON + "/projects/send_project",
@@ -166,17 +149,13 @@ function plan_send(form) {
       console.log(thrownError);
     }
   });
-
   return resultJSON;
 }
-
 HOST_URL_TPLANET_DAEMON = "https://beta-tplanet-backend.townway.com.tw"
-
 export function getProjectWeight(list_task_UUIDs) {
   var projectWeight = {};
   var dataJSON = {};
   dataJSON.uuid = list_task_UUIDs[0];
-
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/projects/weight",
     type: "POST",
@@ -191,16 +170,12 @@ export function getProjectWeight(list_task_UUIDs) {
       console.log(thrownError);
     }
   });
-
   return projectWeight;
 }
-
 export function delete_plan(uuid) {
   var dataJSON = {};
   dataJSON.uuid = uuid;
-  
   var resultJSON = {};
-
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/projects/del_project",
     type: "POST",
@@ -215,6 +190,5 @@ export function delete_plan(uuid) {
       console.log(thrownError);
     }
   });
-
   return resultJSON;
 }

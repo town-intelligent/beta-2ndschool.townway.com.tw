@@ -1,7 +1,6 @@
 function project_weight_to_sdg_string(str_project_weight, type){
   var list_project_weight = [];
   var list_result = [];
-
   // Get project weight
   try {
     list_project_weight = str_project_weight.split(",");
@@ -9,7 +8,6 @@ function project_weight_to_sdg_string(str_project_weight, type){
     console.log(e);
     return list_project_weight;
   }
-
   // Format by type
   try {
     // ["SDG1","SDG3","SDG5","SDG7","SDG9","SDG11","SDG13","SDG15","SDG17"]
@@ -24,14 +22,11 @@ function project_weight_to_sdg_string(str_project_weight, type){
     console.log(e);
     return list_project_weight;
   }
-  
   return list_result;
 }
-
 function project_location_to_string(str_project_location){
   var list_location = [];
   var str_location = "";
-
   // Get project location
   try {
     list_location = str_project_location.split(",");
@@ -39,7 +34,6 @@ function project_location_to_string(str_project_location){
     console.log(e);
     return list_location;
   }
-
   try {
     for (var index = 0; index < list_location.length; index++) {
       if (parseInt(list_location[index]) == 1) {
@@ -60,6 +54,5 @@ function project_location_to_string(str_project_location){
     console.log(e);
     return str_location;
   }
-
   return str_location;
 }
