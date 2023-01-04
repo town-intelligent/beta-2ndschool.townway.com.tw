@@ -29,8 +29,10 @@
     <script type="module" src="/static/js/admin_project_check.js"></script>
   
     <script type="module">
-      import { selectComment } from '/static/js/admin_project_check.js'
+      import { selectComment, selectCommentAll, submitVerifiedTaskComment } from '/static/js/admin_project_check.js'
       window.selectComment = selectComment;
+      window.selectCommentAll = selectCommentAll;
+      window.submitVerifiedTaskComment = submitVerifiedTaskComment;
     </script>
   
   </head>
@@ -158,7 +160,7 @@
                       <tr>
                         <th scope="col" class="text-center align-middle table-width-s">
                           <div class="form-check">
-                            <input class="form-check-input position-static checkbox-1x" type="checkbox" value="selectAll" onclick="selectComment();" aria-label="...">
+                            <input class="form-check-input position-static checkbox-1x" type="checkbox" id="checkboxAll" onclick="selectCommentAll();" aria-label="...">
                           </div>
                         </th>
                         <th scope="col" class="text-center table-width-m">電子郵件</th>
@@ -187,7 +189,7 @@
                   </table>
                 </div>
                 <div class="text-center text-md-left mt-3">
-                  <button type="submit" class="btn btn-primary mt-2">驗證</button>
+                  <button type="submit" onclick="submitVerifiedTaskComment()" class="btn btn-primary mt-2">驗證</button>
                 </div>
               </form>
             </div>

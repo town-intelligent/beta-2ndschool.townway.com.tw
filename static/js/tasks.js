@@ -206,3 +206,49 @@ export function get_task_comment(uuid) {
 
   return dataJSON;
 }
+
+export function verify_task_on_tplanet(uuid, listEmail) {
+  var dataJSON = {};
+  dataJSON.uuid = uuid;
+  dataJSON.listEmail = listEmail;
+
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/tasks/verify_task",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       dataJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return dataJSON;
+}
+
+/* export function verify_task_on_eid(uuid, email) {
+  var dataJSON = {};
+  dataJSON.tasks_list = uuid;
+  dataJSON.email = email;
+
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/tasks/verify",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       dataJSON = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return dataJSON;
+} */
