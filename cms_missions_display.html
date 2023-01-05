@@ -133,6 +133,7 @@
     <!-- content -->
     <section>
       <div class="container">
+        <form action="">
         <div class="row mt-3 mt-md-5 pt-md-3 align-items-center justify-content-center">
           <div class="col-12">
             <p>請選擇您預計呈現的方式</p>
@@ -140,7 +141,19 @@
           <div class="col-md-8">
             <div class="row mt-4 mb-md-5 d-flex justify-content-center">
               <div class="col-md-6">
-                <a href="#" class="btn btn-outline-dark btn-lg btn-block mt-3 mt-md-0">深度參與形式</a>
+		            <a id="btn_cms_plan_add_deep_task" class="btn btn-outline-dark btn-lg btn-block">深度參與形式</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3 mt-md-5 pt-md-3 align-items-center justify-content-center">
+          <div class="col-12">
+            <p>進階權重(選擇性)</p>
+          </div>
+          <div class="col-md-8">
+            <div class="row mt-4 mb-md-5 d-flex justify-content-center">
+              <div class="col-md-6">
+                <a class="btn btn-outline-dark btn-lg btn-block">健保卡側錄</a>
               </div>
             </div>
           </div>
@@ -148,19 +161,20 @@
         <div class="row mt-5 mb-5 pb-3">
           <div class="col-12 mt-5 d-none d-md-block">
             <div class="d-flex justify-content-between">
-              <button class="btn btn-primary" style="width: 20%">上一步</button>
+              <button id="btn_ab_project_prev" class="btn btn-primary" style="width: 20%">上一步</button>
               <button class="btn btn-primary" style="width: 20%">檢視草稿</button>
               <button class="btn btn-primary" style="width: 20%">儲存草稿</button>
-              <button class="btn btn-primary" style="width: 20%">完成</button>
-            </div>
+              <button type="submit" id="btn_ab_project_next" class="btn btn-primary" style="width: 20%">下一步</button>
+	    </div>
           </div>
           <div class="col-12 mt-3 d-md-none">
-            <button class="btn btn-primary btn-block">上一步</button>
+            <button id="btn_ab_project_prev" class="btn btn-primary btn-block">上一步</button>
             <button class="btn btn-primary btn-block mt-3">檢視草稿</button>
             <button class="btn btn-primary btn-block mt-3">儲存草稿</button>
-            <button class="btn btn-primary btn-block mt-3">完成</button>
-          </div>
+            <button type="submit" id="btn_ab_project_next" class="btn btn-primary" style="width: 20%">下一步</button>
+	  </div>
         </div>
+	</form>
       </div>
     </section>
     <!-- footer -->
