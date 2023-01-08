@@ -8,6 +8,10 @@ export function set_page_info_cms_project_detail (uuid) {
   document.getElementById("uuid_project").innerHTML = uuid;
   document.getElementById("name_project").innerHTML = obj_project.name;
 
+  // 活動名稱uuid
+  document.getElementById("task_uuid").innerHTML = obj_task.uuid;
+
+
   // Weight
   var obj_sdg_container = document.getElementById("sdg_container");
   var list_weight = [];
@@ -43,6 +47,7 @@ export function set_page_info_cms_project_detail (uuid) {
   // Period
   document.getElementById("period_project").innerHTML = obj_project.period; 
   }
+
 
   // Location
   var list_location = [];
