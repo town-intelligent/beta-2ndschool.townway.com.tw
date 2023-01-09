@@ -1,7 +1,6 @@
 function eIDLogin(id_token, res) {
   setLocalStorage("jwt", id_token);
   setLocalStorage("email", res.result.emailAddresses[0].value);
-
   // Oauth to eID
   var dataJSON = {};
   dataJSON.email = res.result.emailAddresses[0].value;
@@ -25,7 +24,6 @@ function eIDLogin(id_token, res) {
   });
    window.location.replace("/index.html");
 }
-
 //jQuery處理button click event 當畫面DOM都載入時....
 $(function () {
     $("#btnGoogleSignIn").on("click", function () {
@@ -33,7 +31,6 @@ $(function () {
 	GoogleLogin();//Google 登入
     });
 });
-
 function GoogleClientInit() {
     //官網範例寫client:auth2，但本人實測由於待會要呼叫gapi.client.init而不是gapi.auth2.init，所以給client即可
     gapi.load('client', function () {
@@ -47,14 +44,10 @@ function GoogleClientInit() {
 	    // discoveryDocs: DISCOVERY_DOCS
 	    discoveryDocs:  ["https://www.googleapis.com/discovery/v1/apis/people/v1/rest"]
 	});
-
     });//end gapi.load
 }//end GoogleClientInit function
-
 function GoogleLogin() {
-
     let auth2 = gapi.auth2.getAuthInstance();//取得GoogleAuth物件
-
     auth2.signIn().then(function (GoogleUser) {
 	console.log("Google登入成功");
 	let user_id = GoogleUser.getId();//取得user id，不過要發送至Server端的話，為了資安請使用id_token，本人另一篇文章有範例：https://dotblogs.com.tw/shadow/2019/01/31/113026
@@ -73,18 +66,13 @@ function GoogleLogin() {
 		// document.getElementById('content').innerHTML = str;
 		console.log(", Google oauth success!, the response = " + str);
 		//↑通常metadata標記primary:true的個資就是你該抓的資料
-
 		//請再自行Parse JSON，可以將JSON字串丟到線上parse工具查看：http://json.parser.online.fr/
-
-
 		//最終，取得用戶個資後看要填在畫面表單上或是透過Ajax儲存到資料庫(記得是傳id_token給你的Web Server而不是明碼的user_id喔)，本範例就不贅述，請自行努力XD
 		eIDLogin(id_token, res);
         });
-
     }, function (error) {
       console.log("Google登入失敗");
       console.log(error);
       alert(error);
     });
-
 }//end function GoogleLogin

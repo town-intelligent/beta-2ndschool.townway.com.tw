@@ -8,7 +8,6 @@ import { set_page_info_cms_deep_participation } from './cms_deep_participation.j
 import { set_page_info_cms_contact_person } from './cms_contact_person.js'
 import { set_page_info_admin_project_verify } from './admin_project_verify.js'
 import { set_page_info_admin_project_check } from './admin_project_check.js'
-
 export function set_page_info() {
   /* Get path and parameters */
   // Path
@@ -20,56 +19,43 @@ export function set_page_info() {
   const urlParams = new URLSearchParams(queryString);
   var uuid = urlParams.get("uuid")
   var task = urlParams.get("task")
-
   // TODO
   if (page == "admin_project_check.html") {
     set_page_info_admin_project_check(uuid)
   }
-
   if (page == "admin_project_verify.html") {
     set_page_info_admin_project_verify(uuid)
   }
-  
   if (page == "cms_impact.html") {
     set_page_info_cms_impact(uuid);
   }
-
   if (page == "cms_missions_display.html") {
     set_page_info_cms_missions_display(uuid, task);
   }
-
   if (page == "cms_deep_participation.html") {
     set_page_info_cms_deep_participation();
   }
-
   if (page == "cms_project_detail.html") {
     set_page_info_cms_project_detail(uuid);
   }
-
   if (page == "cms_agent.html") {
     set_page_info_cms_agent(uuid);
   }
-
   if (page == "cms_plan_info.html") {
     set_page_info_cms_plan_info(uuid);
   }
-
   if (page == "cms_sdgs_setting.html") {
     set_page_info_cms_sdgs_setting(uuid);
   }
-
   if (page == "cms_contact_person.html") {
     set_page_info_cms_contact_person(uuid);
   }
-
   if (page == "project_list.html" || page == "project_list_local.html") {
     set_page_info_project_list();
   }
-
   if (page == "kpi.html") {
     set_page_info_kpi(uuid);
   }
-
   if (page == "kpi_filter.html") {
     set_page_info_kpi_filter();
   }

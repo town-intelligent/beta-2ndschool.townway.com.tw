@@ -16,10 +16,8 @@ function get_group(email) {
       console.log(thrownError);
     }
   });
-  
   return getLocalStorage("group");
 }
-
 function logout() {
   // Modify account
   var dataJSON = {};
@@ -34,7 +32,6 @@ function logout() {
        const obj = JSON.parse(returnData);
        // Clear local storage
        localStorage.clear();
-
        window.location.replace("/index.html");
     },
     error: function(xhr, ajaxOptions, thrownError){

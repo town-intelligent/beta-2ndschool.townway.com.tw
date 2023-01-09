@@ -41,7 +41,6 @@ const str_parent_task_block = `
 </div>
 </div> 
 <hr class="my-4">`
-
 const str_project_block_in_project_page = `<div class="card mb-4 border-3 border-dark h-100 p-3" style="border-radius: 20px;">
   <div class="d-flex justify-content-center">
     <div class="img-fluid bg-cover" style="background-image:url(PROJECT_COVER); width: 400px; height:100px; background-repeat: no-repeat"></div>
@@ -84,15 +83,10 @@ const str_project_block_in_project_page = `<div class="card mb-4 border-3 border
   </div>
 </div>
 `
-
 const str_SDG_in_list_project = `<a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
     <img class="pb-1" style="width:13%"  src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
   </a>`
-
-const str_admin_dropdown = `<a class="nav-link d-md-none" href="/backend/message_list.html">
-<img src="/static/imgs/notifications_icon.svg" width="35" height="35" class="d-inline-block align-middle" alt="">
-</a>
-<a class="nav-link d-md-none" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+const str_admin_dropdown = `<a class="nav-link d-md-none" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
 <img src="/static/imgs/manage_accounts_icon.svg" width="35" height="35" class="d-inline-block align-middle" alt="">
 </a>
 <div class="dropdown-menu dropdown-menu-center">
@@ -120,7 +114,6 @@ const str_admin_dropdown = `<a class="nav-link d-md-none" href="/backend/message
   <img src="/static/imgs/logout.svg" alt="" width="30" height="30" class="d-inline-block align-middle">
   <span class="pl-2">登出</span>
 </a>`;
-
 const str_send_mail = `<p>寄件者： 
 <span>townintelligent@gmail.com</span>
 </p>
