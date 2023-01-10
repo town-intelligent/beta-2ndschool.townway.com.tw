@@ -187,7 +187,15 @@ export function set_page_info_cms_project_detail (uuid) {
     var obj_div_des = document.createElement("div")
     obj_div_des.className = "col-md-4 mt-4 mt-md-0";
     var obj_p_name = document.createElement("p")
-    obj_p_name.innerHTML = "活動設計名稱: ";
+    obj_p_name.innerHTML = "活動設計名稱 ";
+    var obj_doat = document.createElement('span')
+    obj_doat.innerHTML = "：";
+    var obj_Lparenthesis = document.createElement('span')
+    obj_doat.innerHTML = "(";
+    var obj_Rparenthesis = document.createElement('span')
+    obj_doat.innerHTML = ")";
+    var obj_span_uuid = document.createElement('span');
+    obj_span_uuid,innerHTML = obj_task.uuid;
     var obj_span_name = document.createElement("span");
     obj_span_name.innerHTML = obj_task.name;
     var obj_p_period = document.createElement("p")
@@ -198,6 +206,10 @@ export function set_page_info_cms_project_detail (uuid) {
     obj_p_idea.className = "small";
     obj_p_idea.innerHTML = obj_task.overview;
 
+    obj_p_name.append(obj_Lparenthesis);
+    obj_p_name.append(obj_span_uuid);
+    obj_p_name.append(obj_Rparenthesis);
+    obj_p_name.append(obj_doat);
     obj_p_name.append(obj_span_name);
     obj_p_period.append(obj_span_period);
     obj_div_des.append(obj_p_name);
