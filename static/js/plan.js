@@ -173,8 +173,6 @@ function plan_send(form) {
   return resultJSON;
 }
 
-HOST_URL_TPLANET_DAEMON = "https://beta-tplanet-backend.townway.com.tw"
-
 export function getProjectWeight(list_task_UUIDs) {
   var projectWeight = {};
   var dataJSON = {};
