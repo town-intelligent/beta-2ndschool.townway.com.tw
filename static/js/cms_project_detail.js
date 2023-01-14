@@ -8,10 +8,6 @@ export function set_page_info_cms_project_detail (uuid) {
   document.getElementById("uuid_project").innerHTML = uuid;
   document.getElementById("name_project").innerHTML = obj_project.name;
 
-  // 活動名稱uuid
-  document.getElementById("task_uuid").innerHTML = obj_project.uuid;
-
-
   // Weight
   var obj_sdg_container = document.getElementById("sdg_container");
   var list_weight = [];
@@ -47,7 +43,6 @@ export function set_page_info_cms_project_detail (uuid) {
   // Period
   document.getElementById("period_project").innerHTML = obj_project.period; 
   }
-
 
   // Location
   var list_location = [];
@@ -154,10 +149,10 @@ export function set_page_info_cms_project_detail (uuid) {
     obj_div_root.className = "row mt-4 mt-md-5 mb-3";
   
     var obj_div_product = document.createElement("div")
-    obj_div_product.className = "col-6 col-md-4";
+    obj_div_product.className = "col-md-4 d-flex justify-content-center mb-5";
   
     var obj_img_product = document.createElement("img")
-    obj_img_product.className = "img-fluid";
+    obj_img_product.className = "w-75";
 
     if (obj_task.thumbnail == "") {
       // obj_img_product.src = "/static/imgs/ab_project_detail.png";
@@ -171,7 +166,9 @@ export function set_page_info_cms_project_detail (uuid) {
     obj_img_product.alt = "";
   
     var obj_div_qrocde = document.createElement("div")
-    obj_div_qrocde.className = "col-md-4 m-auto";
+    obj_div_qrocde.className = "col-md-4 d-flex justify-content-center mb-5";
+    obj_div_qrocde.style = "margin-top:auto";
+
 
     var obj_qrcode = document.createElement("qrcode");
     obj_tasks_container.append(obj_qrcode);
@@ -185,54 +182,54 @@ export function set_page_info_cms_project_detail (uuid) {
     qrcode.makeCode(location.protocol + "//" + window.location.host + "/tasks/" + obj_task.uuid);    
 
     var obj_div_des = document.createElement("div")
-    obj_div_des.className = "col-md-4 m-auto";
+    obj_div_des.className = "col-md-4 ";
     var obj_p_name = document.createElement("p")
-    obj_p_name.style = "font-size: 30px";
     obj_p_name.innerHTML = "活動設計名稱 ";
-    var obj_doat = document.createElement('span')
-    obj_doat.innerHTML = "：";
-    var obj_Lparenthesis = document.createElement('span')
-    obj_doat.innerHTML = "(";
-    var obj_Rparenthesis = document.createElement('span')
-    obj_doat.innerHTML = ")";
-    var obj_span_uuid = document.createElement('span');
-    obj_span_uuid.innerHTML = obj_task.uuid;
-    obj_span_uuid.style = "font-size: 20px";
+    obj_p_name.style="font-size: 30px;"
+    var obj_uuid_container_left = document.createElement("span")
+    obj_uuid_container_left.innerHTML="("
+    obj_uuid_container_left.style="font-size: 20px"
+    var obj_uuid_title = document.createElement("span")
+    obj_uuid_title.innerHTML = "uuid："
+    obj_uuid_title.style="font-size: 20px"
+    var obj_uuid = document.createElement("span")
+    obj_uuid.innerHTML=obj_task.uuid
+    obj_uuid.style="font-size: 20px"
+    var obj_uuid_container_right = document.createElement("span")
+    obj_uuid_container_right.innerHTML = ")"
+    obj_uuid_container_right.style="font-size: 20px"
+    var  colon = document.createElement("span")
+    colon.innerHTML = "："
     var obj_span_name = document.createElement("span");
     obj_span_name.innerHTML = obj_task.name;
+    obj_span_name.style = "font-size: 30px";
     var obj_p_period = document.createElement("p")
-    obj_p_period.innerHTML = "d-flex align-items-center";
-    obj_p_period.className = "日期: ";
-    obj_p_period.style = "font-size: 30px";
+    obj_p_period.innerHTML = "日期: ";
+    obj_p_period.style="font-size: 25px;";
     var obj_span_period = document.createElement("span")
     obj_span_period.innerHTML = obj_task.period;
-    obj_span_period.style = "font-size: 16px";
+    obj_span_period.style="font-size: 16px;"
     var obj_p_idea = document.createElement("p")
     obj_p_idea.className = "small";
     obj_p_idea.innerHTML = obj_task.overview;
-    var card_btn_outter = document.createElement('div')
-    var card_btn =  document.createElement('button')
-    card_btn.innerHTML  = "啟用讀卡機";
-    card_btn.className = "border-0 w-100 p-2";
-    card_btn.style = "border-radius: 8px;";
+    var obj_btn = document.createElement("button")
+    obj_btn.className="border-0 w-100 p-2";
+    obj_btn.style = "border-radius: 8px;";
+    obj_btn.innerHTML = "啟用讀卡機";
 
 
-    obj_p_name.append(obj_Lparenthesis);
-    obj_p_name.append(obj_span_uuid);
-    obj_p_name.append(obj_Rparenthesis);
-    obj_p_name.append(obj_doat);
-    obj_p_name.append(obj_span_name);
+
+    obj_p_name.append(obj_uuid_container_left)
+    obj_uuid_container_left.append(obj_uuid_title)
+    obj_uuid_title.append(obj_uuid)
+    obj_uuid.append(obj_uuid_container_right)
+    obj_uuid_container_right.append(colon)
+    colon.append(obj_span_name);
     obj_p_period.append(obj_span_period);
-
-    card_btn_outter.append(card_btn)
-
     obj_div_des.append(obj_p_name);
     obj_div_des.append(obj_p_period);
     obj_div_des.append(obj_p_idea);
-    obj_div_des.append(card_btn_outte);
-    
-    
-
+    obj_div_des.append(obj_btn);
 
     obj_div_qrocde.append(obj_qrcode);	    
     obj_div_product.append(obj_img_product);

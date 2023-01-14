@@ -1,6 +1,6 @@
 export function get_task_info(uuid) {
   var dataJSON = {};
-
+  dataJSON.uuid = uuid
   $.ajax({
     url: HOST_URL_TPLANET_DAEMON + "/tasks/get/" + uuid,
     type: "GET",
