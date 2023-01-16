@@ -17,10 +17,8 @@ function verifyToken(token) {
 	        // return true;
         } else {
 	        console.log("JWT expired");
-
           // Clear all localstorage
           localStorage.clear();
-
           // Redirect signin page
           window.location.replace("/tplanet_signin.html");
         }
@@ -31,14 +29,12 @@ function verifyToken(token) {
     }); 
     return true;
 }
-
 function checkAuth() {
   var result = false;
   if (getLocalStorage("jwt") == "") {
     console.log("Null value of JWT");
     var path = window.location.pathname;
     var page = path.split("/").pop();
-
     if (page != "/tplanet_signin.html" || page != "/tplanet_signup.html") {
       // console.log("Goto signin page");
       window.location.replace("/tplanet_signin.html?next=" + path);
@@ -48,6 +44,5 @@ function checkAuth() {
     console.log("Verifing JWT ...");
     result = verifyToken(getLocalStorage("jwt"));
   }
-
   return result;
 }

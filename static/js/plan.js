@@ -70,10 +70,13 @@ export function list_plan_tasks(uuid, parent = 0) {
   return returnDataJSON;
 }
 
-export function list_plans(sdg = null) {
+export function list_plans(email = null, sdg = null) {
   // Check required field and save to JSON struct
   var dataJSON = {};
-  dataJSON.email = getLocalStorage("email");
+
+  if (email != null) {
+    dataJSON.email = email;
+  }
 
   if (sdg != null) {
     dataJSON.sdg = sdg;
@@ -169,8 +172,6 @@ function plan_send(form) {
 
   return resultJSON;
 }
-
-HOST_URL_TPLANET_DAEMON = "https://beta-tplanet-backend.townway.com.tw"
 
 export function getProjectWeight(list_task_UUIDs) {
   var projectWeight = {};

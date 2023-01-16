@@ -8,6 +8,8 @@ import { set_page_info_cms_deep_participation } from './cms_deep_participation.j
 import { set_page_info_cms_contact_person } from './cms_contact_person.js'
 import { set_page_info_admin_project_verify } from './admin_project_verify.js'
 import { set_page_info_admin_project_check } from './admin_project_check.js'
+import { set_page_info_kpi } from './kpi.js'
+import { set_page_info_content } from './content.js'
 
 export function set_page_info() {
   /* Get path and parameters */
@@ -67,10 +69,14 @@ export function set_page_info() {
   }
 
   if (page == "kpi.html") {
-    set_page_info_kpi(uuid);
+    set_page_info_kpi(null, null);
   }
 
   if (page == "kpi_filter.html") {
     set_page_info_kpi_filter();
+  }
+
+  if (page == "content.html") {
+    set_page_info_content();
   }
 }

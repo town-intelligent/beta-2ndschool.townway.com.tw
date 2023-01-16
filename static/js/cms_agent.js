@@ -366,10 +366,10 @@ $(function () {
       // <img class="mr-3" src="/static/imgs/SDGs_04.jpg" alt="" style="width:60px">
       var obj_img = document.createElement("img");
       obj_img.id = "target_sdgs_" + getLocalStorage("target_sdgs");
-      obj_img.className = "mr-3";
+      obj_img.className = "participation-margin mt-md-0";
       obj_img.src = "/static/imgs/SDGs_" + getLocalStorage("target_sdgs") + ".jpg";
       obj_img.alt = "";
-      obj_img.style = "width:60px";
+      obj_img.style = "width:100px";
 
       // Append
       obj_a.append(obj_img);
@@ -383,7 +383,7 @@ $(function () {
 
 export function set_page_info_cms_agent(uuid){
   /* Create DOM */
-  var list_project_obj = list_plans();
+  var list_project_obj = list_plans(getLocalStorage("email"));
 
   if (list_project_obj == undefined) {
     return;

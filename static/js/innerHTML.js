@@ -42,7 +42,7 @@ const str_parent_task_block = `
 </div> 
 <hr class="my-4">`
 
-const str_project_block_in_project_page = `<div class="card mb-4 border-3 border-dark h-100 p-3" style="border-radius: 20px;">
+const str_project_block_in_project_page_backup = `<div class="card mb-4 border-3 border-dark h-100 p-3" style="border-radius: 20px;">
   <div class="d-flex justify-content-center">
     <div class="img-fluid bg-cover" style="background-image:url(PROJECT_COVER); width: 400px; height:100px; background-repeat: no-repeat"></div>
   </div>
@@ -85,9 +85,61 @@ const str_project_block_in_project_page = `<div class="card mb-4 border-3 border
 </div>
 `
 
-const str_SDG_in_list_project = `<a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
+const str_project_block_in_project_page = `<a class="text-dark" href="/cms_project_detail.html?uuid=PROJECT_UUID" style="display: block; text-decoration:none">
+
+    <div class="card mb-4 kpi-card" style="border-radius: 20px;">
+      <div class="d-flex justify-content-center">
+        <div class="img-fluid bg-cover shadow" style="background-image:url(PROJECT_COVER); width:100% ;height:200px; border-radius: 18px;"></div>
+      </div>
+      <div class="card-body d-flex flex-column">
+        <p class="h5">PROJECT_NAME</p>
+        <p class="card-text mt-4">永續企業:<span class="pl-2">PROJECT_A<span></p>
+        <p class="card-text">地方團隊:<span class="pl-2">PROJECT_B<span></p>
+        <p class="card-text">期間: <span class="pl-2">PROJECT_START ~ PROJECT_DUE<span></p>
+        <p class="card-text">預算: <span class="pl-2">新台幣 BUDGET 元<span></p>
+        <a href="/content.html?uuid=PROJECT_UUID" class="stretched-link"></a>
+        <div class="row mt-3">
+          
+        <!--
+          <div class="pl-2">
+            <a href="#" class="stretched-link" style="position: relative; text-decoration: none;">
+              <img style="width:13%" src="/static/imgs/SDGs_01.jpg" alt="">
+            </a>
+            <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
+              <img style="width:13%" src="/static/imgs/SDGs_04.jpg" alt="">
+            </a>
+            <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
+              <img style="width:13%"  src="/static/imgs/SDGs_06.jpg" alt="">
+            </a>
+            <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
+              <img style="width:13%"  src="/static/imgs/SDGs_09.jpg" alt="">
+            </a>
+            <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
+              <img style="width:13%"  src="/static/imgs/SDGs_11.jpg" alt="">
+            </a>
+            <a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
+              <img style="width:13%"  src="/static/imgs/SDGs_13.jpg" alt="">
+            </a>
+            
+            
+          </div>
+          -->
+          SDGS_LIST
+        </div>
+      </div>
+    </div>
+  </a>
+`
+
+const str_SDG_in_list_project_backup = `<a href="#" class="pl-1 stretched-link" style="position: relative; text-decoration: none;">
     <img class="pb-1" style="width:13%"  src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
   </a>`
+
+  const str_SDG_in_list_project = `<div class="col-2 pr-0">
+  <p href="#">
+    <img class="w-100" src="/static/imgs/SDGs_INDEX_SDG.jpg" alt="">
+  </p>
+</div>`
 
 const str_admin_dropdown = `<a class="nav-link d-md-none" href="/backend/message_list.html">
 <img src="/static/imgs/notifications_icon.svg" width="35" height="35" class="d-inline-block align-middle" alt="">

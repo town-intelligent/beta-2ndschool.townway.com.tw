@@ -1,19 +1,15 @@
 import { list_plans, plan_info } from './plan.js'
-
 export function set_page_info_admin_agent_project(uuid){
     var list_project_obj = list_plans();
     var list_project_uuids = list_project_obj.projects;
-
     if (list_project_uuids == undefined) {
       return;
     }
-
     // List projects
     var obj_tbody = document.getElementById("tbody_admin_agent_project");
     for (var index = 0; index < list_project_uuids.length; index ++) {
       // Get project info
       var obj_project = plan_info(list_project_uuids[index]);
-
       /*
       <tr>
         <td class="align-middle text-center">1</td>
@@ -32,10 +28,8 @@ export function set_page_info_admin_agent_project(uuid){
         <td class="align-middle text-center">小鎮文創</td>
       </tr>
       */
-
       var list_project_weight = project_weight_to_sdg_string(obj_project.weight, 0);
       var str_location = project_location_to_string(obj_project.location);
-
       var obj_tr = document.createElement("tr");
       var obj_td_uuid = document.createElement("td");
       obj_td_uuid.className = "align-middle text-center";
@@ -65,7 +59,6 @@ export function set_page_info_admin_agent_project(uuid){
       obj_td_verify.className = "align-middle text-center";
       var obj_a = document.createElement("button");
       obj_a.className = "btn btn-primary btn-sm";
-
       // Verify button
       if (parseInt(obj_project.status) == 0) {
         obj_a.innerHTML = "待驗證";
@@ -77,7 +70,6 @@ export function set_page_info_admin_agent_project(uuid){
         obj_a.innerHTML = "已驗證";
         obj_a.disabled = true;
       }
-
       // Append
       obj_td_verify.append(obj_a);
       obj_tr.append(obj_td_verify);

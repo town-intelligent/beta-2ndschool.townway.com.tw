@@ -7,7 +7,6 @@
 .nav-width{
     width: 55%;
 }
-
 .nav-container-item{
     align-items: center;
 }
@@ -66,7 +65,6 @@
     opacity: 0;
 }
 /*end cms_support_form */
-
 .bg-blue{
     background-color: #3E6896;
 }
@@ -77,15 +75,12 @@
     font-size: 128px;
     font-weight: 400;
 }
-
 .bg-green{
     background-color: #5CB85C;
 }
-
 .kpi-card:active{
     opacity: 0.8;
   }
-
   @media screen and (max-width:992px ) {
     .nav-width{
         width: 25%;
@@ -101,7 +96,6 @@
         display: block;
     }
   }
-
 @media screen and (max-width: 768px) {
     .card-top{
         height: 400px;
