@@ -1,4 +1,17 @@
 /* start account_mange */
+.account-manager-form th,
+.account-manager-form td{
+    border: 1px solid #000;
+    text-align: center;
+}
+.account-manager-form th{
+    background-color: #E5E5E5;
+}
+
+
+.account-manager-form input{
+    text-align: center;
+}
 .Acontainer{
     margin: auto;
     width: 80%;
