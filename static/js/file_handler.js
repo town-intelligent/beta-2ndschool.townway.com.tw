@@ -3,7 +3,6 @@
  * https://stackoverflow.com/questions/53651409/writing-a-base64-string-to-file-in-python-not-working
  * https://stackoverflow.com/questions/34116682/save-base64-image-python
  */
-
 /*The FileModal Class*/
 function FileModal(accept){
   var callback = function(){};

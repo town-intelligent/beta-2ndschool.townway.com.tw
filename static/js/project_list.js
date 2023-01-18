@@ -1,16 +1,21 @@
-function set_page_info_project_list()
+import { list_plans, plan_info } from './plan.js'
+
+export function set_page_info_project_list()
 {
   var obj_list_projects = list_plans();
   var list_project_uuids = obj_list_projects.projects;
 
   for (var index = 0; index < list_project_uuids.length; index++) {
-    obj_project = plan_info(list_project_uuids[index]);
+    var obj_project = plan_info(list_project_uuids[index]);
 
     /* Replace variable in str_project_block_in_project_page_page */
 
     // Project data
     var str_project_block_in_project_page_innetHTML = str_project_block_in_project_page.replaceAll("PROJECT_NAME", obj_project.name);
     str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_A", obj_project.project_a);
+    str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_B", obj_project.project_b);
+    str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_UUID", obj_project.uuid);
+
     var list_period = [];
     try {
       list_period = obj_project.period.split("-");
@@ -56,6 +61,6 @@ function set_page_info_project_list()
 
     // Append
     var obj_project_container = document.getElementById("project_container");
-    project_container.append(project_block);
+    obj_project_container.append(project_block);
   }
 }
