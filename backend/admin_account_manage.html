@@ -26,8 +26,8 @@
       window.uploadTaskCover = uploadTaskCover;
     </script>
     <script type="module">
-      import { accountDelete} from '/static/js/accounts.js'
-      window.accountDelete = accountDelete;
+      import { batch_new} from '/static/js/account_manager.js'
+      window.batch_new = batch_new;
     </script>
   </head>
 
@@ -133,9 +133,10 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 276px;">
                   帳號管理
                 </button>
+                <input type="file" id="fileInput" data-target="file-uploader" accept="image/*" multiple="multiple" />
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><a class="dropdown-item d-flex align-items-center justify-content-between" href="#"><span>批次帳號建立</span><img src="/static/imgs/Upload.png" alt="" style="width: 15%;"></a></li>
-                  <li><a id="accountChange" class="dropdown-item d-flex align-items-center justify-content-between" href="#"><span>帳號異動●更新</span><img src="/static/imgs/Update.png" alt="" style="width: 15%;"></a></li>
+                  <li><a id="accountChange" class="dropdown-item d-flex align-items-center justify-content-between" href="#" onclick="batch_new()"><span>帳號異動●更新</span><img src="/static/imgs/Update.png" alt="" style="width: 15%;"></a></li>
                   <li><a class="dropdown-item d-flex align-items-center justify-content-between"data-bs-toggle="modal" href="#exampleModalToggle" role="button"><span>帳號移轉</span><img src="/static/imgs/Transfer.png" alt="" style="width: 15%;"></a></li>
                 </ul>
               </div>      
@@ -152,43 +153,7 @@
                             <th>電子郵件</th>
                         </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                      </tr>
-                      <tr>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                      </tr>
-                      <tr>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                      </tr>
-                      <tr>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                      </tr>
-                      <tr>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                      </tr>
-                      <tr>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
-                      </tr>
+                    <tbody id="tbody">
                     </tbody>
                 </table>
               <div class="d-flex justify-content-md-end">
