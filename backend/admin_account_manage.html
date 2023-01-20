@@ -20,6 +20,7 @@
     <script src="/static/js/auth.js"></script>
     <script src="/static/js/permission.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script type="module" src="/static/js/account_manager.js"></script>
     <script type="module">
       import { uploadTaskCover} from '/static/js/tasks.js'
       window.uploadTaskCover = uploadTaskCover;
@@ -133,9 +134,9 @@
                   帳號管理
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item d-flex align-items-center justify-content-between" href="#"><span>批次帳號建立</span><img src="/static/imgs/Upload.png" alt="" style="width: 20%;"></a></li>
-                  <li><a class="dropdown-item d-flex align-items-center justify-content-between" href="#"><span>帳號異動　●　更新</span><img src="/static/imgs/Upload.png" alt="" style="width: 20%;"></a></li>
-                  <li><a class="dropdown-item d-flex align-items-center justify-content-between"data-bs-toggle="modal" href="#exampleModalToggle" role="button"><span>帳號移轉</span><img src="/static/imgs/Upload.png" alt="" style="width: 20%;"></a></li>
+                  <li><a class="dropdown-item d-flex align-items-center justify-content-between" href="#"><span>批次帳號建立</span><img src="/static/imgs/Upload.png" alt="" style="width: 15%;"></a></li>
+                  <li><a id="accountChange" class="dropdown-item d-flex align-items-center justify-content-between" href="#"><span>帳號異動●更新</span><img src="/static/imgs/Update.png" alt="" style="width: 15%;"></a></li>
+                  <li><a class="dropdown-item d-flex align-items-center justify-content-between"data-bs-toggle="modal" href="#exampleModalToggle" role="button"><span>帳號移轉</span><img src="/static/imgs/Transfer.png" alt="" style="width: 15%;"></a></li>
                 </ul>
               </div>      
             </div>
@@ -176,10 +177,22 @@
                         <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
                         <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
                       </tr>
+                      <tr>
+                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
+                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
+                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
+                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
+                      </tr>
+                      <tr>
+                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
+                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
+                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
+                        <td> <input type="text" value="1121" style="width: 100%;" disabled></td>
+                      </tr>
                     </tbody>
                 </table>
               <div class="d-flex justify-content-md-end">
-                <button type="button" class="btn btn-primary" style="width: 120px;"  data-bs-toggle="modal" data-bs-target="#exampleModal">確認</button>
+                <button id="accountConfirm"  type="button" class="btn btn-primary" style="width: 120px;display: none;"  data-bs-toggle="modal" data-bs-target="#exampleModal">確認</button>
               </div>
 
               <!-- Modal -->
@@ -202,8 +215,9 @@
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                    <div class="modal-body d-flex justify-content-around">
-                      帳號轉移完畢
+                    <div class="modal-body d-flex justify-content-around align-items-center">
+                      <span>帳號轉移完畢</span>
+                      <img src="/static/imgs/Tick Box.png" alt="">
                     </div>
                   </div>
                 </div>
@@ -214,7 +228,7 @@
               <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                   <div class="modal-body d-flex justify-content-around">
-                    帳號轉移完畢
+                    帳號更新完畢
                   </div>
                 </div>
               </div>
@@ -346,19 +360,4 @@
       </div>
     </footer> 
   </body>
-  <script>
-      $('.edit').on('click',function(e){
-        var tmp = $(this).data('target')
-        console.log('tmp',tmp)
-        // $('d-flex' + tmp).children('input').removeAttr('disabled')
-        $(tmp).children('div').children('input').prop("disabled", false)
-    })  
-    $('.confirm').on('click',function(e){
-        var tmp = $(this).data('target')
-        console.log('tmp',tmp)
-        // $('d-flex' + tmp).children('input').removeAttr('disabled')
-        $(tmp).children('div').children('input').prop("disabled", true)
-    }) 
-    
-  </script>
 </html>

@@ -1,4 +1,7 @@
 /* start account_mange */
+/* .accountConfirm{
+    display: none;
+} */
 .account-manager-form th,
 .account-manager-form td{
     border: 1px solid #000;
