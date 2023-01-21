@@ -1,7 +1,7 @@
 $(function () {
     $("#accountChange").on("click", function(e) {
       e.preventDefault(); 
-    //   $('input').prop("disabled",false)
+      $('input').prop("disabled",false)
       $('#accountConfirm').show()
     })
     $("#accountConfirm", ).on("click", function(e) {
@@ -40,10 +40,10 @@ function printTable(subData) {
         let tr = document.createElement("tr")
 		document.querySelector("#tbody").appendChild(tr)
 		let trInfo = `
-        <td id="serialNumber"> <input type="text" value="${data.device_no}" style="width: 100%;"></td>
-        <td id ="userName"> <input type="text" value="${data.account_username}" style="width: 100%;"></td>
-        <td id ="healthNumber"> <input type="text" value="待更新" style="width: 100%;"></td>
-        <td id="email"> <input type="text" value="${data.account_email}" style="width: 100%;"></td>
+        <td id="serialNumber"> <input type="text" value="${data.device_no}" style="width: 100%;" disabled></td>
+        <td id ="userName"> <input type="text" value="${data.account_username}" style="width: 100%;" disabled></td>
+        <td id ="healthNumber"> <input type="text" value="待更新" style="width: 100%;" disabled></td>
+        <td id="email"> <input type="text" value="${data.account_email}" style="width: 100%;" disabled></td>
 		`
 		tr.innerHTML = trInfo
 	})
@@ -59,19 +59,19 @@ function mbprintTable(subData) {
         let tab_info = `
         <div class="mb-3">
             <label class="form-label">序號</label>
-            <input type="text" class="form-control" value="${data.device_no}">
+            <input type="text" class="form-control" value="${data.device_no}"disabled>
         </div>
         <div class="mb-3">
             <label class="form-label">使用者名稱</label>
-            <input type="text" class="form-control" value="${data.account_username}">
+            <input type="text" class="form-control" value="${data.account_username}" disabled>
         </div>
         <div class="mb-3">
             <label class="form-label">健保卡號</label>
-            <input type="text" class="form-control" value="待更新">
+            <input type="text" class="form-control" value="待更新" disabled>
         </div>
         <div class="mb-3">
             <label class="form-label">電子郵件</label>
-            <input type="text" class="form-control" value="${data.account_email}">
+            <input type="text" class="form-control" value="${data.account_email}" disabled>
         </div>
         `
         tab1.innerHTML = tab_info
