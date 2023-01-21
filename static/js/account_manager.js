@@ -4,7 +4,7 @@ $(function () {
     //   $('input').prop("disabled",false)
       $('#accountConfirm').show()
     })
-    $("#accountConfirm").on("click", function(e) {
+    $("#accountConfirm", ).on("click", function(e) {
         e.preventDefault(); 
         $('input').prop("disabled",true)
         $('#accountConfirm').hide()
@@ -31,16 +31,11 @@ export function batch_new(){
         let subData = (data.content)
         console.log(subData);
         printTable(subData)
+        mbprintTable(subData)
       });
 } 
 
 function printTable(subData) {
-    let tbody = document.getElementById('tbody')
-    let tr = document.getElementById('tr')
-    let td1 = document.getElementById('serialNumber')
-    let td2 = document.getElementById('userName')
-    let td3 = document.getElementById('healthNumber')
-    let td4 = document.getElementById('email')
     subData.forEach( (data, index) => {
         let tr = document.createElement("tr")
 		document.querySelector("#tbody").appendChild(tr)
@@ -51,5 +46,34 @@ function printTable(subData) {
         <td id="email"> <input type="text" value="${data.account_email}" style="width: 100%;"></td>
 		`
 		tr.innerHTML = trInfo
+	})
+}
+
+function mbprintTable(subData) {
+    subData.forEach( (data, index) => {
+        let tab1 = document.createElement('div')
+        tab1.style="border-bottom: 1px solid #000"
+        tab1.className="my-2"
+
+        document.querySelector('.mb-form-inner').appendChild(tab1)
+        let tab_info = `
+        <div class="mb-3">
+            <label class="form-label">序號</label>
+            <input type="text" class="form-control" value="${data.device_no}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">使用者名稱</label>
+            <input type="text" class="form-control" value="${data.account_username}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">健保卡號</label>
+            <input type="text" class="form-control" value="待更新">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">電子郵件</label>
+            <input type="text" class="form-control" value="${data.account_email}">
+        </div>
+        `
+        tab1.innerHTML = tab_info
 	})
 }
