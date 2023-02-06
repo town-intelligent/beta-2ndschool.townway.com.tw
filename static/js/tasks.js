@@ -191,6 +191,30 @@ export function verify_task_on_tplanet(uuid, listEmail) {
   });
   return dataJSON;
 }
+
+export function getTaskWeight(task_UUID) {
+  var TaskWeight = {};
+  var dataJSON = {};
+  dataJSON.uuid = task_UUID;
+
+  $.ajax({
+    url: HOST_URL_TPLANET_DAEMON + "/tasks/task_weight",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data: dataJSON,
+    success: function(returnData) {
+       const obj = JSON.parse(returnData);
+       TaskWeight = obj;
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return TaskWeight;
+}
+
 /* export function verify_task_on_eid(uuid, email) {
   var dataJSON = {};
   dataJSON.tasks_list = uuid;

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -12,8 +15,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/static/css/style.css" >
     <link rel="stylesheet" href="/static/css/progress_bar.css">
+    <link rel="stylesheet" href="/static/css/kpi.css">
     <script src="/static/js/config.js"></script>
     <script src="/static/js/innerHTML.js"></script>
     <script src="/static/js/localStorage.js"></script>
@@ -22,13 +27,12 @@
     <script src="/static/js/permission.js"></script>
     <script type="module" src="/static/js/plan.js"></script>
     <script type="module" src="/static/js/tasks.js"></script>
-    <script type="module" src="/static/js/cms_project_detail.js"></script>
+    <script src="/static/js/ab_cms_project_detail.js"></script>
     <script type="module" src="/static/js/set_page_info.js"></script>
     <script src="/static/js/qrcode.js"></script>
     <script type="module" src="/static/js/init.js"></script>
   </head>
-  <body>
-    <!--<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>-->
+  <body onload="init();">
     <!-- navbar -->
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -120,103 +124,155 @@
     <section>
       <div class="container">
         <div class="row mt-3 mt-md-5 justify-content-center">
-          <div class="col-10">
-            <div class="d-flex justify-content-end">
-              <button type="button" id="btn_send_mail" class="btn btn-white" data-toggle="modal" data-target="#staticBackdrop">
-                <img style="width: 45px" src="/static/imgs/forward_to_inbox.svg" alt="">
-              </button>
-            </div>
-          </div>
           <div class="col-10 mt-3">
             <div class="d-flex justify-content-center">
-              <img id="project_cover" class="img-fluid" src="/static/imgs/project_img_03.png" alt="">
+              <img id="project_cover" class="img-fluid" src="/static/imgs/page-7-banner.jpg" alt="">
             </div>
           </div>
         </div>
         <!-- project description -->
         <div class="row mt-5">
           <div class="col-12">
-            <p id="name_project" class="h2 text-primary-dark fw-bold">竹山創生輔導合作計畫</p>
+            <p id="name_project" class="h2 text-primary-dark fw-bold" style="font-weight: bolder;">花蓮教育數位創生服務平台發展計畫</p>
           </div>
           <div class="col-md-6 mt-4">
             <div class="d-flex flex-column h-100 justify-content-start">
-	    <div id="sdg_container" class="row">
-	      </div>
-              <div class="d-none d-md-block">
-                <p class="mt-3 mb-3">計畫期間:<span id="period_project" class="pl-2"></span></p>
-		            <p class="mb-3">計畫編號: <a id="uuid_project"></a></p>
-                <p id="location"><img class="mr-2" src="/static/imgs/place_marker.svg" alt="" style="width:20px">T-Planet<br></p>
+              <div id="sdg_container" class="row">
+                <div class="col-2 col-md-1 pr-0">
+                  <img class="w-100" src="/static/imgs/SDGs_04.jpg" alt="">
+                </div>
+                <div class="col-2 col-md-1 pr-0">
+                  <img class="w-100" src="/static/imgs/SDGs_08.jpg" alt="">
+                </div>
+                <div class="col-2 col-md-1 pr-0">
+                  <img class="w-100" src="/static/imgs/SDGs_11.jpg" alt="">
+                </div>
+                <div class="col-2 col-md-1 pr-0">
+                  <img class="w-100" src="/static/imgs/SDGs_15.jpg" alt="">
+                </div>
+                <div class="col-2 col-md-1 pr-0">
+                  <img class="w-100" src="/static/imgs/SDGs_17.jpg" alt="">
+                </div>
               </div>
+              <p class="mt-3 mb-3">計畫期間:<span id="period_project" class="pl-2">2021.08.01 ~ 2022.07.31</span></p>
+              <p class="mb-3">計畫編號: <a id="uuid_project"></a></p>
+              <p id="location"><img class="mr-2" src="/static/imgs/place_marker.svg" alt="" style="width:20px">T-Planet @ Zhushan</p>
             </div>
           </div>
           <div class="col-md-6 mt-4">
             <div class="d-flex flex-column">
-              <p class="mt-3 mt-md-0 mb-3">永續企業:<span id="project_a" class="pl-2"></span></p>
-              <p class="mb-3">專案負責人:<span id="hoster" class="pl-2"></span></p>
-              <p class="mb-3">地方團隊:<span id="project_b" class="pl-2"></span></p>
+              <p class="mb-3">永續企業:<span id="project_a" class="pl-2">永鑫能源</span></p>
+              <p class="mb-3">專案負責人:<span id="hoster" class="pl-2">蔡筑茵</span></p>
+              <p class="mb-3">地方團隊:<span id="project_b" class="pl-2">元泰竹藝社、台灣長虹、東埔蚋溪環境保護協會</span></p>
               
-              <p class="mb-3">電子郵件:<span id="email" class="pl-2"></span></p>
-              <!-- <p class="mb-3">計畫期間:<span class="pl-2">2021.08.01 ~ 2022.07.31</span></p> -->
+              <p class="mb-3">電子郵件:<span id="email" class="pl-2">philaeld@gmail.com </span></p>
             </div>
           </div>
         </div>
         <div class="row mt-5">
-          <div class="col-12">
-            <p class="h5">計畫理念:</p>
-            <p id="philosophy" class="mt-3 mb-2"></p>
+          <div class="col-md-12">
+            <p class="h4" style="font-weight: bolder;">計畫理念</p>
+            <p id="philosophy" class="mt-3 mb-2 ml-3">「小鎮文創」、「小鎮智能」以及「小鎮風土」三家公司都將進駐於此，未來將透過亞洲合作、資源整合、經驗培育、數位科技專業領域，進行從台灣的北、中、南、東與離島五分區的跨區域數位匯流骨幹的協力機制。
+            </p>
           </div>
         </div>
         <div class="form-group row justify-content-center mt-3">
           <div id="project_sdg_container" class="col-12">
+            
           </div>
         </div>
-        <div class="row mt-5">
-          <div class="col-12">
-            <p class="h5">成果展現:</p>
-          </div>
-          <div id="tasks_container" class="col-md-12">
-	  </div>
-
-        <div class="row my-5 align-items-center  justify-content-center">
-          <div class="col-12">
-            <p class="h5">參與方式:</p>
-          </div>
+        <!-- <div class="row my-5 pt-3 align-items-center">
           <div class="col-md-10">
-            <img class="img-fluid" src="/static/imgs/how_to_participate.png" alt="">
+            <div class="d-flex mt-4">
+              <div id="project_sdg_container">
+                <img src="/static/imgs/SDGs_04.jpg" alt="" style="width:60px">
+              </div>
+              <textarea class="form-control ml-3" placeholder="填寫符合此指標的執行方式" style="resize: none"></textarea>
+            </div>
+            <div class="d-flex mt-4">
+              <div id="project_sdg_container">
+                <img src="/static/imgs/SDGs_03.jpg" alt="" style="width:60px">
+              </div>
+              <textarea class="form-control ml-3" placeholder="填寫符合此指標的執行方式" style="resize: none"></textarea>
+            </div>
+            <div class="d-flex mt-4">
+              <div id="project_sdg_container">
+                <img src="/static/imgs/SDGs_02.jpg" alt="" style="width:60px">
+              </div>
+              <textarea class="form-control ml-3" placeholder="填寫符合此指標的執行方式" style="resize: none"></textarea>
+            </div>
+            <div class="d-flex mt-4">
+              <div id="project_sdg_container">
+                <img src="/static/imgs/SDGs_01.jpg" alt="" style="width:60px">
+              </div>
+              <textarea class="form-control ml-3" placeholder="填寫符合此指標的執行方式" style="resize: none"></textarea>
+            </div>
+            <div class="d-flex mt-4">
+              <div id="project_sdg_container">
+                <img src="/static/imgs/SDGs_05.jpg" alt="" style="width:60px">
+              </div>
+              <textarea class="form-control ml-3" placeholder="填寫符合此指標的執行方式" style="resize: none"></textarea>
+            </div>
           </div>
-          <div class="col-5 col-md-2 mt-4 mt-md-0">
-            <img class="img-fluid" src="/static/imgs/eid_qr_code.png" alt="">
+        </div> -->
+        <div class="col-md-12 pl-0 mb-4">
+          <p class="h4" style="font-weight: bolder;">成果展現</p>
+        </div>
+        <div class="row mt-5 mb-5 m-gap" id="tasks_container">
+          <div class="col-md-4 mt-auto">
+            <img src="/static/imgs/page-7-image-1.jfif"alt="" class="w-100">
+          </div>
+          <div class="col-md-4 m-auto">
+            <div class="w-75 m-auto">
+              <div id="qrcode">
+                <img src="/static/imgs/qr_code.png"alt="" class="w-100">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 m-auto">
+            <p style="font-size: 30px;"><span>活動設計名稱</span><span id="task_uuid" style="font-size: 20px;">(uuid : 69943982)</span> : 花東棒球訓練營專案</p>
+            <p class="d-flex align-items-center" style="font-size: 30px;"><span>日期：</span><span style="font-size: 16px;">11/01/2022-11/30/2022</span></p>
+            <p>以棒球訓練營為主，培養團隊合作、溝通能力。藉由友誼賽或比賽培養對生活的承受挫折能力。</p>
+            <div>
+              <button type="button" class="border-0 w-100 p-2" style="border-radius: 8px;">啟用讀卡機</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5 mb-5 m-gap" id="tasks_container">
+          <div class="col-md-4 m-auto">
+            <img src="/static/imgs/page-7-image-2.jfif"alt="" class="w-100">
+          </div>
+          <div class="col-md-4 m-auto">
+            <div class="w-75 m-auto">
+              <div id="qrcode">
+                <img src="/static/imgs/qr_code.png"alt="" class="w-100">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 m-auto">
+            <p style="font-size: 30px;"><span>活動設計名稱</span><span id="task_uuid" style="font-size: 20px;">(uuid : 69943982)</span> : 課後教育陪伴專案</p>
+            <p class="d-flex align-items-center" style="font-size: 30px;"><span>日期：</span><span style="font-size: 16px;">10/31/2022-11/15/2022</span></p>
+            <p>以學童課後輔導參予學習歷程專案，許多學童下課後，父母家人無法陪伴學習，甚至連單純的陪伴也沒辦法做到。 台灣基層運動協會提供場域進行作業學習，同時也培養閱讀課外讀物習慣，且互相討論分享，讓學童增進表達與思辯能力。</p>
+            <div>
+              <button type="button" class="border-0 w-100 p-2" style="border-radius: 8px;">啟用讀卡機</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5 mb-5">
+          <div class="col-md-12">
+            <p class="h4" style="font-weight: bolder;">參與方式：</p>
+          </div>
+          <div class="d-flex m-flex-wrap align-items-end px-4" style="gap: 100px;">
+            <div class="participation-pic">
+              <img src="/static/imgs/how_to_participate.png" alt=".." class="w-100">
+            </div>
+            <div class="participation-QRC">
+              <img src="/static/imgs/eid_qr_code.png" alt=".." class="w-100">
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- modal -->
-    <div class="modal fade" id="send_mail_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">傳送郵件</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div id="send_mail" class="modal-body">
-            <!-- <p>寄件者： 
-              <span>townintelligent@gmail.com</span>
-            </p>
-            <p>收件者： 
-              <span>philaeld@gmail.com</span>
-            </p>
-            <p>主旨： 
-              <span>竹山創生輔導合作計畫 邀請</span>
-            </p> -->
-          </div>
-          <div class="modal-footer d-flex justify-content-center">
-            <button id="submit_send_mail" type="button" class="btn btn-primary">寄送</button>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- footer -->
     <footer class="bg-gray mt-auto">
       <div class="container">

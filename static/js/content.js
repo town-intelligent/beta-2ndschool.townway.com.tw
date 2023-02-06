@@ -1,9 +1,23 @@
+import { draws, draws_task_weight_chart } from './app.js'
 import { plan_info, list_plan_tasks, getProjectWeight } from './plan.js'
 import { get_task_info, list_children_tasks } from './tasks.js'
 
-function get_nft(obj_task) {
+function project_weight_chart(obj_project) {
+  var obj_digital_fp_chart1_img = document.createElement("div");
+  obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_project.uuid;
+  document.getElementById("obj_digital_fp_chart1").append(obj_digital_fp_chart1_img);
 
-  return "hash";
+  // Draw
+  draws(obj_project.uuid)
+}
+
+function task_weight_chart(obj_task) {
+  var obj_digital_fp_chart1_img = document.createElement("div");
+  obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_task.uuid;
+  document.getElementById("obj_digital_fp_chart1").append(obj_digital_fp_chart1_img);
+
+  // Draw
+  draws_task_weight_chart(obj_task.uuid)
 }
 
 function set_location(obj_project) {
@@ -169,6 +183,18 @@ export function set_page_info_content()
   var obj_project = plan_info(uuid);
 
   // Project data
+
+  /* document.getElementById("project_cover") */
+
+  // Set cover
+  if (obj_project.img != null) { 
+    var path_cover = HOST_URL_TPLANET_DAEMON + 
+    "/static/project/" + uuid + 
+    "/media/cover/cover.png";
+    var obj_cover = document.getElementById("project_cover");
+    obj_cover.src = path_cover;
+  }
+
   document.getElementById("project_name").innerHTML = obj_project.name;
   document.getElementById("project_period").innerHTML = obj_project.period;
   document.getElementById("project_uuid").innerHTML = "計畫編號: " + obj_project.uuid;
@@ -191,8 +217,10 @@ export function set_page_info_content()
   // Task data
   var obj_tasks = list_plan_tasks(obj_project.uuid ,1);
 
-  // TODO
+  // Relate people
   relate_people(obj_tasks);
+
+  project_weight_chart(obj_project);
 
   var list_tasks = obj_tasks.tasks;
   var obj_tasks_container = document.getElementById("tasks_container");
@@ -217,7 +245,7 @@ export function set_page_info_content()
     } else {
       var path_cover = HOST_URL_TPLANET_DAEMON + obj_task.thumbnail;
       obj_img_product.src = path_cover;
-    }11
+    }
     
     obj_img_product.alt = "";
 
@@ -226,13 +254,24 @@ export function set_page_info_content()
     var obj_div_img = document.createElement("div");
     obj_div_img.className = "h-100 d-flex align-items-center justify-content-center mt-4 mt-md-0 flex-column";
     var obj_img = document.createElement("img");
-    obj_img.className = "w-75";
+    obj_img.className = "w-75 h-100";
 
     // FIXME
-    obj_img.src = "/static/imgs/chart_2.jpg";
+    // task_weight_chart(obj_task.uuid);
+    /* obj_img.src = "/static/imgs/chart_2.jpg";
     obj_img.alt = "";
     obj_div_img.append(obj_img);
-    obj_div_img_root.append(obj_div_img);
+    obj_div_img_root.append(obj_div_img); */
+
+    var obj_digital_fp_chart1_img = document.createElement("div");
+    obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_task.uuid;
+    obj_div_img_root.append(obj_digital_fp_chart1_img);
+
+    
+
+    
+
+
 
     // <p class="mb-2 h5" style="font-weight: bolder;">活動設計名稱:
     // <span class="pl-2">減塑產品設計</span></p>
@@ -264,11 +303,11 @@ export function set_page_info_content()
     }
 
     // TODO NFT:
-    var obj_nft = get_nft(obj_task);
+    /* var obj_nft = get_nft(obj_task);
     var obj_p_nft = document.createElement("p");
     obj_p_nft.className = "small";
     obj_p_nft.innerHTML = "NFT:";
-    obj_div_des.append(obj_p_nft);
+    obj_div_des.append(obj_p_nft); */
     
 
     obj_div_product.append(obj_img_product);
@@ -276,5 +315,8 @@ export function set_page_info_content()
     obj_div_root.append(obj_div_img_root);
     obj_div_root.append(obj_div_des);
     obj_tasks_container.append(obj_div_root);
+
+    // Draw task weight
+    draws_task_weight_chart(obj_task.uuid)
   }
 }

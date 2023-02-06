@@ -2,7 +2,7 @@ import { list_plans, plan_info } from './plan.js'
 
 export function set_page_info_project_list()
 {
-  var obj_list_projects = list_plans();
+  var obj_list_projects = list_plans("Real.ability2022@gmail.com", null);
   var list_project_uuids = obj_list_projects.projects;
 
   for (var index = 0; index < list_project_uuids.length; index++) {
@@ -11,10 +11,10 @@ export function set_page_info_project_list()
     /* Replace variable in str_project_block_in_project_page_page */
 
     // Project data
-    var str_project_block_in_project_page_innetHTML = str_project_block_in_project_page.replaceAll("PROJECT_NAME", obj_project.name);
-    str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_A", obj_project.project_a);
-    str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_B", obj_project.project_b);
-    str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_UUID", obj_project.uuid);
+    var str_project_block_in_project_page_innetHTML = str_project_block_in_project_page.replaceAll("PROJECT_NAME", obj_project.name || "");
+    str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_A", obj_project.project_a || "");
+    str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_B", obj_project.project_b || "");
+    str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_UUID", obj_project.uuid || "");
 
     var list_period = [];
     try {
@@ -28,7 +28,7 @@ export function set_page_info_project_list()
       str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_START", "");
       str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("PROJECT_DUE", "");
     }
-    str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("BUDGET", obj_project.budget);
+    str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("BUDGET", obj_project.budget || "");
     
     // Add image
     if (obj_project.img != null && obj_project.img != "") {
@@ -51,7 +51,9 @@ export function set_page_info_project_list()
           sdg = sdg + str_SDG_in_list_project.replaceAll("INDEX_SDG", index_sdg);
         }
       }
-      str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("SDGS_LIST", sdg);
+      str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("SDGS_LIST", sdg || "");
+    } else {
+      str_project_block_in_project_page_innetHTML = str_project_block_in_project_page_innetHTML.replaceAll("SDGS_LIST", "");
     }
 
     // Replace variable and generate block

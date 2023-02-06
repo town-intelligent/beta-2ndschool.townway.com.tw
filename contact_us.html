@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/localStorage.js"></script>
+    <script src="/static/js/contact_us.js"></script>
+    <script src="/static/js/set_page_info.js"></script>
+    <script src="/static/js/init.js"></script>
+  </head>
+
+  <body onload="init()">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
+      <div class="container">
+        <a id="index_logo" class="navbar-brand mr-0" href="/index.html">
+          <img src="/static/imgs/tplanet_logo_s.jpg" width="262" class="d-inline-block align-top" alt="">
+        </a>
+       <a class="nav-link px-0 d-md-none" href="/tplanet_signup.html"> 
+          <img src="/static/imgs/registration_icon.svg" width="35" height="35" class="d-inline-block align-middle" alt="">
+        </a>
+        <a name="signup_logo"  class="nav-link text-dark px-0 d-md-none" href="/tplanet_signup.html">
+          註冊
+        </a>
+        <a name="signin_logo" class="btn btn-primary btn-sm d-md-none" href="/tplanet_signin.html">登入</a>        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">關於 Second Home</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="/project_list.html">永續企業</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/project_list_local.html">地方團隊</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="/kpi.html">永續專案</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/solution.html">解決方案</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/news_list.html">最新消息</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/contact_us.html">聯繫我們</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mr-2 d-flex align-items-center">
+            
+            <li class="nav-item d-none d-md-block">
+              <a name="signup_logo"  class="nav-link text-dark" href="/tplanet_signup.html">
+                  註冊
+              </a>
+            </li>
+          </ul>
+          <a name="signin_logo" class="btn btn-primary my-2 my-sm-0 d-none d-md-block" href="/tplanet_signin.html">登入</a>
+        </div>
+      </div>
+    </nav>
+    <!-- content -->
+    <section>
+      <div class="container-fluid px-0 mt-4">
+        <div class="bg-cover img-fluid w-100 pt-5" style="background-image: url(/static/imgs/banner-contact-us.png); height: 450px; background-repeat: no-repeat">
+          <p class="container text-primary-darker pt-5 h2 d-none d-md-block">聆聽您的聲音，了解您的需求</p>
+          <p class="container text-center text-primary-darker pt-5 h4 d-md-none">聆聽您的聲音，了解您的需求</p>
+        </div>
+      </div>
+      <div class="container">
+        <form class="mt-5 mb-5">
+          <div class="row">
+            <div class="form-group col-md-6 mt-3 mt-md-0">
+              <label for="inputEvent1"><span>*</span>姓名</label>
+              <input type="text" class="form-control" id="name" placeholder="">
+            </div>
+            <div class="form-group col-md-6 mt-3 mt-md-0">
+              <label for="inputEvent2"><span>*</span>電子郵件</label>
+              <input type="email" class="form-control" id="email" placeholder="">
+            </div>
+            <div class="form-group col-md-6 mt-3 mt-md-0">
+              <label for="inputEvent3">公司名稱</label>
+              <input type="text" class="form-control" id="org" placeholder="">
+            </div>
+            <div class="form-group col-md-6 mt-3 mt-md-0">
+              <label for="inputEvent4">官方網站</label>
+              <input type="text" class="form-control" id="website" placeholder="">
+            </div>
+            <div class="form-group col-md-6 mt-3 mt-md-0">
+              <label for="inputEvent5"><span>*</span>聯絡電話</label>
+              <input type="tel" class="form-control" id="tel" placeholder="">
+            </div>
+            <div class="form-group col-md-6 mt-3 mt-md-0">
+              <label for="inputEvent6">關注議題</label>
+              <div class="d-flex flex-wrap" id="icon_container">
+                <!-- <a class="d-block" href="#">
+                  <img class="mr-3" src="/static/imgs/SDGs_04.jpg" alt="" style="width:40px">
+                </a>
+                <a class="d-block" href="#">
+                  <img class="mr-3" src="/static/imgs/SDGs_06.jpg" alt="" style="width:40px">
+                </a>
+                <a class="d-block" href="#">
+                  <img class="mr-3" src="/static/imgs/SDGs_11.jpg" alt="" style="width:40px">
+                </a> -->
+                <button type="button" class="btn btn-outline-dark rounded-0 mt-3 mr-3 mb-3 mt-md-0" style="height:40px; width:40px" data-toggle="modal" data-target="#SDGsModal">+</button>
+              </div>
+            </div>
+            <div class="form-group col-12 mt-3 mt-md-0">
+              <label for="inputEvent7"><span>*</span>需求</label>
+              <textarea class="form-control" id="comment" style="resize : none" rows="10"></textarea>
+            </div>
+          </div>
+          <div class=" d-flex justify-content-center mt-3">
+            <!-- <div id="captcha">
+              <img class="d-none d-md-block" src="https://fakeimg.pl/526x60/?text=安全驗證&font=noto">
+              <img class="d-md-none" src="https://fakeimg.pl/312x60/?text=安全驗證&font=noto">
+            </div> -->
+          </div>
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">確定送出</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- footer -->
+    <footer class="bg-footer">
+      <div class="container">
+        <div class="row py-4 border-bottom border-secondary">
+          <div class="col-md-8 d-none d-md-block">
+            <div class="h-100 d-flex align-items-center justify-content-center justify-content-md-start mt-2 mt-md-0">
+              <p class="mr-4 mb-0"><a href="/index.html" class="text-dark">關於T-planet</a></p>
+              <p class="mr-4 mb-0"><a href="/kpi.html" class="text-dark">永續專案</a></p>
+              <p class="mr-4 mb-0"><a href="/solution.html" class="text-dark">解決方案</a></p>
+              <p class="mr-4 mb-0"><a href="/contact_us.html" class="text-dark">聯繫我們</a></p>
+              <p class="mr-4 mb-0"><a href="/backend/message_list.html" class="text-dark">最新消息</a></p>
+
+            </div>
+          </div>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="d-flex h-100 align-items-center justify-content-center justify-content-md-end">
+              <div>
+                <a class="navbar-brand mx-auto" href="https://www.facebook.com/townway104" target="_blank">
+                  <img class="mr-3" src="/static/imgs/fbLogo.svg" alt="" style="height: 30px;">
+                </a>
+                <a class="navbar-brand mx-auto" href="https://www.linkedin.com/company/townintelligent" target="_blank">
+                  <img class="mr-3" src="/static/imgs/linkedinLogo.svg" alt="" style="height: 30px;">
+                </a>
+                <a class="navbar-brand mx-auto" href="https://www.instagram.com/townway104" target="_blank">
+                  <img class="mr-3" src="/static/imgs/igLogo.svg" alt="" style="height: 30px;">
+                </a>
+                <a class="navbar-brand mx-auto" href="https://www.youtube.com/user/forus999" target="_blank">
+                  <img src="/static/imgs/youtubeLogo.svg" alt="" style="height: 30px;">
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- mobile -->
+          <div class="col-6 d-md-none">
+            <p class="text-center"><a href="/index.html" class="text-dark">關於T-planet</a></p>
+          </div>
+          <div class="col-6 d-md-none">
+            <p class="text-center"><a href="/kpi.html" class="text-dark">永續專案</a></p>
+          </div>
+          <div class="col-6 d-md-none">
+            <p class="text-center"><a href="/solution.html" class="text-dark">解決方案</a></p>
+          </div>
+          <div class="col-6 d-md-none">
+            <p class="text-center"><a href="/contact_us.html" class="text-dark">聯繫我們</a></p>
+          </div>
+          <div class="col-6 d-md-none">
+            <p class="text-center"><a href="/backend/message_list.html" class="text-dark">最新消息</a></p>
+          </div>
+
+        </div>
+        
+        <div class="row py-4">
+          <!-- mobile -->
+          <div class="col-md-6 pl-md-0 d-md-none px-0">
+            <div class="h-100 d-flex align-items-center justify-content-center mb-4 mb-md-0">
+              <div class="mr-4">
+                <img src="/static/imgs/townwayLogo.svg" alt="" style="width:70px">
+              </div>
+              <div class="mr-4">
+                <img src="/static/imgs/townEmpowermentLogo.svg" alt="" style="width:70px">
+              </div>
+              <div class="mr-4">
+                <img src="/static/imgs/townIntelligentLogo.svg" alt="" style="width:70px">
+              </div>
+              <div>
+                <img src="/static/imgs/townTerroirLogo.svg" alt="" style="width:70px">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 pr-md-0">
+            <div class="d-md-flex h-100 align-items-center justify-content-center justify-content-md-start">
+              <p class="mb-0 text-center text-md-left">Copyright &copy; 2022 T-planet</p>
+            </div>
+          </div>
+          <div class="col-md-6 d-none d-md-block">
+            <div class="h-100 d-flex align-items-center justify-content-md-center mt-2 mt-md-0">
+              <div class="mr-4">
+                <img src="/static/imgs/townwayLogo.svg" alt="" style="width:100px">
+              </div>
+              <div class="mr-4">
+                <img src="/static/imgs/townEmpowermentLogo.svg" alt="" style="width:100px">
+              </div>
+              <div class="mr-4">
+                <img src="/static/imgs/townIntelligentLogo.svg" alt="" style="width:100px">
+              </div>
+              <div>
+                <img src="/static/imgs/townTerroirLogo.svg" alt="" style="width:100px">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="d-md-flex h-100 align-items-center justify-content-center justify-content-md-end">
+              <p class="mb-0 text-center text-md-right"><a href="#" class="text-dark">隱私權條款</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-backdrop="static" data-keyboard="false" id="SDGsModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">新增 SDGs 指標</h5><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="p-3" style="height: 550px; overflow-y:auto;">
+              <div class="card">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="01">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_01.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 1 終結貧窮</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="02">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_02.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 2 消除飢餓</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="03">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_03.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 3 健康與福祉</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="04">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_04.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 4 優質教育</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="05">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_05.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 5 性別平等</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="06">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_06.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 6 淨水與衛生</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="07">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_07.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 7 永續能源</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="08">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_08.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 8 就業與經濟成長</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="09">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_09.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 9 永續工業、產業創新、韌性基礎建設</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="10">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_10.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 10 減少不平等</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="11">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_11.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 11 永續城鄉</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="12">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_12.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 12 永續消費與生產</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="13">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_13.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 13 氣候行動</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="14">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_14.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 14 海洋生態</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="15">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_15.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 15 陸地生態</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="16">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_16.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 16 和平與正義制度</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-2">
+                <div class="card-body p-2">
+                  <div class="d-flex align-items-center" id="btn_sdg" name="17">
+                    <img alt="" class="mr-2" src="/static/imgs/SDGs_17.jpg" style="width: 50px">
+                    <p class="mb-0">SDG 17 全球夥伴</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-secondary" data-dismiss="modal" type="button">關閉</button> <button class="btn btn-primary" id="btn_add_sdg_into_task" type="button">新增</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -21,10 +21,10 @@
   </head>
   <body>
     <!-- navbar -->
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <a id="index_logo" class="navbar-brand" href="/index.html">
-          <img src="/static/imgs/website-logo.png" width="262" class="d-inline-block align-top" alt="">
+    <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="/index.html">
+          <img src="/static/imgs/tplanet_logo_s.jpg" width="262" class="d-inline-block align-top" alt="">
         </a>
         <a class="nav-link d-md-none" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
           <img src="/static/imgs/manage_accounts_icon.svg" width="35" height="35" class="d-inline-block align-middle" alt="">
@@ -63,7 +63,12 @@
             <li class="nav-item">
               <a class="nav-link" href="/index.html">關於平台</a>
             </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="/project_list.html">永續企業</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/project_list_local.html">地方團隊</a>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="/kpi.html">永續專案</a>
             </li>
@@ -105,8 +110,8 @@
             </li>
           </ul>
         </div>
+      </div>
     </nav>
-  </div>
     <!-- content -->
     <section>
       <div class="container my-5">
@@ -174,19 +179,6 @@
                 <div class="card card-button" style="height: 250px;">
                   <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="text-center">
-                      <i class="fas fa-users mb-2" style="font-size: 40px;"></i>
-                      <p class="mt-2 mb-0">帳號管理</p>
-                    </div>
-                  </div>
-                  <a href="/backend/admin_account_manage.html" class="stretched-link"></a>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-4">
-              <div class="col-4">
-                <div class="card card-button" style="height: 250px;">
-                  <div class="d-flex justify-content-center align-items-center h-100">
-                    <div class="text-center">
                       <img src="/static/imgs/news.svg" alt="" style="width:50px">
                       <p class="mt-2 mb-0">最新消息</p>
                     </div>
@@ -194,6 +186,8 @@
                   <a href="/backend/cms_news_list.html" class="stretched-link"></a>
                 </div>
               </div>
+            </div>
+            <div class="row mt-4">
               <div class="col-4">
                 <div class="card card-button" style="height: 250px;">
                   <div class="d-flex justify-content-center align-items-center h-100">
@@ -216,8 +210,6 @@
                   <a href="/backend/admin_message_list.html" class="stretched-link"></a>
                 </div>
               </div>
-            </div>
-            <div class="row mt-4">
               <div class="col-4">
                 <div class="card card-button" style="height: 250px;">
                   <div class="d-flex justify-content-center align-items-center h-100">
@@ -292,17 +284,6 @@
                 <div class="card card-button" style="height: 150px;">
                   <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="text-center">
-                      <i class="fas fa-users mb-2" style="font-size: 40px;"></i>
-                      <p class="mt-2 mb-0">帳號管理</p>
-                    </div>
-                  </div>
-                  <a href="/backend/admin_account_manage.html" class="stretched-link"></a>
-                </div>
-              </div>
-              <div class="col-6 mt-4">
-                <div class="card card-button" style="height: 150px;">
-                  <div class="d-flex justify-content-center align-items-center h-100">
-                    <div class="text-center">
                       <img src="/static/imgs/news.svg" alt="" style="width:50px">
                       <p class="mt-2 mb-0">最新消息</p>
                     </div>
@@ -349,7 +330,7 @@
       </div>
     </section>
     <!-- footer -->
-    <footer class="bg-gray mt-auto">
+    <footer class="bg-footer">
       <div class="container">
         <div class="row py-4 border-bottom border-secondary">
           <div class="col-md-8 d-none d-md-block">
@@ -376,7 +357,7 @@
             <p class="text-center"><a href="/kpi.html" class="text-dark">永續專案</a></p>
           </div>
           <div class="col-6 d-md-none">
-            <p class="text-center"><a href="/news_list.html" class="text-dark">最新消息</a></p>
+            <p class="text-center"><a href="/backend/message_list.html" class="text-dark">最新消息</a></p>
           </div>
         </div>
         <div class="row py-4">
