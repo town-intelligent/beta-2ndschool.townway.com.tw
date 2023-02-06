@@ -36,7 +36,7 @@ function update () {
     form.append("accounts",stringifycontent)
     form.append("email", getLocalStorage("email"));
     var settings = {
-        "url": "https://beta-eid-backend.townway.com.tw/accounts/batch_modify",
+        "url": HOST_URL_EID_DAEMON + "/accounts/batch_modify",
         "method": "POST",
         "timeout": 0,
         "processData": false,
@@ -57,7 +57,7 @@ export function batch_new(){
     form.append("accounts", fileInput.files[0]);
 
     var settings = {
-        "url": "https://beta-eid-backend.townway.com.tw/accounts/batch_new",
+        "url": HOST_URL_EID_DAEMON +"/accounts/batch_new",
         "method": "POST",
         "timeout": 0,
         "processData": false,
