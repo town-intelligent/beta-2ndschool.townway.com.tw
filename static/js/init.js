@@ -7,7 +7,6 @@ function navbar(group) {
       "/backend/admin_agent_dashboard.html";
     }
 
-    console.log("hello loged.");
     // login icons
     var list_sigup = document.getElementsByName("signup_logo");
     for(var index = 0; index<list_sigup.length; index++){

@@ -5,6 +5,9 @@ export function set_page_info_project_list()
   var obj_list_projects = list_plans("Real.ability2022@gmail.com", null);
   var list_project_uuids = obj_list_projects.projects;
 
+  if (list_project_uuids == null)
+    return;
+  
   for (var index = 0; index < list_project_uuids.length; index++) {
     var obj_project = plan_info(list_project_uuids[index]);
 
