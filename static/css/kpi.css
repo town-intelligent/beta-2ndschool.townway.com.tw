@@ -1,11 +1,86 @@
-/* ab_cms_project_detail */
-.participation-pic{
-    width: 70%;
+/* start account_mange */
+/* .accountConfirm{
+    display: none;
+} */
+.account-manager-form th,
+.account-manager-form td{
+    border: 1px solid #000;
+    text-align: center;
 }
-.participation-QRC{
-    width: 30%;
+.account-manager-form th{
+    background-color: #E5E5E5;
 }
-/* Utilities */
+
+
+.account-manager-form input{
+    text-align: center;
+}
+.Acontainer{
+    margin: auto;
+    width: 80%;
+    height: 100vh;
+}
+.nav-width{
+    width: 55%;
+}
+.nav-container-item{
+    align-items: center;
+}
+.mb-form{
+    display: none;
+}
+
+/* end account_mange */
+
+/* start sdgs_setting */
+.sds-font{
+    font-size: 20px;
+}
+/* end sdgs_setting */
+
+/*start cms_agent */
+.agent-position{
+    position: relative;
+    top: 30px;
+}
+.d-xs-block{
+    display: none;
+}
+/*end cms_agent */
+
+/* start cms_deep_participation */
+.participation-margin{
+    margin: 18px;
+}
+/* end cms_deep_participation */
+
+/*start cms_support_form */
+.support-form-checkbox input{
+    display: none;
+}
+.support-form-checkbox input:checked ~ span:after{
+    opacity: 1;
+}
+.support-form-checkbox span{
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    position: relative;
+}
+.support-form-checkbox span:after{
+    content: "";
+    width: 19px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+/*end cms_support_form */
 .bg-blue{
     background-color: #3E6896;
 }
@@ -22,6 +97,15 @@
 .kpi-card:active{
     opacity: 0.8;
   }
+  @media screen and (max-width:992px ) {
+    .nav-width{
+        width: 25%;
+    }
+    .Acontainer{
+        height: 100%;
+        width: 90%;
+    }
+  }
 @media screen and (max-width: 768px) {
     .card-top{
         height: 400px;
@@ -33,16 +117,27 @@
         margin-left: 0;
         margin-right: 0;
     }
-    .m-gap{
-        gap: 30px;
+    .mb-px{
+        padding-left: 0px;
+        padding-right: 0px;
     }
-    .participation-pic{
-        width: 100%;
+    .participation-margin{
+        margin: 30px;
     }
-    .participation-QRC{
-        width: 100%;
+    .d-xs-block{
+        display: block;
     }
-    .m-flex-wrap{
-        flex-wrap: wrap;
+    .sds-font{
+        font-size: 18px;
+    }
+    .nav-container{
+        justify-content: flex-start;
+    }
+    .nav-width{
+        width: 35%;
+    }
+    .nav-container-item{
+        flex-direction: column;
+        align-items: inherit;
     }
 }
