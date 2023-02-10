@@ -137,7 +137,9 @@ $(function () {
     plan_submit(form, uuid);
 
     // FIXME: refactory
-    child_task_submit(page);
+    if (false == child_task_submit(page)){
+      return;
+    }
 
     // Replace page
     var btn_submit = $(this).find("button[type=submit]:focus");

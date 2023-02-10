@@ -1,3 +1,60 @@
+
+export function deep_deleted_task(uuid){
+  var dataJSON = {};
+  dataJSON.uuid=uuid
+
+  $.ajax({
+    url:HOST_URL_TPLANET_DAEMON + "/tasks/del_task",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      const obj = JSON.parse(returnData);
+      dataJSON = obj
+      // delete_div(obj)
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return dataJSON; 
+}
+
+// function delete_div(obj){
+//   let name = document.getElementById("uuid_name")
+//   let uuid = name.innerText
+//   let outter = document.getElementById('uuid_parent')
+//   if(obj.uuid = uuid){
+//     outter.remove()
+//   }
+// }
+
+export function deleted_task(uuid){
+  var dataJSON = {};
+  dataJSON.uuid=uuid
+
+  $.ajax({
+    url:HOST_URL_TPLANET_DAEMON + "/tasks/del_task",
+    type: "POST",
+    async: false,
+    crossDomain: true,
+    data:  dataJSON,
+    success: function(returnData) {
+      const obj = JSON.parse(returnData);
+      dataJSON = obj
+      location.reload()
+      
+    },
+    error: function(xhr, ajaxOptions, thrownError){
+      console.log(thrownError);
+    }
+  });
+
+  return dataJSON;
+}
+
 export function get_task_info(uuid) {
   var dataJSON = {};
   $.ajax({
@@ -132,6 +189,12 @@ export function child_task_submit(page){
     // Task submit ...
     var list_target_sdgs = getLocalStorage("list_target_sdgs");
     var obj_list_target_sdgs = JSON.parse(list_target_sdgs);
+
+    if (obj_list_target_sdgs.length <= 1) {
+      alert("您忘記新增權重了！");
+      return false;
+    }
+
     var form = new FormData();
     // Add type cms_deep_participation.html
     var type = 0;
@@ -151,6 +214,8 @@ export function child_task_submit(page){
     form.append("type", type);
     var obj_result = task_submit(form);
   }
+
+  return true;
 }
 export function get_task_comment(uuid) {
   var dataJSON = {};
