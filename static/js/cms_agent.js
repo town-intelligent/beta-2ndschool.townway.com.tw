@@ -357,6 +357,7 @@ $(function () {
       obj_sdgs_container.append(obj_div_row);
     }
 
+    /*
     if (page == "cms_deep_participation.html") {
       // id = icon_container
       var obj_icon_container = document.getElementById("icon_container");
@@ -377,6 +378,7 @@ $(function () {
       obj_a.append(obj_img);
       obj_icon_container.append(obj_a);
     }
+    */
 	  
     // Finish
     $("#SDGsModal").modal("hide");

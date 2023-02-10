@@ -160,14 +160,78 @@ export function uploadTaskCover(uuid_task) {
   };
   file.show();
 }
+
 export function child_task_submit(page){
   // Get DOM data for parent task
   if (page == "cms_support_form.html" || page == "cms_deep_participation.html") {
-    var list_target_sdgs = [];
-    var list_tasks = [];
+    // TODO
+    if (getLocalStorage("child_task_queue") == "")
+      return;
+
     // Get parent uuid
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
+    var uuid = urlParams.get("uuid")
+    var task = urlParams.get("task")
+    
+    var child_task_queue = JSON.parse(getLocalStorage("child_task_queue"));
+
+    for (var index_child_task = 0; index_child_task < child_task_queue.length; index_child_task++) { 
+      // alert(child_task_queue[index_child_task])
+      
+      var list_target_sdgs = [];
+      var list_tasks = [];
+
+      for (var index = 1; index < 18; index++) {
+        var index_sdg = ("0" + index).slice(-2);
+        if (document.getElementById("target_sdgs_" + index_sdg) == null) {
+          continue;
+        }
+        // Get SDGs tasks
+        var dataJSON = {}; 
+        dataJSON.sdg = index;
+        dataJSON.des = document.getElementById("target_sdgs_" + index_sdg).value;
+        list_tasks.push(JSON.stringify(dataJSON));
+      }
+      // Set parent task
+      var dataJSONTask = {};
+      dataJSONTask.task_parent_id = task;
+      list_tasks.push(JSON.stringify(dataJSONTask));
+      setLocalStorage("list_target_sdgs", JSON.stringify(list_tasks));
+      // Task submit ...
+      var list_target_sdgs = getLocalStorage("list_target_sdgs");
+      var obj_list_target_sdgs = JSON.parse(list_target_sdgs);
+  
+      if (obj_list_target_sdgs.length <= 1) {
+        alert("您忘記新增權重了！");
+        return false;
+      }
+  
+      var form = new FormData();
+      // Add params cms_deep_participation.html
+      var type = 3;
+      form.append("task", child_task_queue[index_child_task]);
+      form.append("name", document.getElementById("name").value);
+      form.append("task_start_date", document.getElementById("task_start_date_0").value);
+      form.append("task_due_date", document.getElementById("task_due_date_0").value);
+
+      // Task submit
+      form.append("uuid", uuid);
+      form.append("tasks", obj_list_target_sdgs);
+      form.append("email", getLocalStorage("email"));
+      form.append("type", type);
+      var obj_result = task_submit(form);
+    }
+    setLocalStorage("child_task_queue", "");
+
+    return;
+    
+
+    var list_target_sdgs = [];
+    var list_tasks = [];
+    // Get parent uuid
+    // const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
     var uuid = urlParams.get("uuid")
     var task = urlParams.get("task")
     for (var index = 1; index < 18; index++) {
@@ -214,6 +278,7 @@ export function child_task_submit(page){
     form.append("type", type);
     var obj_result = task_submit(form);
   }
+  
 
   return true;
 }
