@@ -187,7 +187,7 @@ export function deep_participation_add_child_task_block(obj_task) {
     var icon_btn_outter =  document.createElement("div")
     icon_btn_outter.className ="d-block"
     var icon_btn = document.createElement("a")
-    icon_btn.className = "btn btn-outline-dark rounded-0 participation-margin mt-md-0 d-flex justify-content-center align-items-center"
+    icon_btn.className = "btn btn-outline-dark rounded-0 participation-margin mt-md-0 mr-3 d-flex justify-content-center align-items-center"
     icon_btn.id = `icon_btn`
 
     icon_btn.dataset.target = "#SDGsModal"
@@ -303,7 +303,7 @@ $(function () {
       // <img class="mr-3" src="/static/imgs/SDGs_04.jpg" alt="" style="width:60px">
       var obj_img = document.createElement("img");
       obj_img.id = "target_sdgs_" + getLocalStorage("target_sdgs");
-      obj_img.className = " participation-margin mt-md-0";
+      obj_img.className = " participation-margin mt-md-0 mr-3";
       obj_img.src = "/static/imgs/SDGs_" + getLocalStorage("target_sdgs") + ".jpg";
       obj_img.alt = "";
       obj_img.style = "width:100px";
