@@ -168,7 +168,6 @@ $(function () {
   });
 });
 
-// TODO
 export function cms_plan_add_parent_tasks(uuid_task) {
   // Path
   var path = window.location.pathname;
