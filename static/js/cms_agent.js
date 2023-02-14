@@ -37,7 +37,6 @@ $(function () {
 });
 
 function get_page_index(page) {
-  // FIXME: Hard coding for cms_support_format
   for (var index = 0; index < cms_support_format.length; index++) {
     if (page == cms_support_format[index]) {
 	  return 1
@@ -136,7 +135,6 @@ $(function () {
     // Submit
     plan_submit(form, uuid);
 
-    // FIXME: refactory
     if (false == child_task_submit(page)){
       return;
     }

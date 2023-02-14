@@ -50,7 +50,9 @@ function set_page_in_add_child_task_block(obj_task) {
   delete_img.dataset.toggle="modal"
   delete_img.onclick= function(e){
     showDeleteModal(obj_task.uuid)
-    remove_id = e.target.id
+    try {
+      remove_id = e.target.id
+    } catch (e) {}
   }
 
   nav_container.append(input_name);
@@ -359,7 +361,9 @@ export function deep_participation_add_child_task_block(obj_task) {
   delete_img.dataset.toggle="modal"
   delete_img.onclick= function(e){
     showDeleteModal(uuid_child)
-    remove_id = e.target.id
+    try {
+      remove_id = e.target.id
+    } catch (e) {}
   }
 
   nav_container.append(input_name);

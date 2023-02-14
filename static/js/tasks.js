@@ -164,7 +164,6 @@ export function uploadTaskCover(uuid_task) {
 export function child_task_submit(page){
   // Get DOM data for parent task
   if (page == "cms_support_form.html" || page == "cms_deep_participation.html") {
-    // TODO
     if (getLocalStorage("child_task_queue") == "")
       return;
 
