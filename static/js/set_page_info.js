@@ -10,6 +10,9 @@ import { set_page_info_admin_project_verify } from './admin_project_verify.js'
 import { set_page_info_admin_project_check } from './admin_project_check.js'
 import { set_page_info_kpi } from './kpi.js'
 import { set_page_info_content } from './content.js'
+import { set_page_info_news_list, set_page_info_cms_news_list } from './news_list.js'
+import { set_page_info_news_content } from './news_content.js'
+import { set_page_info_cms_add_news } from './cms_add_news.js'
 
 export function set_page_info() {
   /* Get path and parameters */
@@ -23,7 +26,6 @@ export function set_page_info() {
   var uuid = urlParams.get("uuid")
   var task = urlParams.get("task")
 
-  // TODO
   if (page == "admin_project_check.html") {
     set_page_info_admin_project_check(uuid)
   }
@@ -78,5 +80,21 @@ export function set_page_info() {
 
   if (page == "content.html") {
     set_page_info_content();
+  }
+
+  if (page == "news_list.html") {
+    set_page_info_news_list();
+  }
+
+  if (page == "news_content.html") {
+    set_page_info_news_content();
+  }
+
+  if (page == "cms_news_list.html") {
+    set_page_info_cms_news_list();
+  }
+
+  if (page == "cms_add_news.html") {
+    set_page_info_cms_add_news();
   }
 }

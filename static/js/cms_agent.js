@@ -37,7 +37,6 @@ $(function () {
 });
 
 function get_page_index(page) {
-  // FIXME: Hard coding for cms_support_format
   for (var index = 0; index < cms_support_format.length; index++) {
     if (page == cms_support_format[index]) {
 	  return 1
@@ -136,8 +135,9 @@ $(function () {
     // Submit
     plan_submit(form, uuid);
 
-    // FIXME: refactory
-    child_task_submit(page);
+    if (false == child_task_submit(page)){
+      return;
+    }
 
     // Replace page
     var btn_submit = $(this).find("button[type=submit]:focus");
@@ -166,7 +166,6 @@ $(function () {
   });
 });
 
-// TODO
 export function cms_plan_add_parent_tasks(uuid_task) {
   // Path
   var path = window.location.pathname;
@@ -355,6 +354,7 @@ $(function () {
       obj_sdgs_container.append(obj_div_row);
     }
 
+    /*
     if (page == "cms_deep_participation.html") {
       // id = icon_container
       var obj_icon_container = document.getElementById("icon_container");
@@ -375,6 +375,7 @@ $(function () {
       obj_a.append(obj_img);
       obj_icon_container.append(obj_a);
     }
+    */
 	  
     // Finish
     $("#SDGsModal").modal("hide");

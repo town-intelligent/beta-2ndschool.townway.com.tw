@@ -1,46 +1,70 @@
 const str_parent_task_block = `
-<div class="row h-100">
-<div class="col-md-6">
-  <div id="coverImg_UUID_TASK" class="border d-flex align-items-center justify-content-center h-100">
-  <button type="button" id="btnUploadImg_UUID_TASK" onclick="uploadTaskCover(UUID_TASK)">
-    <div id="divUploadImg_UUID_TASK" class="bg-contain" style="background-image: url(/static/imgs/image_icon.svg); width: 100px; height: 100px; background-repeat: no-repeat" ></div>
-  </button>
-</div>
-</div>
-<div class="col-md-6">
-<form>
-  <div class="form-row">
-    <div class="form-group col-12 mt-3 mt-md-0">
-      <label for="inputEvent">活動設計名稱</label>
-      <input id="parent_task_name_UUID_TASK" type="text" class="form-control" id="inputEvent" placeholder="">
-    </div>
-    <div class="form-group col-6">
-      <label for="inputDatePicker1">開始日期</label>
-      <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-        <input type="text" id="parent_task_start_date_UUID_TASK" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
-        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group col-6">
-      <label for="inputDatePicker2">結束日期</label>
-      <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-        <input type="text" id="parent_task_due_date_UUID_TASK" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
-        <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-        </div>
-      </div>
+<div class="row h-100 pt-4 pb-5 border mb-2" >
+  <div class="col-md-6">
+    <div id="coverImg_UUID_TASK" class="border d-flex align-items-center justify-content-center h-100">
+      <button type="button" id="btnUploadImg_UUID_TASK" onclick="uploadTaskCover(UUID_TASK)">
+        <div id="divUploadImg_UUID_TASK" class="bg-contain" style="background-image: url(/static/imgs/image_icon.svg); width: 100px; height: 100px; background-repeat: no-repeat" ></div>
+      </button>
     </div>
   </div>
-  <div class="form-group">
-    <label for="textareaIdea">理念傳達</label>
-    <textarea id="parent_task_overview_UUID_TASK" class="form-control" id="textareaIdea" placeholder="" style="resize: none"></textarea>
-  </div>
-  <button type="button" id="btn_cms_plan_add_parent_tasks" class="btn btn-block btn-outline-secondary" name="UUID_TASK" onclick="cms_plan_add_parent_tasks('UUID_TASK')">新增任務 +</button>
-</div>
-</div> 
-<hr class="my-4">`
+  <div class="col-md-6">
+    <form>
+      <div class="form-row">
+        <div class="form-group col-12 mt-3 mt-md-0">
+          <label for="inputEvent">活動設計名稱</label>
+          <input id="parent_task_name_UUID_TASK" type="text" class="form-control" id="inputEvent" placeholder="">
+        </div>
+        <div class="form-group col-6">
+          <label for="inputDatePicker1">開始日期</label>
+          <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+            <input type="text" id="parent_task_start_date_UUID_TASK" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-6">
+          <label for="inputDatePicker2">結束日期</label>
+          <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+            <input type="text" id="parent_task_due_date_UUID_TASK" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>
+            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="textareaIdea">理念傳達</label>
+        <textarea id="parent_task_overview_UUID_TASK" class="form-control" id="textareaIdea" placeholder="" style="resize: none"></textarea>
+      </div>
+      <button type="button" class="btn btn-block btn-outline-secondary" data-bs-toggle="modal" href="#exampleModalToggle_UUID_TASK" id="UUID_TASK">新增/刪除</button>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalToggle_UUID_TASK" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body d-flex flex-column justify-content-arround" style="gap: 15px; height: 200px;">
+              <button type="button" id="btn_cms_plan_add_parent_tasks" class="btn btn-secondary m-auto"  style="width: 80%; height: 50px;" name="UUID_TASK" onclick="cms_plan_add_parent_tasks('UUID_TASK')">新增任務</button>
+              <button type="button" class="btn btn-secondary m-auto" style="width: 80%;  height: 50px;" data-bs-target="#exampleModalToggle2_UUID_TASK" data-bs-toggle="modal">刪除活動設計</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="exampleModalToggle2_UUID_TASK" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body m-auto" style="font-size: 20px;">
+              確定刪除此活動設計。
+            </div>
+            <div class="modal-footer justify-content-center border-0">
+              <button type="button" class="btn btn-secondary" style="width: 80px;" data-bs-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary" style="width: 80px;" id="delete-task" data-bs-dismiss="modal" name="UUID_TASK" onclick="deleted_task(UUID_TASK)">確定</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div> 
+</div> `
 
 const str_project_block_in_project_page_backup = `<div class="card mb-4 border-3 border-dark h-100 p-3" style="border-radius: 20px;">
   <div class="d-flex justify-content-center">

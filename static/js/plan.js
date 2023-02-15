@@ -89,8 +89,12 @@ export function list_plans(email = null, sdg = null) {
     crossDomain: true,
     data:  dataJSON,
     success: function(returnData) {
-       const obj = JSON.parse(returnData);
-       dataJSON = obj;
+
+      try {
+        const obj = JSON.parse(returnData);
+        dataJSON = obj;
+      } catch (e) {}
+      
     },
     error: function(xhr, ajaxOptions, thrownError){
       console.log(thrownError);
