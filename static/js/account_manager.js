@@ -1,18 +1,65 @@
 
-$(function () {
+$(document).ready(function () {
+  list_device()
+    $("#account_upload").on("click",function(e) {
+      $(".file-div").show()
+    })
+
+    $("#upload").on("click",function(e) {
+      batch_new()
+    })
+
     $("#accountChange").on("click", function(e) {
       e.preventDefault(); 
-      $('.username,.health_card,.email').prop("disabled",false)
+      $('.username,.device_no,.email').prop("disabled",false)
       $('#accountConfirm').show()
     })
     $("#accountConfirm", ).on("click", function(e) {
         e.preventDefault(); 
-        $('.username,.health_card,.email').prop("disabled",true)
+        $('.username,.device_no,.email').prop("disabled",true)
         $('#accountConfirm').hide()
+        $(".file-div").hide()
         update ()
       })
 
   })
+
+function list_device(){
+  var form = new FormData();
+  form.append("email", "Real.ability2022@gmail.com");
+
+  var settings = {
+    "url": HOST_URL_EID_DAEMON +"/accounts/list_device",
+    "method": "POST",
+    "timeout": 0,
+    "processData": false,
+    "mimeType": "multipart/form-data",
+    "contentType": false,
+    "data": form
+  };
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    let data = JSON.parse(response)
+    let subData = (data.content)
+    aprintTable(subData)
+  });
+}
+
+
+function aprintTable(subData) {
+  subData.forEach( (data, index) => {
+      let tr = document.createElement("tr")
+  document.querySelector("#tbody").appendChild(tr)
+  let trInfo = `
+      <td><input type="text" class="uuid" value="${data.uuid}" style="width: 100%;" disabled placeholder="待更新"></td>
+      <td><input type="text" class="username" value="${data.account_username}" style="width: 100%;" disabled placeholder="待更新"></td>
+      <td><input type="text" class="device_no" value="${data.device_no}" style="width: 100%;" disabled placeholder="待更新"></td>
+      <td><input type="text" class="email" value="${data.account_email}" style="width: 100%;" disabled placeholder="待更新"></td>
+  `
+  tr.innerHTML = trInfo
+})
+}
 
   
 function update () {
@@ -29,8 +76,6 @@ function update () {
     })
 
     const stringifycontent = JSON.stringify(content)
-
-   
 
     var form = new FormData();
     form.append("accounts",stringifycontent)
@@ -69,7 +114,8 @@ export function batch_new(){
         let data = JSON.parse(response)
         let subData = (data.content)
         console.log("data",data)
-        printTable(subData)
+        location.reload()
+        list_device()
       });
 } 
 

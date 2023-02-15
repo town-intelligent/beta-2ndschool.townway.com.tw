@@ -133,10 +133,12 @@
                 <button class="btn btn-secondary dropdown-toggle mb-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 276px;">
                   帳號管理
                 </button>
-                <input type="file" id="fileInput" data-target="file-uploader" accept="image/*" multiple="multiple" class="mb-2" />
-                <button type="button" class="btn btn-secondary"  onclick="batch_new()">上傳檔案</button>
+                <span class="file-div ml-2">
+                  <input type="file" id="fileInput" data-target="file-uploader" accept=".csv" multiple="multiple" class="mb-2" />
+                  <button id="upload" type="button" class="btn btn-secondary"  >上傳檔案</button>
+              </span>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item d-flex align-items-center justify-content-between" href="#"><span>批次帳號建立</span><img src="/static/imgs/Upload.png" alt="" style="width: 15%;"></a></li>
+                  <li id="account_upload"><a class="dropdown-item d-flex align-items-center justify-content-between" href="#"><span>批次帳號建立</span><img src="/static/imgs/Upload.png" alt="" style="width: 15%;"></a></li>
                   <li><a id="accountChange" class="dropdown-item d-flex align-items-center justify-content-between" href="#"><span>帳號異動●更新</span><img src="/static/imgs/Update.png" alt="" style="width: 15%;"></a></li>
                   <li><a class="dropdown-item d-flex align-items-center justify-content-between"data-bs-toggle="modal" href="#exampleModalToggle" role="button"><span>帳號移轉</span><img src="/static/imgs/Transfer.png" alt="" style="width: 15%;"></a></li>
                 </ul>
