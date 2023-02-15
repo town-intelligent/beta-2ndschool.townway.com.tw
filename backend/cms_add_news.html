@@ -12,17 +12,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="/static/css/style.css" >
+    <link rel="stylesheet" href="/static/css/progress_bar.css">
     <script src="/static/js/config.js"></script>
     <script src="/static/js/localStorage.js"></script>
+    <script src="/static/js/file_handler.js"></script>
     <script src="/static/js/accounts.js"></script>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/permission.js"></script>
+    <script type="module" src="/static/js/cms_add_news.js"></script>
+    <script type="module">
+      import { uploadNewsCover, add_news_img } from '/static/js/cms_add_news.js'
+      window.uploadNewsCover = uploadNewsCover;
+      window.add_news_img = add_news_img;
+    </script>
+    <script type="module" src="/static/js/set_page_info.js"></script>
+    <script type="module" src="/static/js/init.js"></script>
   </head>
   <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
       <div class="container">
-        <a class="navbar-brand" href="/index.html">
-          <img src="/static/imgs/tplanet_logo_s.jpg" width="262" class="d-inline-block align-top" alt="">
+        <a id="index_logo" class="navbar-brand" href="/index.html">
+          <img src="/static/imgs/logo.svg" width="262" class="d-inline-block align-top" alt="">
         </a>
         <a class="nav-link d-md-none" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
           <img src="/static/imgs/manage_accounts_icon.svg" width="35" height="35" class="d-inline-block align-middle" alt="">
@@ -113,22 +127,24 @@
     <!-- content -->
     <section>
       <div class="container-fluid px-0 mt-4 d-flex align-items-center">
-        <div class="bg-cover img-fluid w-100 d-flex align-items-center justify-content-center" style="background-image: url(/static/imgs/news-banner.jpg); height: 450px; background-repeat: no-repeat">
-          <a class="btn btn-light btn-lg btn-alpha" href="#" role="button">更換圖片</a>
+        <div id="news_banner" class="bg-cover img-fluid w-100 d-flex align-items-center justify-content-center" style="background-image: url(/static/imgs/news-banner.jpg); height: 450px; background-repeat: no-repeat">
+          <button class="btn btn-light btn-lg btn-alpha" id="btnUploadNewsCover" onclick="uploadNewsCover()">
+            <div id="divUploadNewsCover" class="bg-contain">更換圖片</div>
+          </button>
         </div>
       </div>
       <div class="container">
-        <form class="mt-5 mb-5">
+        <form class="mt-5 mb-5" action="">
           <div class="row justify-content-center">
             <div class="col-md-9">
               <div class="row">
                 <div class="form-group col-12 mt-3 mt-md-0">
                   <label for="inputEvent1">專案標題</label>
-                  <input type="text" class="form-control" id="inputEvent1" placeholder="">
+                  <input type="text" class="form-control" id="news_title" placeholder="">
                 </div>
                 <div class="form-group col-12 mt-3 mt-md-0">
                   <label for="inputEvent7">專案內容</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" style="resize : none" rows="10"></textarea>
+                  <textarea class="form-control" id="news_description" style="resize : none" rows="10"></textarea>
                 </div>
                 <div class="form-group col-12 mt-3 mt-md-0">
                   <label for="inputEvent6">專案圖片</label>
@@ -137,30 +153,30 @@
                       <div class="card card-button" style="height: 250px;">
                         <div class="d-flex justify-content-center align-items-center h-100">
                           <div class="text-center">
-                            <img src="/static/imgs/image_icon.svg" alt="" style="width:50px">
+                            <img id="news_img_0" src="/static/imgs/image_icon.svg" alt="" style="width:50px">
                           </div>
                         </div>
-                        <a href="#" class="stretched-link"></a>
+                        <a href="#" onclick="add_news_img('0');" class="stretched-link"></a>
                       </div>
                     </div>
                     <div class="col-md-4 mt-3 mt-md-0">
                       <div class="card card-button" style="height: 250px;">
                         <div class="d-flex justify-content-center align-items-center h-100">
                           <div class="text-center">
-                            <img src="/static/imgs/image_icon.svg" alt="" style="width:50px">
+                            <img id="news_img_1" src="/static/imgs/image_icon.svg" alt="" style="width:50px">
                           </div>
                         </div>
-                        <a href="#" class="stretched-link"></a>
+                        <a href="#" onclick="add_news_img('1');" class="stretched-link"></a>
                       </div>
                     </div>
                     <div class="col-md-4 mt-3 mt-md-0">
                       <div class="card card-button" style="height: 250px;">
                         <div class="d-flex justify-content-center align-items-center h-100">
                           <div class="text-center">
-                            <img src="/static/imgs/image_icon.svg" alt="" style="width:50px">
+                            <img id="news_img_2" src="/static/imgs/image_icon.svg" alt="" style="width:50px">
                           </div>
                         </div>
-                        <a href="#" class="stretched-link"></a>
+                        <a href="#" onclick="add_news_img('2')"; class="stretched-link"></a>
                       </div>
                     </div>
                   </div>
@@ -169,7 +185,7 @@
             </div>
           </div>
           <div class="text-center mt-4">
-            <button type="submit" class="btn btn-secondary">確定送出</button>
+            <button id="btn_cms_news_submit" type="submit" class="btn btn-secondary">確定送出</button>
           </div>
         </form>
       </div>

@@ -150,7 +150,7 @@ export function set_page_info_cms_project_detail (uuid) {
   
     var obj_div_product = document.createElement("div")
     obj_div_product.className = "col-md-4 mt-auto";
-  
+
     var obj_img_product = document.createElement("img")
     obj_img_product.className = "img-fluid";
 
@@ -167,8 +167,6 @@ export function set_page_info_cms_project_detail (uuid) {
   
     var obj_div_qrocde = document.createElement("div")
     obj_div_qrocde.className = "col-md-4 m-auto d-flex justify-content-center";
-    
-
 
     var obj_qrcode = document.createElement("qrcode");
     obj_tasks_container.append(obj_qrcode);
@@ -228,14 +226,11 @@ export function set_page_info_cms_project_detail (uuid) {
     UUID.append(obj_p_name_right);
     obj_p_name_right.append(obj_span_name);
 
-
-
     obj_p_period.append(obj_span_period);
     obj_div_des.append(obj_p_name);
     obj_div_des.append(obj_p_period);
     obj_div_des.append(obj_p_idea);
     obj_div_des.append(btn_outter);
-
 
     obj_div_qrocde.append(obj_qrcode);	    
     obj_div_product.append(obj_img_product);
