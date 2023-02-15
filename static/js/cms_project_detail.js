@@ -149,7 +149,8 @@ export function set_page_info_cms_project_detail (uuid) {
     obj_div_root.className = "row mt-4 mt-md-5 mb-3";
   
     var obj_div_product = document.createElement("div")
-    obj_div_product.className = "col-md-4 mt-auto";
+    // obj_div_product.className = "col-md-4 mt-auto";
+    obj_div_product.className = "col-md-4 d-flex justify-content-center align-items-center";
 
     var obj_img_product = document.createElement("img")
     obj_img_product.className = "img-fluid";

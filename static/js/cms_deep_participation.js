@@ -1,5 +1,5 @@
 
-import { task_submit,deep_deleted_task, list_children_tasks, get_task_info } from './tasks.js'
+import { task_submit,deep_deleted_task, list_children_tasks, get_task_info, add_to_child_task_queue, remove_child_task_queue } from './tasks.js'
 var element_id
 
 function set_page_in_add_child_task_block(obj_task) {
@@ -270,24 +270,9 @@ export function set_page_info_cms_deep_participation(){
     var result = set_page_in_add_child_task_block(obj_task);
 
     if (result == true) {
-      var child_task_queue = [];
-      if (getLocalStorage("child_task_queue") != "") {
-        child_task_queue = JSON.parse(getLocalStorage("child_task_queue")); 
-      }
-
-      add_to_child_task_queue(child_task_queue, obj_task.uuid)
-      setLocalStorage("child_task_queue", JSON.stringify(child_task_queue));
+      add_to_child_task_queue(obj_task.uuid)
     }
   }
-}
-
-function add_to_child_task_queue(queue ,uuid) {
-  queue.push(uuid);
-}
-
-function remove_child_task_queue(queue, uuid) {
-  queue = queue.filter(item => item !== uuid);
-  return queue;
 }
 
 export function deep_participation_add_child_task_block(obj_task) {
@@ -313,14 +298,8 @@ export function deep_participation_add_child_task_block(obj_task) {
     return;
   }
 
-  var child_task_queue = [];
-  if (getLocalStorage("child_task_queue") != "") {
-    child_task_queue = JSON.parse(getLocalStorage("child_task_queue")); 
-  }
-
-  add_to_child_task_queue(child_task_queue, uuid_child)
-  setLocalStorage("child_task_queue", JSON.stringify(child_task_queue));
-
+  add_to_child_task_queue(uuid_child)
+  
   let deep_div_parent_task = document.getElementById('deep_div_parent_task')
 
   var outter = document.createElement("div")
@@ -513,11 +492,7 @@ export function showDeleteModal (uuid_task) {
     deep_deleted_task(uuid_task)
 
     // Update local storage
-    if (getLocalStorage("child_task_queue") != "") {
-      var child_task_queue = JSON.parse(getLocalStorage("child_task_queue"));
-      remove_child_task_queue(child_task_queue, uuid_task)
-      setLocalStorage("child_task_queue", JSON.stringify(child_task_queue));
-    }
+    remove_child_task_queue(uuid_task)
   })
   $('#deep_close_modal').on("click",function(e){
     $("#deleteModal").modal("hide")
