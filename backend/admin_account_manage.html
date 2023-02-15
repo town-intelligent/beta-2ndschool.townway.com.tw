@@ -130,10 +130,10 @@
         <div class=" my-5 Acontainer">
             <div class="my-3">
               <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 276px;">
+                <button class="btn btn-secondary dropdown-toggle mb-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="width: 276px;">
                   帳號管理
                 </button>
-                <input type="file" id="fileInput" data-target="file-uploader" accept="image/*" multiple="multiple" />
+                <input type="file" id="fileInput" data-target="file-uploader" accept="image/*" multiple="multiple" class="mb-2" />
                 <button type="button" class="btn btn-secondary"  onclick="batch_new()">上傳檔案</button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><a class="dropdown-item d-flex align-items-center justify-content-between" href="#"><span>批次帳號建立</span><img src="/static/imgs/Upload.png" alt="" style="width: 15%;"></a></li>
@@ -153,13 +153,14 @@
                         </tr>
                     </thead>
                     <tbody id="tbody">
+                    
                     </tbody>
                 </table>
             </div>
+
+            
             <div class="mb-form">
                 <div class="mb-form-inner mt-4 pb-4">
-                  <!-- <div id="tab1" class="tab1">
-                  </div> -->
                 </div>
             </div>
             <div class="d-flex justify-content-md-end">
@@ -188,7 +189,7 @@
                   <div class="modal-header">
                   <div class="modal-body d-flex justify-content-around align-items-center">
                     <span>帳號轉移完畢</span>
-                    <img src="/static/imgs/Tick Box.png" alt="">
+                    <img src="/static/imgs/TickBox.png" alt="">
                   </div>
                 </div>
               </div>
