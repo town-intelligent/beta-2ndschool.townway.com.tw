@@ -111,25 +111,10 @@ export function batch_new(){
         "data": form
       };
       $.ajax(settings).done(function (response) {
-        let data = JSON.parse(response)
-        let subData = (data.content)
-        console.log("data",data)
         location.reload()
         list_device()
       });
 } 
 
-function printTable(subData) {
-    subData.forEach( (data, index) => {
-        let tr = document.createElement("tr")
-		document.querySelector("#tbody").appendChild(tr)
-		let trInfo = `
-        <td><input type="text" class="uuid" value="${data.uuid}" style="width: 100%;" disabled placeholder="待更新"></td>
-        <td><input type="text" class="username" value="${data.account_username}" style="width: 100%;" disabled placeholder="待更新"></td>
-        <td><input type="text" class="device_no" value="${data.device_no}" style="width: 100%;" disabled placeholder="待更新"></td>
-        <td><input type="text" class="email" value="${data.account_email}" style="width: 100%;" disabled placeholder="待更新"></td>
-		`
-		tr.innerHTML = trInfo
-	})
-}
+
 
