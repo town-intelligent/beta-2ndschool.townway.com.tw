@@ -18,6 +18,10 @@ export function set_page_info_cms_add_news() {
     $("form").on("submit", function(e){
       e.preventDefault();
 
+      if ("title", document.getElementById("news_title").value == "") {
+        alert("請至少填寫新聞標題！");
+      }
+
       var form = new FormData();
       form.append("email", "Real.ability2022@gmail.com");
       var background_image = document.getElementById("news_banner").style.backgroundImage.replace('url("', '');
