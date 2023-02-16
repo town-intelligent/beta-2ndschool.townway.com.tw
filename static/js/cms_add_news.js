@@ -22,6 +22,7 @@ export function set_page_info_cms_add_news() {
 
       if ("title", document.getElementById("news_title").value == "") {
         alert("請至少填寫新聞標題！");
+        return;
       }
 
       var form = new FormData();
