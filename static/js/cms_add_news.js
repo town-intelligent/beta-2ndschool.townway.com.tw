@@ -77,3 +77,14 @@ export function add_news_img(no) {
   };
   file.show();
 }
+
+export function changeNewsListBanner() {
+  var file = new FileModal("image/*");
+  file.onload = function(base64Img){
+
+    // Preview
+    document.getElementById("news_banner").style.backgroundImage =  "url(" + base64Img + ")";
+  };
+  file.show();
+
+}
