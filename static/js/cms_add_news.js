@@ -1,15 +1,17 @@
 import { news_add } from './news.js'
 
 function DataURIToBlob(dataURI) {
-  const splitDataURI = dataURI.split(',')
-  const byteString = splitDataURI[0].indexOf('base64') >= 0 ? atob(splitDataURI[1]) : decodeURI(splitDataURI[1])
-  const mimeString = splitDataURI[0].split(':')[1].split(';')[0]
+  try {
+    const splitDataURI = dataURI.split(',')
+    const byteString = splitDataURI[0].indexOf('base64') >= 0 ? atob(splitDataURI[1]) : decodeURI(splitDataURI[1])
+    const mimeString = splitDataURI[0].split(':')[1].split(';')[0]
 
-  const ia = new Uint8Array(byteString.length)
-  for (let i = 0; i < byteString.length; i++)
-      ia[i] = byteString.charCodeAt(i)
+    const ia = new Uint8Array(byteString.length)
+    for (let i = 0; i < byteString.length; i++)
+        ia[i] = byteString.charCodeAt(i)
 
-  return new Blob([ia], { type: mimeString })
+    return new Blob([ia], { type: mimeString })
+  } catch (e) { return null; }
 }
 
 export function set_page_info_cms_add_news() {
@@ -34,18 +36,15 @@ export function set_page_info_cms_add_news() {
       form.append("title", document.getElementById("news_title").value);
       form.append("description", document.getElementById("news_description").value);
       
-      try {
+      if (DataURIToBlob(document.getElementById("news_img_0").src))
         form.append("img_0", DataURIToBlob(document.getElementById("news_img_0").src));
-      } catch (e) { alert(e); }
-
-      try {
+      
+      if (DataURIToBlob(document.getElementById("news_img_1").src))
         form.append("img_1", DataURIToBlob(document.getElementById("news_img_1").src));
-      } catch (e) { alert(e); }
-
-      try {
+      
+      if (DataURIToBlob(document.getElementById("news_img_2").src))
         form.append("img_2", DataURIToBlob(document.getElementById("news_img_2").src));
-      } catch (e) { alert(e); }
-
+      
       var result_news = news_add(form);
       if (result_news.result == true) {
         alert("上架成功!");
