@@ -36,15 +36,15 @@ export function set_page_info_cms_add_news() {
       
       try {
         form.append("img_0", DataURIToBlob(document.getElementById("news_img_0").src));
-      } catch (e) {}
+      } catch (e) { alert(e); }
 
       try {
         form.append("img_1", DataURIToBlob(document.getElementById("news_img_1").src));
-      } catch (e) {}
+      } catch (e) { alert(e); }
 
       try {
         form.append("img_2", DataURIToBlob(document.getElementById("news_img_2").src));
-      } catch (e) {}
+      } catch (e) { alert(e); }
 
       var result_news = news_add(form);
       if (result_news.result == true) {
