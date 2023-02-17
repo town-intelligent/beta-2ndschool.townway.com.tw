@@ -86,5 +86,4 @@ export function changeNewsListBanner() {
     document.getElementById("news_banner").style.backgroundImage =  "url(" + base64Img + ")";
   };
   file.show();
-
 }
