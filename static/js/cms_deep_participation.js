@@ -489,6 +489,7 @@ export function showDeleteModal (uuid_task) {
   $("#deep_delete_task").on("click",function(e){
     $("#deleteModal").modal("hide")
     $("#outter_" + uuid_task).remove()
+
     deep_deleted_task(uuid_task)
 
     // Update local storage
