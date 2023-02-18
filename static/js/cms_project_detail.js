@@ -1,8 +1,59 @@
 import { list_plan_tasks, plan_info } from './plan.js'
-import { get_task_info } from './tasks.js'
+import { get_task_info, list_children_tasks } from './tasks.js'
 
 function showChildTaskModal(uuid_parent_task) {
-  alert("OK")
+  alert("OK" + uuid_parent_task)
+
+  // Get child task
+  var result_list_children_tasks = list_children_tasks(uuid_parent_task);
+  try{
+    if (result_list_children_tasks.task.length == 0)
+      return
+  } catch (e) {return}
+
+  // TODO: Append to modal
+  var modal = document.createElement("div")
+  modal.className="modal fade"
+  modal.id="childTaksListModal"
+  modal.tabindex="-1"
+  modal.setAttribute('aria-labelledby', 'exampleModalLabel')
+  modal.setAttribute('aria-hidden', 'true')
+
+  var modal_dialog = document.createElement("div")
+  modal_dialog.className = "modal-dialog modal-dialog-centered"
+  var modal_content = document.createElement("div")
+  modal_content.className = "modal-content"
+  var modal_body = document.createElement("div")
+  modal_body.className = "modal-body m-auto"
+  modal_body.style = "font-size: 20px;"
+  modal_body.innerText = "確定刪除此活動設計。"
+  var btn_container = document.createElement("div")
+  btn_container.className = "modal-footer justify-content-center border-0"
+  var cancel_btn = document.createElement("button")
+  cancel_btn.type = "button"
+  cancel_btn.className = "btn btn-secondary"
+  cancel_btn.style = "width: 80px;"
+  cancel_btn.dataset.dismiss = "modal"
+  cancel_btn.innerText = "取消"
+  var delete_btn = document.createElement("button")
+  delete_btn.type = "button"
+  delete_btn.className = "btn btn-primary"
+  delete_btn.id = "childTaksListModalOK"
+  delete_btn.style = "width: 80px;"
+  delete_btn.dataset.dismiss = "modal"
+  delete_btn.innerText = "確定"
+
+
+  // TODO: Show modal
+  $("#childTaksListModal").modal("show")
+  $("#childTaksListModalOK").on("click",function(e){
+    $("#childTaksListModal").modal("hide")
+  })
+  /* $('#childTaksListModalCancel').on("click",function(e){
+    $("#childTaksListModal").modal("hide")
+  }) */
+
+
 }
 
 export function set_page_info_cms_project_detail (uuid) {
@@ -239,7 +290,7 @@ export function set_page_info_cms_project_detail (uuid) {
     }
 
     icon_btn.innerText = "啟用讀卡機"
-    icon_btn.style = "border-radius: 8px";
+    icon_btn.style = "border-1 border-radius: 8px";
 
     btn_outter.append(icon_btn);
 
