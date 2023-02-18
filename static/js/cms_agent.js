@@ -1,9 +1,10 @@
 import { draws } from './app.js'
-import { list_plans, plan_info, append_plan_submit_data, plan_submit, delete_plan } from './plan.js'
+import { list_plans, plan_info, append_plan_submit_data, plan_submit, delete_plan, list_plan_tasks } from './plan.js'
 import { task_submit, child_task_submit } from './tasks.js'
 
 const cms_project_submit_pages = ["cms_plan_info.html", "cms_sdgs_setting.html", "cms_impact.html", "cms_contact_person.html"];
 const cms_support_format = ["cms_missions_display.html", "cms_support_form.html", "cms_deep_participation.html"]
+
 
 // Submit 之前的處理
 function submit_pre_processing(page, uuid, task) {
@@ -39,7 +40,7 @@ $(function () {
 function get_page_index(page) {
   for (var index = 0; index < cms_support_format.length; index++) {
     if (page == cms_support_format[index]) {
-	  return 1
+	  return 3
     }
   }
   
@@ -135,15 +136,60 @@ $(function () {
     // Submit
     plan_submit(form, uuid);
 
-    if (false == child_task_submit(page)){
-      return;
+    // Parent task submit
+    if (page == "cms_impact.html") {      
+      // Variables
+      var list_parent_tasks = [];
+
+      // Get history parent tasks
+      var result_parent_tasks = list_plan_tasks(uuid, 1);
+      if (result_parent_tasks.result) {
+        try {
+          list_parent_tasks = (result_parent_tasks.tasks);
+        } catch (e) {}
+      }
+
+      // Update all tasks from web and submit
+      for (var index = 0; index < list_parent_tasks.length; index++) {
+        // Form
+        var form = new FormData();
+
+        try {
+          // Keep old data
+          form.append("uuid", uuid);
+          form.append("task", list_parent_tasks[index]);
+          form.append("email", getLocalStorage("email"));
+          
+          // name
+          form.append("name", document.getElementById("parent_task_name_" + list_parent_tasks[index]).value);
+
+          // start date
+          form.append("task_start_date", document.getElementById("parent_task_start_date_" + list_parent_tasks[index]).value);
+
+          // due date
+          form.append("task_due_date", document.getElementById("parent_task_due_date_" + list_parent_tasks[index]).value);
+          
+          // overview
+          form.append("overview", document.getElementById("parent_task_overview_" + list_parent_tasks[index]).value);
+        
+          var obj_task = task_submit(form);
+        } catch(e) {
+          alert(e)
+        }
+      }
+    }
+
+    if (page == "cms_support_form.html" || page == "cms_deep_participation.html") {
+      if (false == child_task_submit(page)){
+        return;
+      }
     }
 
     // Replace page
     var btn_submit = $(this).find("button[type=submit]:focus");
     var id_btn_submit = btn_submit.attr('id');
     
-    if (id_btn_submit == "btn_ab_project_next") {
+    if (id_btn_submit == "btn_ab_project_next") {      
       if (index < cms_project_submit_pages.length - 1) {
         var next_page = get_index_page(index + 1);
         window.location.replace("/backend/" + next_page + param);
@@ -154,6 +200,11 @@ $(function () {
       if (page == "cms_contact_person.html") {
         window.location.replace("/backend/cms_project_detail.html?uuid=" + uuid);
       }
+
+      if (page == "cms_deep_participation.html") {
+        window.location.replace("/backend/cms_impact.html" + param);
+      }
+      
     } else if (id_btn_submit == "btn_cms_plan_save") {
       alert("儲存成功");
     } else if (id_btn_submit == "btn_cms_plan_preview") {

@@ -18,6 +18,10 @@ export function add_parent_task_block (obj_task = null) {
       console.log("Error, submit task failed.");
       return;
     }
+
+    /* var parent_task_queue = [];
+    add_to_parent_task_queue(parent_task_queue, uuid_child) */
+
     // Replace variable in str_parent_task_block
     var str_parent_task_innetHTML = str_parent_task_block.replaceAll("UUID_TASK", uuid_parent);
     // Replace variable and generate block

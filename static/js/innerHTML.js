@@ -2,7 +2,7 @@ const str_parent_task_block = `
 <div class="row h-100 pt-4 pb-5 border mb-2" >
   <div class="col-md-6">
     <div id="coverImg_UUID_TASK" class="border d-flex align-items-center justify-content-center h-100">
-      <button type="button" id="btnUploadImg_UUID_TASK" onclick="uploadTaskCover(UUID_TASK)">
+      <button type="button" id="btnUploadImg_UUID_TASK" onclick="uploadTaskCover('UUID_TASK')">
         <div id="divUploadImg_UUID_TASK" class="bg-contain" style="background-image: url(/static/imgs/image_icon.svg); width: 100px; height: 100px; background-repeat: no-repeat" ></div>
       </button>
     </div>
@@ -57,7 +57,7 @@ const str_parent_task_block = `
             </div>
             <div class="modal-footer justify-content-center border-0">
               <button type="button" class="btn btn-secondary" style="width: 80px;" data-bs-dismiss="modal">取消</button>
-              <button type="button" class="btn btn-primary" style="width: 80px;" id="delete-task" data-bs-dismiss="modal" name="UUID_TASK" onclick="deleted_task(UUID_TASK)">確定</button>
+              <button type="button" class="btn btn-primary" style="width: 80px;" id="delete-task" data-bs-dismiss="modal" name="UUID_TASK" onclick="deleted_task('UUID_TASK')">確定</button>
             </div>
           </div>
         </div>
