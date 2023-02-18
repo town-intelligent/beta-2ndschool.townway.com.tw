@@ -1,6 +1,10 @@
 import { list_plan_tasks, plan_info } from './plan.js'
 import { get_task_info } from './tasks.js'
 
+function showChildTaskModal(uuid_parent_task) {
+  alert("OK")
+}
+
 export function set_page_info_cms_project_detail (uuid) {
   var obj_project = plan_info(uuid);
 
@@ -224,15 +228,14 @@ export function set_page_info_cms_project_detail (uuid) {
     ///
 
     var icon_btn = document.createElement("a")
-    icon_btn.className = "btn btn-outline-dark rounded-0 border-0 w-100 p-2"
+    icon_btn.className = "btn w-100 p-2"
     icon_btn.id = `icon_btn`
 
     icon_btn.dataset.target = "#SDGsModal"
     icon_btn.dataset.toggle = "modal"
     
     icon_btn.onclick= function(e){
-      element_id = e.target.parentNode.parentNode.id
-      // showSDGsModal()
+      showChildTaskModal(obj_task.uuid)
     }
 
     icon_btn.innerText = "啟用讀卡機"
