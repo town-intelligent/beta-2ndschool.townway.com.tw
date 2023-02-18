@@ -26,7 +26,7 @@ $(document).ready(function () {
 
 function list_device(){
   var form = new FormData();
-  form.append("email", "Real.ability2022@gmail.com");
+  form.append("email", getLocalStorage("email"));
 
   var settings = {
     "url": HOST_URL_EID_DAEMON +"/accounts/list_device",
