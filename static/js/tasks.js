@@ -1,4 +1,45 @@
 
+/* function add_to_parent_task_queue(queue ,uuid) {
+
+  if (getLocalStorage("parent_task_queue") != "") {
+    queue = JSON.parse(getLocalStorage("parent_task_queue")); 
+  }
+
+  queue.push(uuid);
+
+  setLocalStorage("parent_task_queue", JSON.stringify(uuid));
+}
+
+function parent_task_queue(queue, uuid) {
+  if (getLocalStorage("parent_task_queue") != "") {
+    queue = JSON.parse(getLocalStorage("parent_task_queue"));
+    queue = queue.filter(item => item !== uuid);
+    
+    setLocalStorage("parent_task_queue", JSON.stringify(queue));    
+  }
+  return queue;
+} */
+
+export function add_to_child_task_queue(uuid) {
+  var queue = [];
+  if (getLocalStorage("child_task_queue") != "") {
+    queue = JSON.parse(getLocalStorage("child_task_queue")); 
+  }
+  queue.push(uuid);
+
+  setLocalStorage("child_task_queue", JSON.stringify(queue));
+}
+
+export function remove_child_task_queue(uuid) {
+  var queue = [];
+  if (getLocalStorage("child_task_queue") != "") {
+    queue = JSON.parse(getLocalStorage("child_task_queue"));
+    queue = queue.filter(item => item !== uuid);
+    setLocalStorage("child_task_queue", JSON.stringify(queue));
+  }
+  return queue;
+}
+
 export function deep_deleted_task(uuid){
   var dataJSON = {};
   dataJSON.uuid=uuid
@@ -163,7 +204,6 @@ export function uploadTaskCover(uuid_task) {
 
 export function child_task_submit(page){
   // Get DOM data for parent task
-  if (page == "cms_support_form.html" || page == "cms_deep_participation.html") {
     if (getLocalStorage("child_task_queue") == "")
       return;
 
@@ -176,8 +216,6 @@ export function child_task_submit(page){
     var child_task_queue = JSON.parse(getLocalStorage("child_task_queue"));
 
     for (var index_child_task = 0; index_child_task < child_task_queue.length; index_child_task++) { 
-      // alert(child_task_queue[index_child_task])
-      
       var list_target_sdgs = [];
       var list_tasks = [];
 
@@ -243,9 +281,6 @@ export function child_task_submit(page){
       var obj_result = task_submit(form);
     }
     setLocalStorage("child_task_queue", "");
-
-    return true;
-  }
   return true;
 }
 export function get_task_comment(uuid) {
