@@ -220,6 +220,27 @@
         </div>
       </div>
     </div>
+
+
+    <div class="modal fade" id="child_task_mail_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">任務列表</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="description" class="modal-body">
+            <p>以下為任務清單，請複製 UUID 欄位後貼在讀卡機程式上： </p>
+            <p id="child_task_uuis_container"></p>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button id="child_task_mail_modal_OK" type="button" class="btn btn-primary">關閉</button>
+          </div>
+        </div>
+      </div>
+    </div>
 <!-- footer -->
 <footer class="bg-footer">
   <div class="container">

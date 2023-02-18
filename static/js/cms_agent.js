@@ -40,13 +40,14 @@ $(function () {
 function get_page_index(page) {
   for (var index = 0; index < cms_support_format.length; index++) {
     if (page == cms_support_format[index]) {
-	  return 3
+	    return 3
     }
   }
   
   for (var index = 0; index < cms_project_submit_pages.length; index++) {
-    if (page == cms_project_submit_pages[index])
-          return index
+    if (page == cms_project_submit_pages[index]) {
+      return index
+    }
   }
   return null
 }
@@ -145,36 +146,38 @@ $(function () {
       var result_parent_tasks = list_plan_tasks(uuid, 1);
       if (result_parent_tasks.result) {
         try {
-          list_parent_tasks = (result_parent_tasks.tasks);
-        } catch (e) {}
+          list_parent_tasks = result_parent_tasks.tasks;
+        } catch (e) {
+          alert(e);
+        }
       }
 
       // Update all tasks from web and submit
-      for (var index = 0; index < list_parent_tasks.length; index++) {
+      for (var index_task = 0; index_task < list_parent_tasks.length; index_task++) {
         // Form
         var form = new FormData();
 
         try {
           // Keep old data
           form.append("uuid", uuid);
-          form.append("task", list_parent_tasks[index]);
+          form.append("task", list_parent_tasks[index_task]);
           form.append("email", getLocalStorage("email"));
           
           // name
-          form.append("name", document.getElementById("parent_task_name_" + list_parent_tasks[index]).value);
+          form.append("name", document.getElementById("parent_task_name_" + list_parent_tasks[index_task]).value);
 
           // start date
-          form.append("task_start_date", document.getElementById("parent_task_start_date_" + list_parent_tasks[index]).value);
+          form.append("task_start_date", document.getElementById("parent_task_start_date_" + list_parent_tasks[index_task]).value);
 
           // due date
-          form.append("task_due_date", document.getElementById("parent_task_due_date_" + list_parent_tasks[index]).value);
+          form.append("task_due_date", document.getElementById("parent_task_due_date_" + list_parent_tasks[index_task]).value);
           
           // overview
-          form.append("overview", document.getElementById("parent_task_overview_" + list_parent_tasks[index]).value);
+          form.append("overview", document.getElementById("parent_task_overview_" + list_parent_tasks[index_task]).value);
         
           var obj_task = task_submit(form);
         } catch(e) {
-          alert(e)
+          console.log(e)
         }
       }
     }

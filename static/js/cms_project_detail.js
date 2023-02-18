@@ -2,58 +2,50 @@ import { list_plan_tasks, plan_info } from './plan.js'
 import { get_task_info, list_children_tasks } from './tasks.js'
 
 function showChildTaskModal(uuid_parent_task) {
-  alert("OK" + uuid_parent_task)
-
   // Get child task
   var result_list_children_tasks = list_children_tasks(uuid_parent_task);
   try{
-    if (result_list_children_tasks.task.length == 0)
+    if (result_list_children_tasks.length == 0) {
+      alert("目前沒有任何的任務")
       return
-  } catch (e) {return}
+    }
+  } catch (e) {
+    alert("開啟任務時發生錯誤")
+    return
+  }
 
-  // TODO: Append to modal
-  var modal = document.createElement("div")
-  modal.className="modal fade"
-  modal.id="childTaksListModal"
-  modal.tabindex="-1"
-  modal.setAttribute('aria-labelledby', 'exampleModalLabel')
-  modal.setAttribute('aria-hidden', 'true')
+  // Append to modal
+  var obj_child_task_uuis_container = document.getElementById("child_task_uuis_container");
+  while (obj_child_task_uuis_container.lastElementChild) {
+    obj_child_task_uuis_container.removeChild(obj_child_task_uuis_container.lastElementChild);
+  }
 
-  var modal_dialog = document.createElement("div")
-  modal_dialog.className = "modal-dialog modal-dialog-centered"
-  var modal_content = document.createElement("div")
-  modal_content.className = "modal-content"
-  var modal_body = document.createElement("div")
-  modal_body.className = "modal-body m-auto"
-  modal_body.style = "font-size: 20px;"
-  modal_body.innerText = "確定刪除此活動設計。"
-  var btn_container = document.createElement("div")
-  btn_container.className = "modal-footer justify-content-center border-0"
-  var cancel_btn = document.createElement("button")
-  cancel_btn.type = "button"
-  cancel_btn.className = "btn btn-secondary"
-  cancel_btn.style = "width: 80px;"
-  cancel_btn.dataset.dismiss = "modal"
-  cancel_btn.innerText = "取消"
-  var delete_btn = document.createElement("button")
-  delete_btn.type = "button"
-  delete_btn.className = "btn btn-primary"
-  delete_btn.id = "childTaksListModalOK"
-  delete_btn.style = "width: 80px;"
-  delete_btn.dataset.dismiss = "modal"
-  delete_btn.innerText = "確定"
+  for (var index = 0; index <result_list_children_tasks.length; index++){
+    
+    // Get task info
+    var obj_child_task = get_task_info(result_list_children_tasks[index])
+
+    // UUID
+    var element_task = document.createElement("p");
+    element_task.innerHTML += obj_child_task.uuid;
+
+    // Name
+    element_task.innerHTML += "  " + obj_child_task.name;
+
+    // Period
+    element_task.innerHTML += "  " + obj_child_task.period;
+    
+    obj_child_task_uuis_container.append(element_task);
+
+  }
 
 
-  // TODO: Show modal
-  $("#childTaksListModal").modal("show")
-  $("#childTaksListModalOK").on("click",function(e){
-    $("#childTaksListModal").modal("hide")
+  // Show modal
+  $("#child_task_mail_modal").modal("show")
+  
+  $("#child_task_mail_modal_OK").on("click",function(e){
+    $("#child_task_mail_modal").modal("hide")
   })
-  /* $('#childTaksListModalCancel').on("click",function(e){
-    $("#childTaksListModal").modal("hide")
-  }) */
-
-
 }
 
 export function set_page_info_cms_project_detail (uuid) {
@@ -181,8 +173,9 @@ export function set_page_info_cms_project_detail (uuid) {
   var list_tasks = obj_tasks.tasks;
   var obj_tasks_container = document.getElementById("tasks_container");
 
-  for (var index = 0; index < list_tasks.length; index++) {
-    var obj_task = get_task_info(list_tasks[index]);
+  // for (var index = 0; index < list_tasks.length; index++) {
+    list_tasks.forEach(uuin_task => {
+    var obj_task = get_task_info(uuin_task);
 
     // Create DOM
     /*
@@ -279,19 +272,20 @@ export function set_page_info_cms_project_detail (uuid) {
     ///
 
     var icon_btn = document.createElement("a")
-    icon_btn.className = "btn w-100 p-2"
-    icon_btn.id = `icon_btn`
+   // icon_btn.className = "btn border-1 w-100 p-2"
+    icon_btn.className = "btn btn-block btn-outline-secondary"
+    icon_btn.id = "icon_btn_" + obj_task.uuid;
 
-    icon_btn.dataset.target = "#SDGsModal"
+    // icon_btn.dataset.target = "#SDGsModal"
     icon_btn.dataset.toggle = "modal"
+
     
-    icon_btn.onclick= function(e){
-      showChildTaskModal(obj_task.uuid)
-    }
+    icon_btn.addEventListener("click", function(){
+      showChildTaskModal(obj_task.uuid);
+    })
 
-    icon_btn.innerText = "啟用讀卡機"
-    icon_btn.style = "border-1 border-radius: 8px";
-
+    icon_btn.innerText = "啟用讀卡機 " + obj_task.uuid;
+    icon_btn.style = "border-radius: 8px";
     btn_outter.append(icon_btn);
 
     // TODO: 啟用讀卡機
@@ -317,7 +311,7 @@ export function set_page_info_cms_project_detail (uuid) {
     obj_div_root.append(obj_div_des);
 
     obj_tasks_container.append(obj_div_root);
-  }
+  })
 
   // Set cover
 
