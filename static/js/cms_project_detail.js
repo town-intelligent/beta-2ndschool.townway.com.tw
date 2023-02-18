@@ -212,12 +212,35 @@ export function set_page_info_cms_project_detail (uuid) {
     obj_p_idea.innerHTML = obj_task.overview;
 
     var btn_outter = document.createElement("div")
+
+
+    // TODO: 啟用讀卡機
     var btn = document.createElement("button")
     btn.innerHTML = "啟用讀卡機"
     btn.className = "border-0 w-100 p-2";
     btn.style = "border-radius: 8px";
-    btn_outter.append(btn);
+    // btn_outter.append(btn);
 
+    ///
+
+    var icon_btn = document.createElement("a")
+    icon_btn.className = "btn btn-outline-dark rounded-0 border-0 w-100 p-2"
+    icon_btn.id = `icon_btn`
+
+    icon_btn.dataset.target = "#SDGsModal"
+    icon_btn.dataset.toggle = "modal"
+    
+    icon_btn.onclick= function(e){
+      element_id = e.target.parentNode.parentNode.id
+      // showSDGsModal()
+    }
+
+    icon_btn.innerText = "啟用讀卡機"
+    icon_btn.style = "border-radius: 8px";
+
+    btn_outter.append(icon_btn);
+
+    // TODO: 啟用讀卡機
 
 
 
