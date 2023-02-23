@@ -18,6 +18,7 @@ function get_group(email) {
   });
   return getLocalStorage("group");
 }
+
 function logout() {
   // Modify account
   var dataJSON = {};

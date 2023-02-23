@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">    
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/localStorage.js"></script>
+    <script src="/static/js/config.js"></script>
+    <script type="module" src="/static/js/forget_password.js"></script>
+    <script type="module" src="/static/js/set_page_info.js"></script>
+    <script type="module" src="/static/js/init.js"></script>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-navbar">
+      <div name="admin_dropdown" class="container">
+        <a id="index_logo" class="navbar-brand mr-0" href="/index.html">
+          <!--<img src="/static/imgs/logo.svg" width="262" class="d-inline-block align-top" alt="">-->
+          <img src="/static/imgs/logo.svg" width="262" class="d-inline-block align-top" alt="">
+        </a>
+        <a name="signup_logo" class="nav-link text-dark px-0 d-md-none" href="/tplanet_signup.html">
+          註冊
+        </a>
+        <a name="signin_logo" class="btn btn-primary btn-sm d-md-none" href="/tplanet_signin.html">登入</a>        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/index.html">關於平台</a>
+            </li>
+            <!--<li class="nav-item">
+              <a class="nav-link" href="/project_list.html">永續企業</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/project_list_local.html">地方團隊</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="/kpi.html">永續專案</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/news_list.html">最新消息</a>
+            </li>
+          </ul>
+          <ul name="admin_dropdown" class="navbar-nav mr-2 d-flex align-items-center">
+            <li class="nav-item d-none d-md-block">
+              <a name="signup_logo" class="nav-link text-dark" href="/tplanet_signup.html">
+                  註冊
+              </a>
+            </li>
+          </ul>
+          <a name="signin_logo" class="btn btn-primary my-2 my-sm-0 d-none d-md-block" href="/tplanet_signin.html">登入</a>
+        </div>
+      </div>
+    </nav>
+    <!-- content -->
+    <div class="container-fluid">
+      <form class="mt-4 mb-5">
+        <div class="row justify-content-center">
+          <div class="col-10 col-md-5 bg-light rounded-lg py-3 mb-md-5">
+              <div>
+                <p class="mb-2">忘記密碼？</p>
+                <p>請輸入電子郵件信箱以重新設定</p>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp" placeholder="電子郵件">
+              </div>
+              <div class="row justify-content-center mt-3">
+                <div class="col pb-2">
+                  <button type="submit" class="btn btn-block btn-primary">重設密碼</button>
+                </div>
+              </div>
+              <p class="text-center mb-0">
+                <a class="text-dark" href="#">返回</a>
+              </p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- footer -->
+    <footer class="bg-footer">
+      <div class="container">
+        <div class="row py-4 border-bottom border-secondary">
+          <div class="col-md-8 d-none d-md-block">
+            <div class="h-100 d-flex align-items-center justify-content-center justify-content-md-start mt-2 mt-md-0">
+              <p class="mr-4 mb-0"><a href="/index.html" class="text-dark">關於平台</a></p>
+              <p class="mr-4 mb-0"><a href="/kpi.html" class="text-dark">永續專案</a></p>
+              <p class="mr-4 mb-0"><a href="/news_list.html" class="text-dark">最新消息</a></p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="d-flex h-100 align-items-center justify-content-center justify-content-md-end">
+              <div>
+                <a class="navbar-brand mx-auto" href="https://www.facebook.com/profile.php?id=100063976478092" target="_blank">
+                  <img class="mr-3" src="/static/imgs/fbLogo.svg" alt="" style="height: 30px;">
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- mobile -->
+          <div class="col-6 d-md-none">
+            <p class="text-center"><a href="/index.html" class="text-dark">關於平台</a></p>
+          </div>
+          <div class="col-6 d-md-none">
+            <p class="text-center"><a href="/kpi.html" class="text-dark">永續專案</a></p>
+          </div>
+          <div class="col-6 d-md-none">
+            <p class="text-center"><a href="/news_list.html" class="text-dark">最新消息</a></p>
+          </div>
+        </div>
+        <div class="row py-4">
+          <!-- mobile -->
+          <div class="col-md-6 pl-md-0 d-md-none px-0">
+            <div class="h-100 d-flex align-items-center justify-content-center mb-4 mb-md-0">
+              <div class="mr-4">
+                <img src="/static/imgs/townwayLogo.svg" alt="" style="width:70px">
+              </div>
+              <div class="mr-4">
+                <img src="/static/imgs/townEmpowermentLogo.svg" alt="" style="width:70px">
+              </div>
+              <div class="mr-4">
+                <img src="/static/imgs/townIntelligentLogo.svg" alt="" style="width:70px">
+              </div>
+              <div>
+                <img src="/static/imgs/townTerroirLogo.svg" alt="" style="width:70px">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 pr-md-0">
+            <div class="d-md-flex h-100 align-items-center justify-content-center justify-content-md-start">
+              <p class="mb-0 text-center text-md-left">Copyright © 2022 花蓮真本事</p>
+            </div>
+          </div>
+          <div class="col-md-6 d-none d-md-block">
+            <div class="h-100 d-flex align-items-center justify-content-md-center mt-2 mt-md-0">
+              <div class="mr-4">
+                <img src="/static/imgs/townwayLogo.svg" alt="" style="width:100px">
+              </div>
+              <div class="mr-4">
+                <img src="/static/imgs/townEmpowermentLogo.svg" alt="" style="width:100px">
+              </div>
+              <div class="mr-4">
+                <img src="/static/imgs/townIntelligentLogo.svg" alt="" style="width:100px">
+              </div>
+              <div>
+                <img src="/static/imgs/townTerroirLogo.svg" alt="" style="width:100px">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="d-md-flex h-100 align-items-center justify-content-center justify-content-md-end">
+              <p class="mb-0 text-center text-md-right"><a href="#" class="text-dark">隱私權條款</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
