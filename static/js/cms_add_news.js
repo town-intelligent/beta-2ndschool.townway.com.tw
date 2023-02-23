@@ -1,4 +1,4 @@
-import { news_add } from './news.js'
+import { news_add, news_banner_push } from './news.js'
 
 function DataURIToBlob(dataURI) {
   try {
@@ -15,7 +15,6 @@ function DataURIToBlob(dataURI) {
 }
 
 export function set_page_info_cms_add_news() {
-
   $(function () {
     $("form").on("submit", function(e){
       e.preventDefault();
@@ -83,7 +82,35 @@ export function changeNewsListBanner() {
   file.onload = function(base64Img){
 
     // Preview
-    document.getElementById("news_banner").style.backgroundImage =  "url(" + base64Img + ")";
+    document.getElementById("news_banner_image").style.backgroundImage =  "url(" + base64Img + ")";
+
+    // Push
+    try {
+      var news_banner_image = document.getElementById("news_banner_image").style.backgroundImage.replace('url("', '');
+      news_banner_image = document.getElementById("news_banner_image").style.backgroundImage.replace('")', '');
+      
+      var form = new FormData();
+      form.append("email", getLocalStorage("email"));
+      form.append("news-banner-img", DataURIToBlob(news_banner_image), "news-banner-img.png");
+
+      news_banner_push(form);
+      
+    } catch (e) {
+      alert(e)
+    }
+
+
   };
   file.show();
 }
+
+/* function news_banner_image_read(input){
+  if(input.files && input.files[0]){
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var url = e.target.result
+       $("#twins_img").css('background-image', `url( ${url})`);
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+} */

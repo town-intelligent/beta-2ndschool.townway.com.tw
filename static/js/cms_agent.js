@@ -349,6 +349,7 @@ $(function () {
 // btn_add_sdg_into_task
 $(function () {
   $("#btn_add_sdg_into_task").on("click", function(e) {
+
     e.stopPropagation();
     var list_target_sdgs = [];
     if (getLocalStorage("list_target_sdgs") != "") {
@@ -454,7 +455,7 @@ export function set_page_info_cms_agent(uuid){
 
     // <div class="row mt-5 mb-4">
     var obj_div_root = document.createElement("div"); 
-    obj_div_root.className = "row mt-5 mb-4";
+    obj_div_root.className = "row mt-5 mb-4 d-flex justify-content-around border-bottom";
     
     // <div class="col-12 d-md-none">
     var obj_div_project_list = document.createElement("div"); 
@@ -475,8 +476,8 @@ export function set_page_info_cms_agent(uuid){
     
     // <div class="card mb-4 rounded-0">
     var obj_div_card_md4 = document.createElement("div");
-    obj_div_card_md4.className = "card mb-4 rounded-0";
-
+    obj_div_card_md4.className = "card mb-4";
+    obj_div_card_md4.style = "border-radius: 20px;";
     // <a href="#" class="stretched-link"></a>
     var obj_a_href = document.createElement("a");
     obj_a_href.className ="stretched-link";
@@ -492,14 +493,14 @@ export function set_page_info_cms_agent(uuid){
 
     // <div class="img-fluid bg-cover" style="background-image:url(/static/imgs/project_img_02.png); width:100% ;height:200px"></div>
     var obj_project_img = document.createElement("div");
-    obj_project_img.className = "img-fluid bg-cover";
+    obj_project_img.className = "img-fluid bg-cover shadow";
     // obj_project_img.style = "background-image:url(/static/imgs/project_img_02.png); width:100% ;height:200px";
     
     if (obj_project.img != null) { 
       var path_cover = HOST_URL_TPLANET_DAEMON + 
       "/static/project/" + obj_project.uuid + 
       "/media/cover/cover.png";
-      obj_project_img.style = "background-image:url(" + path_cover + "); width:100% ;height:200px; background-repeat: no-repeat";    
+      obj_project_img.style = "background-image:url(" + path_cover + "); width:100% ;height:200px; background-repeat: no-repeat; border-radius: 18px;";
     }
 
     // Append
@@ -559,7 +560,8 @@ export function set_page_info_cms_agent(uuid){
     // <div class="row mt-3"> 
     var obj_sdg_container = document.createElement("div");
     obj_sdg_container.className = "row mt-3";
- 
+    obj_sdg_container.style = "gap: 10px";;
+
     var obj_a = document.createElement("a");
     obj_a.href = "#";
     
@@ -607,7 +609,7 @@ export function set_page_info_cms_agent(uuid){
       "驗證專案",
     ];
 
-    var menuHtml = '<span class="dropdown"><a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">專案管理選單 <span class="caret"></span></a><ul class="dropdown-menu">';
+    var menuHtml = '<span class="dropdown"><a href="#" class="dropdown-toggle btn btn-primary w-100" style="border-radius: 20px" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">專案管理選單 <span class="caret"></span></a><ul class="dropdown-menu" style="right:0; border-radius: 20px">';
     for (var i = 0; i < contacts.length; i++) {
 
       var fun = "#";
@@ -630,7 +632,7 @@ export function set_page_info_cms_agent(uuid){
 
     // <div class="col-12 d-md-none">
     var obj_div_digital_fp = document.createElement("div");
-    obj_div_digital_fp.className = "col-12 d-md-none";
+    obj_div_digital_fp.className = "col-12 d-md-none mt-4";
     var obj_p_digital_fp = document.createElement("p");
     obj_p_digital_fp.className = "h4";
     obj_p_digital_fp.innerHTML = "數位足跡";
@@ -656,7 +658,7 @@ export function set_page_info_cms_agent(uuid){
 
     // obj_digital_fp_chart1_img.id = "observablehq-chart-4bac1ac8";
     obj_digital_fp_chart1_img.id = "observablehq-chart-" + obj_project.uuid;
-
+    obj_digital_fp_chart1_img.style="margin-top:auto"
     // <div>
     var obj_div_btn_mf = document.createElement("div");
 
