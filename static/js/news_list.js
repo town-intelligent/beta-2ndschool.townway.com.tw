@@ -3,12 +3,10 @@ import { news_list, news_get, news_delete, mockup_get } from './news.js'
 export function set_page_info_news_list() {
   var obj_mockup = mockup_get()
   try {
-    if (obj_mockup.description["news-banner-img"] != null) {
+    if (obj_mockup.description.hasOwnProperty("news-banner-img")) {
       document.getElementById("news_banner_image").style.backgroundImage = "url(" + HOST_URL_TPLANET_DAEMON + obj_mockup.description["news-banner-img"] + ")";
     }
-  } catch (e) {
-    alert(e);
-  }
+  } catch (e) {}
 
   var obj_news_list = news_list();
 
