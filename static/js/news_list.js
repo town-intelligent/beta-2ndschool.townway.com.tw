@@ -10,6 +10,8 @@ export function set_page_info_news_list() {
 
   var obj_news_list = news_list();
 
+  if (obj_news_list.content.length == 0)
+	return;
   obj_news_list.content.forEach(function(uuid){
     var obj_news = news_get(uuid);
 
@@ -85,6 +87,8 @@ export function set_page_info_cms_news_list() {
 
   var obj_news_list = news_list();
 
+  if (obj_news_list.content.length == 0)
+        return;
   obj_news_list.content.forEach(function(uuid) {
     var obj_news = news_get(uuid);
 
